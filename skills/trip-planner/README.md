@@ -46,12 +46,30 @@
 
 ---
 
+## 📱 실제 생성 샘플 미리보기 (Live Sample Preview)
+
+스킬을 통해 자동으로 생성되는 모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션의 실제 캡처 화면 및 샘플 파일입니다.
+
+<p align="center">
+  <img src="sample_preview.png" alt="iOS Card News Web App Preview" width="340" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+</p>
+
+* 🌐 **샘플 웹앱 파일**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  
+  *(다운로드 후 브라우저로 열면 오프라인에서 직접 카드 스와이프, TTS 발음듣기, 검색 타임라인을 체험할 수 있습니다.)*
+* 📊 **샘플 구글맵 연동 CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
+
+---
+
 ## 📂 파일 구조 (Structure)
 
 ```
 trip-planner/
 ├── SKILL.md                              # 스킬 메인 명세 및 6대 절대 원칙 가이드라인
 ├── README.md                             # 스킬 소개 및 사용 가이드
+├── sample_preview.png                    # 모바일 카드뉴스 웹앱 실제 스크린샷
+├── examples/                             # 🌟 실제 생성 샘플 산출물
+│   ├── danang_trip_cards.html            # 모바일 카드뉴스 웹앱 샘플
+│   └── danang_itinerary.csv              # 구글 내 지도 연동 CSV 샘플
 ├── references/
 │   └── trip_planning_playbook.md         # 권역별(일본/동남아/유럽/미주) 플래닝 플레이북
 └── resources/

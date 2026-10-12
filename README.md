@@ -28,20 +28,13 @@
   1. `[도시]_Itinerary.csv`: 스프레드시트 및 구글 내 지도(Google My Maps) 100% 호환 파일.
   2. `[도시]_trip_cards.html`: 스마트폰 Safari/Chrome에서 오프라인으로 동작하는 애플 iOS 스타일 글래스모피즘 카드뉴스 웹 애플리케이션 (Web Speech TTS 원어민 발음듣기, 기사님 보여주기 모달, 구글지도 원클릭 연동, 경비/위시/비상 모달 탑재).
 
-```
-awesome-agent-skills/
-└── skills/
-    └── trip-planner/
-        ├── SKILL.md                          # 스킬 메인 명세 및 6대 절대 원칙
-        ├── README.md                         # 스킬 상세 가이드
-        ├── references/
-        │   └── trip_planning_playbook.md     # 권역별 플래닝 가이드라인
-        └── resources/
-            ├── master_itinerary_template.md  # 마스터 일정표 Markdown 템플릿
-            ├── budget_template.md            # 정밀 예산표 템플릿
-            ├── itinerary_template.csv        # 구글맵 연동 CSV 템플릿
-            └── ios_card_app_template.html    # Phosphor Icons & TTS 탑재 모바일 웹앱 템플릿
-```
+<p align="center">
+  <img src="skills/trip-planner/sample_preview.png" alt="iOS Card News Web App Preview" width="320" style="border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.12);" />
+</p>
+
+* 👉 **[실제 다낭 여행 카드뉴스 샘플 웹앱 열기](skills/trip-planner/examples/danang_trip_cards.html)**
+* 👉 **[실제 다낭 구글맵 연동 CSV 샘플 보기](skills/trip-planner/examples/danang_itinerary.csv)**
+* 👉 **[상세 스킬 문서 및 활용법 보기](skills/trip-planner/)**
 
 ---
 
