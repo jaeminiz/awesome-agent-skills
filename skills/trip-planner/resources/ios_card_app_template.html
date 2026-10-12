@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>{{TRIP_TITLE}} - iOS Mobile Guide</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons for iOS-style crisp icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ios: {
+              bg: '#F2F2F7',
+              card: '#FFFFFF',
+              blue: '#007AFF',
+              green: '#34C759',
+              orange: '#FF9500',
+              red: '#FF3B30',
+              purple: '#AF52DE',
+              teal: '#5AC8FA',
+              subtext: '#8E8E93',
+              separator: 'rgba(60, 60, 67, 0.12)'
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'ios': '0 8px 30px rgba(0, 0, 0, 0.08)',
+            'ios-glow': '0 10px 25px -5px rgba(0, 122, 255, 0.3)',
+            'ios-subtle': '0 2px 10px rgba(0, 0, 0, 0.04)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      background-color: #F2F2F7;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+    .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 12px); }
+    .card-touch-area { touch-action: pan-y pinch-zoom; }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .segmented-active {
+      background: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      color: #000000;
+      font-weight: 600;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .card-enter-next { animation: slideNext 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .card-enter-prev { animation: slidePrev 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes slideNext {
+      from { opacity: 0.3; transform: translateX(35px) scale(0.97); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes slidePrev {
+      from { opacity: 0.3; transform: translateX(-35px) scale(0.97); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes audioPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .playing-sound { animation: audioPulse 0.8s ease-in-out infinite; color: #007AFF !important; }
+  </style>
+</head>
+<body class="min-h-screen text-slate-900 bg-[#F2F2F7] flex flex-col items-center justify-start antialiased selection:bg-blue-200">
+
+  <div id="app" class="w-full max-w-md mx-auto min-h-screen flex flex-col justify-between relative shadow-2xl bg-[#F2F2F7]">
+    
+    <!-- Top Header -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-black/[0.06] safe-top px-4 pb-2.5 transition-all">
+      <div class="flex items-center justify-between py-1 mb-2">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="text-[12px] font-semibold text-slate-500 uppercase tracking-wider">{{HEADER_TITLE}}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btnOpenBudget" class="flex items-center gap-1 text-[13px] font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 active:scale-95 px-2.5 py-1 rounded-full transition">
+            <i class="ph-bold ph-coins text-sm"></i>
+            <span>경비</span>
+          </button>
+          <button id="btnOpenWish" class="flex items-center gap-1 text-[13px] font-semibold text-purple-600 bg-purple-50 hover:bg-purple-100 active:scale-95 px-2.5 py-1 rounded-full transition">
+            <i class="ph-bold ph-fork-knife text-sm"></i>
+            <span>위시</span>
+          </button>
+          <button id="btnOpenEmergency" class="w-7 h-7 flex items-center justify-center rounded-full bg-slate-200/70 hover:bg-slate-300 text-slate-700 active:scale-90 transition">
+            <i class="ph-bold ph-info text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Segmented Day Switcher -->
+      <div class="bg-slate-200/80 p-0.5 rounded-xl flex items-center justify-between text-xs font-medium text-slate-600 shadow-inner" id="dayTabsContainer">
+        <!-- Day buttons generated or placed here -->
+      </div>
+
+      <!-- Mode Switcher -->
+      <div class="flex items-center justify-between mt-2.5 pt-1">
+        <div class="flex items-center bg-white rounded-lg p-0.5 shadow-sm border border-slate-200/60">
+          <button id="viewModeCard" class="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-600 text-white transition">
+            <i class="ph-bold ph-cards text-xs"></i>
+            <span>카드형</span>
+          </button>
+          <button id="viewModeList" class="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition">
+            <i class="ph-bold ph-list-dashes text-xs"></i>
+            <span>타임라인</span>
+          </button>
+        </div>
+        <div class="text-[12px] font-semibold text-slate-500 flex items-center gap-1">
+          <span id="currentCardIndexText" class="text-blue-600 font-bold text-sm">1</span>
+          <span>/</span>
+          <span id="totalCardsCountText">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col justify-start px-4 py-3 relative overflow-hidden">
+      <!-- Card News View -->
+      <div id="cardViewContainer" class="flex-1 flex flex-col justify-between">
+        <div id="activeCard" class="card-touch-area bg-white rounded-[28px] p-5 shadow-ios border border-black/[0.04] flex flex-col justify-between transition-all duration-200 min-h-[515px] relative">
+          <div>
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <div id="cardSeqBadge" class="h-9 px-3.5 rounded-full bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-blue-500/20 tracking-tight">#1</div>
+                <span id="cardDayBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">DAY 1</span>
+                <span id="cardCategoryBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/50">카테고리</span>
+              </div>
+              <button id="btnToggleDone" title="완료 체크" class="w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 text-slate-300 hover:text-emerald-500 hover:border-emerald-500 transition active:scale-90">
+                <i class="ph-bold ph-check text-base"></i>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-blue-600 text-sm font-semibold mb-1">
+              <i class="ph-bold ph-clock"></i>
+              <span id="cardTimeText">00:00 ~ 00:00</span>
+            </div>
+
+            <h2 id="cardTitleText" class="text-xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">일정 제목</h2>
+
+            <div class="bg-slate-50/80 rounded-2xl p-3.5 mb-3.5 border border-slate-100">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-slate-500 mb-1.5">
+                <i class="ph-bold ph-navigation-arrow text-blue-500"></i>
+                <span>방문 스팟 & 이동 상세 꿀팁</span>
+              </div>
+              <div id="cardDescriptionText" class="text-sm text-slate-700 leading-relaxed space-y-1"></div>
+            </div>
+
+            <!-- Phrase Box -->
+            <div id="cardPhraseContainer" class="bg-gradient-to-br from-blue-50/90 to-indigo-50/70 rounded-2xl p-3.5 border border-blue-100/80 relative">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[11px] font-bold text-blue-700 flex items-center gap-1 uppercase tracking-wider">
+                  <i class="ph-fill ph-chat-centered-text"></i>
+                  현장 즉석 현지어 회화
+                </span>
+                <div class="flex items-center gap-1.5">
+                  <button id="btnPlayVoice" class="flex items-center gap-1 text-[11px] font-bold text-blue-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-blue-50 active:scale-95 transition">
+                    <i class="ph-fill ph-speaker-high" id="speakerIcon"></i>
+                    <span>발음듣기</span>
+                  </button>
+                  <button id="btnShowLargePhrase" class="flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition">
+                    <i class="ph-bold ph-arrows-out"></i>
+                    <span>보여주기</span>
+                  </button>
+                </div>
+              </div>
+              <div id="cardPhraseKoSound" class="text-base font-extrabold text-blue-950 mb-0.5 leading-snug">한글 발음</div>
+              <div id="cardPhraseNative" class="text-xs font-semibold text-blue-700 mb-1 font-mono">현지어 원문</div>
+              <div id="cardPhraseMeaning" class="text-xs text-slate-600 flex items-center gap-1">
+                <i class="ph-bold ph-arrow-elbow-down-right text-slate-400"></i>
+                <span>한국어 뜻</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action Row -->
+          <div class="pt-3 border-t border-slate-100 mt-2 flex items-center justify-between">
+            <div id="cardCostBadge" class="text-xs font-semibold text-slate-600 flex items-center gap-1">
+              <i class="ph-fill ph-tag text-amber-500"></i>
+              <span id="cardCostText">비용/정보</span>
+            </div>
+            <a id="btnCardMapLink" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-full border border-emerald-200/60 active:scale-95 transition">
+              <i class="ph-bold ph-map-pin"></i>
+              <span>구글지도 위치</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Prev / Next Navigation -->
+        <div class="flex items-center justify-between gap-3 mt-3 pb-4">
+          <button id="btnPrevCard" class="flex-1 h-12 rounded-2xl bg-white border border-slate-200 shadow-ios-subtle flex items-center justify-center gap-2 text-slate-700 font-bold active:scale-95 transition disabled:opacity-35 disabled:pointer-events-none">
+            <i class="ph-bold ph-caret-left text-lg"></i>
+            <span>이전 일정</span>
+          </button>
+          <div class="px-2 text-center">
+            <div id="cardProgressDots" class="flex gap-1 items-center justify-center"></div>
+          </div>
+          <button id="btnNextCard" class="flex-1 h-12 rounded-2xl bg-blue-600 shadow-ios-glow flex items-center justify-center gap-2 text-white font-bold active:scale-95 transition disabled:opacity-35 disabled:pointer-events-none">
+            <span>다음 일정</span>
+            <i class="ph-bold ph-caret-right text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Timeline List View -->
+      <div id="listViewContainer" class="hidden flex-1 flex flex-col h-full overflow-hidden">
+        <div class="relative mb-2.5">
+          <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input type="text" id="listSearchInput" placeholder="장소, 시간, 음식 또는 현지어 검색..." class="w-full bg-white pl-10 pr-8 py-2.5 rounded-xl border border-slate-200/80 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+          <button id="listSearchClear" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 hidden">
+            <i class="ph-bold ph-x-circle text-base"></i>
+          </button>
+        </div>
+        <div id="timelineScrollList" class="flex-1 overflow-y-auto space-y-2 pr-0.5 no-scrollbar pb-16"></div>
+      </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Modal 1: Budget -->
+    <div id="modalBudget" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
+      <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><i class="ph-bold ph-coins text-lg"></i></div>
+            <h3 class="font-extrabold text-base text-slate-900">필수 총경비 내역</h3>
+          </div>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+        </div>
+        <div class="p-5 overflow-y-auto space-y-4 text-sm text-slate-700 no-scrollbar" id="modalBudgetContent"></div>
+      </div>
+    </div>
+
+    <!-- Modal 2: Wish -->
+    <div id="modalWish" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
+      <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><i class="ph-bold ph-fork-knife text-lg"></i></div>
+            <h3 class="font-extrabold text-base text-slate-900">미식 & 쇼핑 위시 달성표</h3>
+          </div>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+        </div>
+        <div class="p-5 overflow-y-auto space-y-2.5 text-sm no-scrollbar" id="modalWishContent"></div>
+      </div>
+    </div>
+
+    <!-- Modal 3: Emergency -->
+    <div id="modalEmergency" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
+      <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center"><i class="ph-bold ph-first-aid text-lg"></i></div>
+            <h3 class="font-extrabold text-base text-slate-900">호텔 안내 & 긴급 지원</h3>
+          </div>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+        </div>
+        <div class="p-5 overflow-y-auto space-y-4 text-sm no-scrollbar" id="modalEmergencyContent"></div>
+      </div>
+    </div>
+
+    <!-- Modal 4: Large Phrase Show -->
+    <div id="modalShowPhrase" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-5 transition-opacity">
+      <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl flex flex-col text-center relative">
+        <button class="modal-close-btn absolute right-4 top-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full"><i class="ph-bold ph-x text-lg"></i></button>
+        <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">직원 / 기사님께 화면을 보여주세요</div>
+        <div id="modalLargeNativeText" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug my-4 px-2 font-mono"></div>
+        <div id="modalLargeKoSound" class="text-base font-extrabold text-blue-700 mb-2"></div>
+        <div id="modalLargeMeaning" class="text-sm font-semibold text-slate-600 bg-slate-100 p-2.5 rounded-xl mb-4"></div>
+        <button id="modalLargePlayBtn" class="h-12 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition shadow-ios-glow">
+          <i class="ph-fill ph-speaker-high text-lg"></i>
+          <span>음성으로 재생</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Database and dynamic logic injected per destination
+    // TTS: window.speechSynthesis with destination lang code (e.g., 'vi-VN', 'ja-JP', 'en-US')
+  </script>
+</body>
+</html>
