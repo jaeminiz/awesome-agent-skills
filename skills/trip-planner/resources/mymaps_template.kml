@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>여행 일정 - 구글 내 지도 (My Maps)</name>
+    <description>일자별 레이어, 번호 마커 및 이동 동선이 포함된 올인원 KML</description>
+
+    <!-- 일자별 경로 선 스타일 (KML 색상 코드는 aabbggrr 포맷) -->
+    <!-- Day 1: 주황색 테마 (ff0088ff) -->
+    <Style id="route-day-1">
+      <LineStyle>
+        <color>ff147efa</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+
+    <!-- Day 2: 파란색 테마 (ffff8833) -->
+    <Style id="route-day-2">
+      <LineStyle>
+        <color>ffff8833</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+
+    <!-- Day 3: 초록색 테마 (ff44c022) -->
+    <Style id="route-day-3">
+      <LineStyle>
+        <color>ff44c022</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+
+    <!-- Day 4: 보라색 테마 (ffa033aa) -->
+    <Style id="route-day-4">
+      <LineStyle>
+        <color>ffa033aa</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+
+    <!-- 1일차 레이어 (Folder) -->
+    <Folder>
+      <name>1일차</name>
+
+      <!-- 1번 장소 핀 -->
+      <Placemark>
+        <name>1. 후쿠오카공항 국제선 도착</name>
+        <description><![CDATA[
+          <b>날짜:</b> 2026-10-23<br>
+          <b>시간:</b> 09:00-09:30<br>
+          <b>설명:</b> 도착하자마자 캐리어를 호텔로 배송 접수 후 이동.<br>
+          <b>이동/메모:</b> 국제선 1층 2번 승차장 라라포트행 직행버스 탑승 (520엔)<br>
+          <a href="https://www.google.com/maps/search/?api=1&query=Fukuoka+Airport+International+Terminal">구글 지도에서 열기</a>
+        ]]></description>
+        <Point>
+          <!-- 경도(longitude), 위도(latitude), 고도(altitude) 순서 -->
+          <coordinates>130.4447,33.5859,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <!-- 2번 장소 핀 -->
+      <Placemark>
+        <name>2. 라라포트 후쿠오카</name>
+        <description><![CDATA[
+          <b>날짜:</b> 2026-10-23<br>
+          <b>시간:</b> 09:40-13:00<br>
+          <b>설명:</b> 1:1 뉴건담 가동 연출 관람 및 4층 GUNDAM SIDE-F 방문.<br>
+          <b>이동/메모:</b> 같은 건물 3층 야키니쿠 카무라로 이동<br>
+          <a href="https://www.google.com/maps/search/?api=1&query=Mitsui+Shopping+Park+LaLaport+FUKUOKA">구글 지도에서 열기</a>
+        ]]></description>
+        <Point>
+          <coordinates>130.4410,33.5658,0</coordinates>
+        </Point>
+      </Placemark>
+
+      <!-- 1일차 이동 경로 선 -->
+      <Placemark>
+        <name>1일차 이동 경로</name>
+        <styleUrl>#route-day-1</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            130.4447,33.5859,0
+            130.4410,33.5658,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+
+  </Document>
+</kml>
