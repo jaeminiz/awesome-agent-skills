@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>danang - 구글 내 지도 (My Maps)</name>
+    <description>danang 일정: 일자별 레이어, 번호 마커 및 이동 동선</description>
+    <Style id="route-day-1">
+      <LineStyle>
+        <color>ff147efa</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="route-day-2">
+      <LineStyle>
+        <color>ffff8833</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="route-day-3">
+      <LineStyle>
+        <color>ff44c022</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="route-day-4">
+      <LineStyle>
+        <color>ffa033aa</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="route-day-5">
+      <LineStyle>
+        <color>ff3399ff</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="route-day-6">
+      <LineStyle>
+        <color>ff3333ea</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Style id="route-day-7">
+      <LineStyle>
+        <color>ff999900</color>
+        <width>4</width>
+      </LineStyle>
+    </Style>
+    <Folder>
+      <name>1일차</name>
+      <Placemark>
+        <name>1. 다낭 국제공항(DAD) 도착 및 입국</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 07:00-11:30<br><b>설명:</b> LCC 직항 탑승 및 다낭 입국심사, 위탁 수하물 수령 후 입국장 이동<br><b>이동/메모:</b> 공항 픽업 차량 또는 그랩 7인승 탑승 (호텔까지 약 15분 소요)<br><a href="https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.1994,16.0538,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2. 살라 다낭 비치 호텔 (짐 보관)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 11:30-12:30<br><b>설명:</b> 호텔 프론트 데스크에 캐리어 사전 보관 접수 및 환복<br><b>이동/메모:</b> 직원에게 바우처 제시 후 짐 보관 태그 수령. 도보 또는 그랩으로 포홍 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3. 점심 - 포홍 (Pho Hong)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 12:30-13:30<br><b>설명:</b> 현지인 & 한국인 검증 소고기 쌀국수(Pho Bo) 및 바삭한 수제 짜조 식사<br><b>이동/메모:</b> 고수 제외 요청 시: 'Khong rau mui' (콩 라우 무이). 그랩으로 한시장 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Pho%20Hong%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2212,16.0772,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4. 다낭 대성당(핑크성당) & 한시장</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 13:30-16:00<br><b>설명:</b> 핑크빛 외벽 포토존 인증샷 촬영 및 한시장 금은방 환전·라탄백·크록스·원피스 쇼핑<br><b>이동/메모:</b> 100달러 신권 지폐로 환전 시 가장 우대 환율 적용. 한시장 맞은편 콩카페 도보 3분<br><a href="https://www.google.com/maps/search/?api=1&query=Da%20Nang%20Cathedral">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2238,16.0667,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5. 콩카페 1호점 (Cong Caphe)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 16:00-17:30<br><b>설명:</b> 한강변 뷰 감상하며 시그니처 코코넛 스무디 커피 & 연유커피(카페쓰어다) 휴식<br><b>이동/메모:</b> 그랩 호출하여 호텔 복귀 (약 10분, 요금 약 4만동)<br><a href="https://www.google.com/maps/search/?api=1&query=Cong%20Caphe%2098-96%20Bach%20Dang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2252,16.0683,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6. 체크인 - 살라 다낭 비치 호텔</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 17:30-18:30<br><b>설명:</b> 오션뷰 객실 공식 체크인, 보관 짐 수령 및 쇼핑 짐 정비·휴식<br><b>이동/메모:</b> 13층/루프탑 인피니티 풀 위치 확인. 도보 또는 그랩으로 목식당 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7. 저녁 - 목식당 (Moc Seafood - 미슐랭 2025)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 18:30-20:30<br><b>설명:</b> 칠리크랩·블랙페퍼 크랩·버터갈릭 새우·맛조개 모닝글로리·해산물 볶음밥 만찬<br><b>이동/메모:</b> 사전 예약 권장. 웨이팅 발생 시 카운터에 이름 등록. 식사 후 그랩으로 용다리 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Moc%20Seafood%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2435,16.0617,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8. 한강 용다리 (Dragon Bridge)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 20:30-21:30<br><b>설명:</b> 화려한 용다리 LED 조명 야경 및 한강변 산책 (주말 21:00 불쇼·물쇼 관람)<br><b>이동/메모:</b> 물쇼 시 바람 방향에 따라 물이 튈 수 있으니 주의. 그랩으로 호텔 복귀<br><a href="https://www.google.com/maps/search/?api=1&query=Dragon%20Bridge%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2275,16.0611,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>9. 호텔 복귀 및 휴식 - 살라 다낭 비치 호텔</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-23<br><b>시간:</b> 21:30-22:30<br><b>설명:</b> 인근 K-Market 또는 로컬 편의점에서 과일·맥주 구매 후 내일 바나힐 투어를 위한 취침<br><b>이동/메모:</b> 호텔 바로 옆 편의점 도보 1분<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1일차 이동 경로</name>
+        <styleUrl>#route-day-1</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>108.1994,16.0538,0 108.2464,16.0645,0 108.2212,16.0772,0 108.2238,16.0667,0 108.2252,16.0683,0 108.2464,16.0645,0 108.2435,16.0617,0 108.2275,16.0611,0 108.2464,16.0645,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>2일차</name>
+      <Placemark>
+        <name>1. 조식 뷔페 - 살라 다낭 비치 호텔</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 08:00-09:00<br><b>설명:</b> 오션뷰 레스토랑 조식 뷔페 든든히 식사 및 외출 준비 (선크림·얇은 겉옷 챙기기)<br><b>이동/메모:</b> 09:00 로비에서 사전 예약한 7인승 대절 기사님 미팅<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2. 이동 - 살라 다낭 -> 바나힐 썬월드</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 09:00-10:00<br><b>설명:</b> 전용 대절 렌터카 탑승하여 해발 1,487m 바나힐로 이동<br><b>이동/메모:</b> 전용 차량 소요 약 45분. 케이블카 승강장 앞 도착<br><a href="https://www.google.com/maps/search/?api=1&query=Sun%20World%20Ba%20Na%20Hills%20Cable%20Car%20Station">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>107.9897,15.9972,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3. 바나힐 케이블카 탑승</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 10:00-11:00<br><b>설명:</b> 세계 최장급 기네스북 케이블카 탑승하여 정글과 폭포를 내려다보며 산정상 이동<br><b>이동/메모:</b> 모바일 QR 바코드 티켓 태그 후 바로 탑승. 고도 상승 시 기온 하강 대비<br><a href="https://www.google.com/maps/search/?api=1&query=Sun%20World%20Ba%20Na%20Hills%20Cable%20Car%20Station">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>107.9897,15.9972,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4. 골든브릿지 (신의 손) & 르 자르뎅 정원</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 11:00-13:00<br><b>설명:</b> 거대한 두 손이 황금 다리를 받치는 시그니처 랜드마크 인증샷 및 유럽풍 플라워 가든 산책<br><b>이동/메모:</b> 관광객 밀집 전 중앙 구간에서 사진 촬영 권장. 케이블카 환승하여 프랑스 마을 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Golden%20Bridge%20Ba%20Na%20Hills">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>107.9964,15.9953,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5. 점심 - 바나힐 프랑스 마을 & 비어 플라자</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 13:00-14:30<br><b>설명:</b> 중세 프랑스 고딕풍 건축물 거리 구경 및 비어 플라자 뷔페/바비큐 점심 식사<br><b>이동/메모:</b> 도보 이동. 광장 거리 공연 및 퍼레이드 감상<br><a href="https://www.google.com/maps/search/?api=1&query=French%20Village%20Ba%20Na%20Hills">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>107.9872,15.9989,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6. 판타지 파크 & 알파인 코스터</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 14:30-16:00<br><b>설명:</b> 수동 브레이크로 속도를 조절하는 야외 알파인 코스터(루지) 탑승 및 실내 놀이시설<br><b>이동/메모:</b> 루지 대기시간 체크(15~30분 이내 권장). 하선 케이블카 탑승 준비<br><a href="https://www.google.com/maps/search/?api=1&query=Fantasy%20Park%20Ba%20Na%20Hills">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>107.988,15.9985,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7. 이동 - 바나힐 -> 다낭 시내 복귀</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 16:00-17:00<br><b>설명:</b> 케이블카 하선 후 주차장에서 대절 기사님 미팅하여 다낭 시내 스파로 이동<br><b>이동/메모:</b> 전용 차량 소요 약 45분<br><a href="https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2447,16.0583,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8. 스파 - 빌라드스파 (Villa de Spa)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 17:00-19:00<br><b>설명:</b> 90분 시그니처 핫스톤 아로마 힐링 마사지로 바나힐 보행 피로 완전 해소<br><b>이동/메모:</b> 카카오톡 사전 예약 확정 필수. 마사지 후 도보 3분 거리 벱꾸온 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2447,16.0583,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>9. 저녁 - 벱꾸온 (Bep Cuon)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 19:00-20:30<br><b>설명:</b> 에어컨 완비 깔끔한 분위기에서 반쎄오·분짜·넴루이·모닝글로리 베트남 가정식 만찬<br><b>이동/메모:</b> 라이스페이퍼에 싸먹는 쌈 요리 추천. 도보 5분 미케비치 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Bep%20Cuon%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2428,16.0569,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>10. 미케비치 밤바다 산책 & 호텔 루프탑</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-24<br><b>시간:</b> 20:30-22:00<br><b>설명:</b> 시원한 파도 소리를 들으며 미케비치 산책 후 살라 호텔 루프탑 바에서 칵테일 한잔<br><b>이동/메모:</b> 호텔 도보 복귀 후 휴식<br><a href="https://www.google.com/maps/search/?api=1&query=My%20Khe%20Beach%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.247,16.063,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2일차 이동 경로</name>
+        <styleUrl>#route-day-2</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>108.2464,16.0645,0 107.9897,15.9972,0 107.9897,15.9972,0 107.9964,15.9953,0 107.9872,15.9989,0 107.988,15.9985,0 108.2447,16.0583,0 108.2447,16.0583,0 108.2428,16.0569,0 108.247,16.063,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>3일차</name>
+      <Placemark>
+        <name>1. 조식 뷔페 - 살라 다낭 비치 호텔</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 08:00-09:00<br><b>설명:</b> 호텔 조식 뷔페 식사 및 호이안 데이 외출 준비<br><b>이동/메모:</b> 09:00 7인승 대절 차량 탑승<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2. 손짜반도 영흥사 (린응사)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 09:00-11:00<br><b>설명:</b> 67m 동양 최대 해수관음상 관람 및 다낭 해안선 파노라마 뷰 감상<br><b>이동/메모:</b> 사원 내부 입장 시 반바지/민소매 주의 (가림천 대여). 대절차량으로 안방비치 이동(35분)<br><a href="https://www.google.com/maps/search/?api=1&query=Linh%20Ung%20Pagoda%20Son%20Tra">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2778,16.1003,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3. 점심 - 호이안 안방 비치 라플라주 (La Plage)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 11:00-12:30<br><b>설명:</b> 에메랄드빛 안방 비치 해변가 선베드에서 가리비구이·망고샐러드·해산물 런치<br><b>이동/메모:</b> 식사 후 해변 산책. 대절 차량으로 코코넛 바구니배 이동 (약 15분)<br><a href="https://www.google.com/maps/search/?api=1&query=La%20Plage%20An%20Bang%20Beach%20Hoi%20An">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.3392,15.9189,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4. 호이안 코코넛 숲 바구니배 체험</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 12:30-14:30<br><b>설명:</b> 베트남 전통 둥근 바구니배(틴퉁) 탑승, 신나는 회전쇼 관람 및 코코넛 숲 게 낚시<br><b>이동/메모:</b> 사공 매너팁 2~5만동 준비 권장. 대절 차량으로 호이안 올드타운 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Cam%20Thanh%20Coconut%20Village%20Hoi%20An">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.3639,15.8756,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5. 호이안 올드타운 탐방 & 파이포 커피</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 14:30-17:30<br><b>설명:</b> 유네스코 세계문화유산 옛 거리(내원교·풍흥고가) 관람 후 루프탑 황금빛 기와 뷰 카페 휴식<br><b>이동/메모:</b> 올드타운 통합 입장권 지참. 노을 시간대 파이포 커피 루프탑 테라스 추천<br><a href="https://www.google.com/maps/search/?api=1&query=Faifo%20Coffee%20Hoi%20An">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.3283,15.8778,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6. 저녁 - 미쓰리 (Miss Ly)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 17:30-19:00<br><b>설명:</b> 호이안 3대 전통 명물 요리 (화이트로즈·프라이드 완탕·까오라우 비빔국수) 식사<br><b>이동/메모:</b> 올드타운 최고 인기 식당, 17:30 이전 조기 방문 권장<br><a href="https://www.google.com/maps/search/?api=1&query=Miss%20Ly%20Cafe%20Hoi%20An">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.3308,15.8781,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7. 투본강 소원배 체험 & 호이안 야시장</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 19:00-20:30<br><b>설명:</b> 투본강에 촛불 소원등 띄우기 체험 및 화려한 풍등 거리 야시장 간식·기념품 쇼핑<br><b>이동/메모:</b> 소원배 공식 매표소 이용 권장. 대절 기사님 미팅 포인트로 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Hoi%20An%20Night%20Market">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.3261,15.8761,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8. 이동 - 호이안 -> 다낭 살라 호텔 복귀</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-25<br><b>시간:</b> 20:30-21:30<br><b>설명:</b> 전용 대절 차량 탑승하여 다낭 숙소로 편안하게 복귀 후 휴식<br><b>이동/메모:</b> 이동 약 40분 소요<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3일차 이동 경로</name>
+        <styleUrl>#route-day-3</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>108.2464,16.0645,0 108.2778,16.1003,0 108.3392,15.9189,0 108.3639,15.8756,0 108.3283,15.8778,0 108.3308,15.8781,0 108.3261,15.8761,0 108.2464,16.0645,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>4일차</name>
+      <Placemark>
+        <name>1. 모닝 호캉스 & 조식 - 살라 다낭 비치 호텔</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 08:30-10:30<br><b>설명:</b> 미케비치 전망 인피니티 풀에서 모닝 수영 후 여유로운 조식 뷔페 식사<br><b>이동/메모:</b> 수영 후 샤워 및 캐리어 최종 패킹<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2. 체크아웃 - 살라 다낭 비치 호텔</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 10:30-11:00<br><b>설명:</b> 프론트 체크아웃 정산 및 전용 차량 트렁크에 캐리어 적재<br><b>이동/메모:</b> 그랩 또는 대절 차량으로 바빌론 스테이크 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2464,16.0645,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3. 점심 - 바빌론 스테이크 본점</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 11:00-12:30<br><b>설명:</b> 지글지글 뜨거운 돌판에 구워먹는 프리미엄 안심 스테이크 & 모닝글로리 점심 만찬<br><b>이동/메모:</b> 식사 후 그랩으로 롯데마트 다낭점 이동 (약 10분)<br><a href="https://www.google.com/maps/search/?api=1&query=Babylon%20Steak%20Garden%201%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2439,16.0494,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4. 기념품 쇼핑 - 롯데마트 다낭점</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 12:30-14:30<br><b>설명:</b> 다낭 필수 쇼핑리스트(다람쥐똥 콘삭 커피·건망고·캐슈넛·친수 칠리소스·게리 치즈크래커)<br><b>이동/메모:</b> 2층 고객센터 무료 짐보관 서비스 이용 가능. 계산대에서 택스리펀 영수증 발급 필수<br><a href="https://www.google.com/maps/search/?api=1&query=Lotte%20Mart%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2303,16.0353,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5. 출국 전 스파 & 환복 - 다낭 시내 스파</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 14:30-16:30<br><b>설명:</b> 귀국 비행 전 60분 발마사지 및 무료 샤워실 이용하여 산뜻하게 한국 귀국용 복장 환복<br><b>이동/메모:</b> 샤워 및 짐 재정비 완료. 도보/그랩으로 인근 레트로 카페 이동<br><a href="https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2447,16.0583,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6. 카페 & 정산 - 웃티크 카페 (Ut Tich Cafe)</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 16:30-17:30<br><b>설명:</b> 고풍스러운 베트남 빈티지 감성 카페에서 시원한 과일 음료 마시며 여행 경비 최종 정산<br><b>이동/메모:</b> 공항 차량 탑승 전 마지막 여유. 공항까지 차량 15분 소요<br><a href="https://www.google.com/maps/search/?api=1&query=Ut%20Tich%20Cafe%20Da%20Nang">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.2244,16.0694,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7. 다낭 국제공항(DAD) 국제선 출국 수속</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 17:30-19:30<br><b>설명:</b> 항공사 카운터 체크인, 위탁 수하물 발송, 세관 택스리펀(Tax Refund) 창구 환급 및 출국심사<br><b>이동/메모:</b> 보안검색 후 면세점 구경 및 탑승 게이트 대기<br><a href="https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.1994,16.0538,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8. 다낭 출발 -> 한국 귀국</name>
+        <description><![CDATA[<b>일자:</b> 2026-10-26<br><b>시간:</b> 19:30-02:00<br><b>설명:</b> 직항편 탑승하여 한국 무사 귀국 및 안전한 귀가<br><b>이동/메모:</b> 기내 휴식 및 도착 후 세관 신고<br><a href="https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport">구글 지도에서 위치 보기</a>]]></description>
+        <Point>
+          <coordinates>108.1994,16.0538,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4일차 이동 경로</name>
+        <styleUrl>#route-day-4</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>108.2464,16.0645,0 108.2464,16.0645,0 108.2439,16.0494,0 108.2303,16.0353,0 108.2447,16.0583,0 108.2244,16.0694,0 108.1994,16.0538,0 108.1994,16.0538,0</coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>
