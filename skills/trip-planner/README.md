@@ -1,121 +1,124 @@
-# 🧭 Global Trip Planner (글로벌 맞춤형 여행 플래너)
+# 🧭 Global Trip Planner
 
-> **Antigravity AI 전문 여행 플래너 및 일정 아키텍트 스킬**  
-> 전 세계 모든 국내외 여행지를 아우르며, 인터랙티브 문답을 통해 실시간 최저가·환율·트렌드를 반영한 정밀 마스터 일정표, **구글 내 지도(Google My Maps) 일자별 CSV 및 올인원 KML**, 그리고 **애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션**을 자동 생성합니다.
+[![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
----
+**English** | **[한국어](README.ko.md)**
 
-## 🌟 주요 특징 (Core Features)
-
-1. **인터랙티브 맞춤형 플래닝 (Interactive Planning First)**
-   - 일방적으로 일정을 임의 작성하지 않고, 여행 기간, 인원 구성, 이동 방식, 숙소 선호, 여행 테마를 문답을 통해 파악합니다.
-2. **실시간 검색 기반 정밀 데이터 (Real-Time Search)**
-   - 브라우저 검색을 통해 실시간 항공권/숙소 최저가를 직접 조사하고, 당일 실시간 환율(VND, JPY, USD, EUR 등)을 적용해 정밀 예산을 산출합니다.
-3. **트렌드 미디어 심층 큐레이션 (Curated Gourmet & Spots)**
-   - 여행 유튜버, 블로그, 인스타그램, 구글맵 최신 리뷰 등을 분석하여 검증된 맛집과 감성 카페를 동선별로 큐레이션합니다.
-4. **일자별 상세 타임라인 종합 정리표 & 구글맵 연동**
-   - 분 단위 동선, 쇼핑 후 짐 정리 타이밍, 현지 맞춤 실전 회화(한글 발음, 원문, 뜻), 구글맵 다중 경유지 원클릭 동선 링크를 축약 없이 완벽하게 제공합니다.
-5. **구글 내 지도(Google My Maps) 완벽 연동 산출물 세트**
-   - **Day별 표준 6컬럼 CSV (`day1_itinerary.csv`, `day2_itinerary.csv`...)**: `날짜,시간,여행지,구글지도,설명,이동/메모` 6개 컬럼으로 구성되어 레이어별로 분리 관리 가능. 구글 내 지도에서 [숫자의 순서] 스타일 선택 시 `1, 2, 3...` 번호 뱃지 마커가 자동 부여됩니다.
-   - **올인원 KML 파일 (`[도시]_mymaps.kml`)**: 구글 내 지도(My Maps)에서 단 1번의 [가져오기]로 **일자별 레이어 폴더 분리 + 번호 마커(1, 2, 3...) + 일차별 동선 연결선(`N일차 이동 경로`, LineString 테마 색상)**까지 1초 만에 한 방에 자동 완성됩니다.
-6. **모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹앱 (`[도시]_trip_cards.html`)**
-   - **1장씩 넘겨보는 카드뉴스 UI**: 화이트 글래스모피즘, 터치 스와이프 제스처, 순번/카테고리 뱃지, 완료 체크 기능 (`localStorage` 연동).
-   - **현지어 발음듣기 (TTS)**: 기기 내장 Web Speech API로 원어민 발음 음성 즉시 재생.
-   - **기사님/직원 보여주기 모달**: 36px 대형 텍스트 풀스크린 모달.
-   - **3대 필수 모달**: 정밀 경비표, 미식/쇼핑 위시리스트 체크리스트, 호텔 주소 복사 & 긴급 연락망 원클릭 전화 지원.
+> **Expert AI Travel Planner & Itinerary Architect Skill for Agentic Frameworks.**  
+> Covers domestic and worldwide international destinations. Conducts interactive interviews, retrieves live prices and daily exchange rates, and automatically generates master itineraries, **Google My Maps Day-by-Day CSVs & All-in-One KMLs**, and **Apple iPhone (iOS) style card news web applications**.
 
 ---
 
-## 📋 6단계 글로벌 플래닝 프로세스 (Global Workflow)
+## ⚡ Quick Install
 
-```
-[Phase 1] 초기 인터뷰 & 필수 질문 (전 세계 맞춤)
-       ↓
-[Phase 2] 브라우저 실시간 항공·숙소 최저가 & 현지 당일 환율 리서치 보고 ➔ [사용자 선택]
-       ↓
-[Phase 3] 동선 최적화 맛집 & 카페 글로벌 큐레이션 리스트 보고 ➔ [사용자 선택]
-       ↓
-[Phase 4] ⭐ 필수 상세 출력 (축약/생략 금지):
-          1. 일자별 상세 타임라인 종합 정리표 (테이블 5개 컬럼)
-          2. 구글맵 다중 경유지 동선 링크
-          3. 당일 환율 적용 최종 정밀 예산표
-       ↓
-[Phase 5] 최종 산출물 생성 확인 질문 ("구글 내 지도 Day별 CSV, 올인원 KML, iOS 카드뉴스 웹앱을 생성해드릴까요?") ➔ [사용자 승인]
-       ↓
-[Phase 6] Day별 CSV, [도시]_mymaps.kml 및 [도시]_trip_cards.html 최종 생성
+```bash
+npx skills add https://github.com/jaeminiz/awesome-agent-skills --skill trip-planner
 ```
 
 ---
 
-## 📱 실제 생성 샘플 미리보기 (Live Sample Preview)
+## 🌟 Core Features
 
-스킬을 통해 자동으로 생성되는 모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션의 실제 캡처 화면 및 샘플 파일입니다.
+1. **Interactive Planning First (No Arbitrary Guessing)**
+   - Never generates an itinerary blindly. Systematically clarifies duration, party composition, transport preference, accommodation style, and key travel themes through structured dialogues.
+2. **Real-Time Data Driven**
+   - Researches lowest live airfare and accommodation options using browser search tools, and applies live daily foreign exchange rates (VND, JPY, USD, EUR, etc.) to construct an accurate budget breakdown.
+3. **Media-Curated Gourmet & Spots**
+   - Curates verified restaurants and scenic cafes along daily transit routes by analyzing travel creators on YouTube, blogs, Instagram, and recent Google Maps reviews.
+4. **Minute-by-Minute Timeline Table & Google Maps Integration**
+   - Delivers comprehensive 5-column daily timeline tables without abbreviations: minute-level timings, luggage drop-off checkpoints, situational local phrases (native script, pronunciation, and translation), and multi-stop Google Maps route links.
+5. **Google My Maps Complete Deliverables**
+   - **Day-by-Day 6-Column CSV (`day1_itinerary.csv`, `day2_itinerary.csv`...)**: Standard columns (`Date,Time,Place,GoogleMaps,Description,Transit_Notes`). Supports separate map layer imports with automatic `1, 2, 3...` sequence badge numbering.
+   - **All-in-One KML (`[City]_mymaps.kml`)**: A single import into Google My Maps produces day-separated layer folders, numbered pin markers, and themed polyline routes (`Day N Transit Route`) in seconds.
+6. **Mobile-Optimized Apple iPhone (iOS) Card News Web App (`[City]_trip_cards.html`)**
+   - **Swipeable Card News UI**: White glassmorphic aesthetic, touch swipe gestures, sequence/category badges, and persistent progress checkmarks (`localStorage`).
+   - **Native Pronunciation TTS**: One-tap native voice playback using the device's built-in Web Speech API.
+   - **Driver & Staff Display Modal**: 36px oversized local script display modal for taxi drivers and restaurant staff.
+   - **3 Essential Modals**: Precision expense summary, foodie/shopping wishlist checklist, and quick-call emergency & hotel contacts.
+
+---
+
+## 📋 6-Phase Global Workflow
+
+```
+[Phase 1] Initial Interview & Mandatory Questionnaire (Worldwide customization)
+       ↓
+[Phase 2] Real-time Flight & Hotel Live Pricing & Daily Exchange Rate Report ➔ [User Selection]
+       ↓
+[Phase 3] Route-Optimized Gourmet & Scenic Spot Curated List ➔ [User Selection]
+       ↓
+[Phase 4] ⭐ Mandatory Comprehensive Output (Never abbreviated):
+          1. Detailed minute-by-minute timeline table (5 columns)
+          2. Multi-stop Google Maps transit route links
+          3. Daily exchange rate applied precision budget breakdown
+       ↓
+[Phase 5] Explicit User Confirmation ("Would you like me to generate the Google My Maps CSVs, All-in-One KML, and iOS Card Web App?") ➔ [User Approval]
+       ↓
+[Phase 6] Final File Generation: Day-by-Day CSVs, [City]_mymaps.kml, and [City]_trip_cards.html
+```
+
+---
+
+## 📱 Live Sample Preview
+
+A glimpse of the mobile-optimized Apple iPhone (iOS) style card news web app generated automatically by this skill:
 
 <p align="center">
   <img src="sample_preview.png" alt="iOS Card News Web App Preview" width="340" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
 </p>
 
-* 🌐 **샘플 웹앱 파일**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  
-  *(다운로드 후 브라우저로 열면 오프라인에서 직접 카드 스와이프, TTS 발음듣기, 검색 타임라인을 체험할 수 있습니다.)*
-* 🗺️ **구글 내 지도 올인원 KML**: [`examples/danang_mymaps.kml`](examples/danang_mymaps.kml)  
-  *(구글 내 지도에서 [새 지도 만들기] -> [가져오기]에 드래그하면 1~4일차 레이어/번호핀/동선 연결선이 1초 만에 자동 생성됩니다.)*
-* 📊 **구글 내 지도 표준 6컬럼 통합 CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
-* 📂 **구글 내 지도 Day별 분리 CSV**:
-  * [`examples/day1_itinerary.csv`](examples/day1_itinerary.csv) (1일차)
-  * [`examples/day2_itinerary.csv`](examples/day2_itinerary.csv) (2일차)
-  * [`examples/day3_itinerary.csv`](examples/day3_itinerary.csv) (3일차)
-  * [`examples/day4_itinerary.csv`](examples/day4_itinerary.csv) (4일차)
+* 🌐 **Interactive Web App Sample**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  
+  *(Open directly in any mobile or desktop browser to experience card swiping, voice TTS, and timeline search completely offline.)*
+* 🗺️ **Google My Maps All-in-One KML**: [`examples/danang_mymaps.kml`](examples/danang_mymaps.kml)  
+  *(Import into Google My Maps to instantly view 1–4 day layer folders, numbered pins, and transit routes.)*
+* 📊 **Google My Maps Standard 6-Column Integrated CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
+* 📂 **Google My Maps Day-by-Day CSVs**:
+  * [`examples/day1_itinerary.csv`](examples/day1_itinerary.csv) (Day 1)
+  * [`examples/day2_itinerary.csv`](examples/day2_itinerary.csv) (Day 2)
+  * [`examples/day3_itinerary.csv`](examples/day3_itinerary.csv) (Day 3)
+  * [`examples/day4_itinerary.csv`](examples/day4_itinerary.csv) (Day 4)
 
 ---
 
-## 📂 파일 구조 (Structure)
+## 📂 File Structure
 
 ```
 trip-planner/
-├── SKILL.md                              # 스킬 메인 명세 및 6대 절대 원칙 가이드라인
-├── README.md                             # 스킬 소개 및 사용 가이드
-├── sample_preview.png                    # 모바일 카드뉴스 웹앱 실제 스크린샷
-├── examples/                             # 🌟 실제 생성 샘플 산출물 (다낭 3박 4일 풀세트)
-│   ├── danang_trip_cards.html            # 모바일 카드뉴스 웹앱 샘플
-│   ├── danang_mymaps.kml                 # 구글 내 지도 올인원 KML (레이어+번호핀+동선)
-│   ├── danang_itinerary.csv              # 구글 내 지도 표준 6컬럼 통합 CSV 샘플
-│   ├── day1_itinerary.csv                # 1일차 구글 내 지도 CSV
-│   ├── day2_itinerary.csv                # 2일차 구글 내 지도 CSV
-│   ├── day3_itinerary.csv                # 3일차 구글 내 지도 CSV
-│   └── day4_itinerary.csv                # 4일차 구글 내 지도 CSV
+├── SKILL.md                              # Main agent instruction & strict governance rules
+├── README.md                             # English skill documentation
+├── README.ko.md                          # Korean skill documentation
+├── sample_preview.png                    # Mobile card news web app screenshot
+├── examples/                             # Production-ready sample deliverables (Da Nang 4-Day)
+│   ├── danang_trip_cards.html            # Mobile card news web app
+│   ├── danang_mymaps.kml                 # Google My Maps All-in-One KML
+│   ├── danang_itinerary.csv              # Google My Maps 6-column combined CSV
+│   ├── day1_itinerary.csv                # Day 1 CSV
+│   ├── day2_itinerary.csv                # Day 2 CSV
+│   ├── day3_itinerary.csv                # Day 3 CSV
+│   └── day4_itinerary.csv                # Day 4 CSV
 ├── references/
-│   └── trip_planning_playbook.md         # 권역별(일본/동남아/유럽/미주) 플래닝 플레이북
+│   └── trip_planning_playbook.md         # Regional planning guidelines (Asia, Europe, Americas)
 └── resources/
-    ├── master_itinerary_template.md      # 마스터 일정표 표준 Markdown 템플릿
-    ├── budget_template.md                # 다통화 환율 및 정밀 예산안 템플릿
-    ├── itinerary_template.csv            # 구글 내 지도 표준 6컬럼 CSV 템플릿
-    ├── mymaps_template.kml               # 구글 내 지도 올인원 KML 템플릿 (레이어+번호핀+동선)
-    ├── generate_maps_data.py             # Day별 CSV 및 올인원 KML 자동 빌드 스크립트
-    └── ios_card_app_template.html        # Phosphor Icons & TTS 탑재 모바일 웹앱 템플릿
+    ├── master_itinerary_template.md      # Master itinerary Markdown template
+    ├── budget_template.md                # Multi-currency budget template
+    ├── itinerary_template.csv            # Google My Maps 6-column CSV template
+    ├── mymaps_template.kml               # Google My Maps All-in-One KML template
+    ├── generate_maps_data.py             # Python utility script for CSV & KML builds
+    └── ios_card_app_template.html        # Glassmorphic Phosphor Icons & TTS HTML template
 ```
 
 ---
 
-## 🚀 설치 및 사용법 (Installation)
+## 🌐 Language Support
 
-### 1. Antigravity 글로벌 스킬로 설치
-본 저장소를 클론하여 사용자의 Antigravity 글로벌 스킬 디렉터리에 배치합니다:
+The `trip-planner` skill is fully **language-agnostic**:
+* When the user converses in **English**, all questionnaire items, timeline tables, budgets, and generated deliverables are rendered in **English** (with native local phrases for destination countries).
+* When the user converses in **Korean**, it operates seamlessly in **Korean**.
+* Supports any destination worldwide (Japan, Vietnam, France, Italy, USA, Switzerland, Spain, etc.).
 
-```bash
-# Windows (PowerShell)
-git clone https://github.com/jaeminiz/awesome-agent-skills.git
-Copy-Item -Path "awesome-agent-skills\skills\trip-planner" -Destination "$HOME\.gemini\config\skills\" -Recurse -Force
+---
 
-# macOS / Linux
-git clone https://github.com/jaeminiz/awesome-agent-skills.git
-cp -r awesome-agent-skills/skills/trip-planner ~/.gemini/config/skills/
-```
+## 📄 License
 
-### 2. 프로젝트 전용 스킬로 설치
-특정 워크스페이스에서만 사용할 경우 프로젝트 루트의 `.agents/skills/`에 배치합니다:
-
-```bash
-# 워크스페이스 루트에서 실행
-New-Item -ItemType Directory -Force -Path ".agents\skills"
-Copy-Item -Path "awesome-agent-skills\skills\trip-planner" -Destination ".agents\skills\trip-planner" -Recurse -Force
-```
+MIT License. See [LICENSE](../../LICENSE) for details.
