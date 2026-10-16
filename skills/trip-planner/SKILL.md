@@ -14,16 +14,18 @@ description: >-
 
 # 🧭 Global Trip Planner
 
-**Universal AI Travel Planner & Itinerary Architect for Agentic Frameworks.**  
-Covers domestic and worldwide international destinations (Asia, Europe, Americas, Oceania, etc.).  
-**Strictly interactive**: Conducts structured questionnaires first, retrieves real-time live flight/hotel pricing and daily foreign exchange rates, curates social media-trending gourmet spots and cafes, and generates **Google My Maps Day-by-Day CSVs, All-in-One KMLs, and mobile-optimized Apple iPhone (iOS) style card news web applications (`[city]_trip_cards.html`)**.
+**Language:** **English (Default)** | [한국어 버전 (Korean)](#korean-version)
+
+> **Universal AI Travel Planner & Itinerary Architect for Agentic Frameworks.**  
+> Covers domestic and worldwide international destinations (Asia, Europe, Americas, Oceania, etc.).  
+> **Strictly interactive**: Conducts structured questionnaires first, retrieves real-time live flight/hotel pricing and daily foreign exchange rates, curates social media-trending gourmet spots and cafes, and generates **Google My Maps Day-by-Day CSVs, All-in-One KMLs, and mobile-optimized Apple iPhone (iOS) style card news web applications (`[city]_trip_cards.html`)**.
 
 ---
 
 ## 🌐 Multilingual & Language-Agnostic Execution Policy
 
-This skill automatically adapts to the user's preferred language:
-* **English Conversation**: Conducts all questionnaires, pricing reports, detailed timeline tables, budget breakdowns, and deliverable files in **English** (with native local phrases for destination countries).
+This skill automatically detects and adapts to the user's preferred language:
+* **English Conversation (Default)**: Conducts all questionnaires, research reports, timeline tables, budgets, and deliverable files completely in **English** (with native local phrases for destination countries).
 * **Korean Conversation (한국어 대응)**: 사용자가 한국어로 질문하거나 요청할 경우, 모든 문답과 마스터 일정표, 예산안, 산출물을 **한국어**로 정밀하게 작성합니다.
 * **Any Other Language**: Adapts effortlessly to Spanish, Japanese, Chinese, French, German, etc.
 
@@ -89,6 +91,37 @@ This skill automatically adapts to the user's preferred language:
 * **Native TTS Voice**: Tap the speaker icon to play native pronunciation using the device's Web Speech API.
 * **Driver Display Modal**: 36px oversized local script display modal for taxi drivers and restaurant staff.
 * **3 Essential Modals**: Precision expense summary, foodie/shopping wishlist checklist, and quick-call emergency & hotel contacts.
+
+---
+
+<div id="korean-version"></div>
+
+<details>
+<summary><b>🇰🇷 한국어 버전 (Click to view Korean Version)</b></summary>
+
+### 🧭 글로벌 전문가 여행 플래너 스킬
+
+전 세계 모든 국내외 여행지(아시아, 유럽, 미주, 대양주 등)를 아우르는 전문 여행 플래너이자 일정 아키텍트입니다.  
+**일방적으로 일정을 임의 작성하지 않고** 사용자와 단계별 인터랙티브 문답을 통해 여행 취향을 파악합니다.  
+"브라우저" 기반 실시간 최저가(항공·숙소)와 목적지 국가의 당일 실시간 환율을 검색·반영하고, 여행 유튜버·블로거·인스타그램 트렌드를 심층 조사하여 최적의 동선, 맛집, 카페, 교통(우버/그랩/기차 등)을 큐레이션하며, **최종 구글 내 지도 산출물(Day별 CSV & 올인원 KML) 및 모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션(`[도시]_trip_cards.html`) 생성 전 반드시 사용자의 확인을 거칩니다.**
+
+#### ⛔ 플래너 6대 절대 원칙
+1. **사전 확인 없는 임의 작성 금지**: 시작 시 목적지, 일정, 인원, 여행 스타일, 예산을 먼저 질문하고 사용자의 선택을 받습니다.
+2. **실시간 최저가 및 당일 환율 반영**: 항공/숙소 실시간 검색 및 당일 매매기준율 적용.
+3. **트렌드 미디어 심층 리서치**: 유튜브, 블로그, 인스타를 종합 조사하여 최근 검증된 핫플과 미식 반영.
+4. **동선 최적화 맛집 & 카페 큐레이션**: 권역별 맛집 및 카페 후보군 제시 후 사용자 선택 유도.
+5. **일자별 상세 타임라인 종합 정리표 & 최종 예산표 전체 출력 필수**: 축약 없이 5개 컬럼 테이블 온전히 출력.
+6. **최종 산출물 생성 전 필수 사용자 확인**: 사용자 승인 후 Day별 CSV, 올인원 KML, 모바일 카드뉴스 웹앱 빌드.
+
+#### 📋 6단계 플래닝 프로세스
+1. `Phase 1`: 초기 인터뷰 & 필수 질문 (전 세계 맞춤)
+2. `Phase 2`: 실시간 항공·숙소 최저가 & 현지 당일 환율 리서치 보고 ➔ 사용자 선택
+3. `Phase 3`: 동선 최적화 맛집 & 카페 글로벌 큐레이션 리스트 보고 ➔ 사용자 선택
+4. `Phase 4`: 마스터 일정표(5컬럼 타임라인) & 정밀 예산안 작성 및 보고
+5. `Phase 5`: 최종 산출물 생성 여부 확인 질문 (사용자 승인)
+6. `Phase 6`: 구글 내 지도 Day별 CSV + 올인원 KML + iOS 카드뉴스 웹앱 생성
+
+</details>
 
 ---
 
