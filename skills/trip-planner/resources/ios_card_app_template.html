@@ -23,12 +23,15 @@
               red: '#FF3B30',
               purple: '#AF52DE',
               teal: '#5AC8FA',
+              darkBg: '#000000',
+              darkCard: '#1C1C1E',
+              darkElevated: '#2C2C2E',
               subtext: '#8E8E93',
               separator: 'rgba(60, 60, 67, 0.12)'
             }
           },
           fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'sans-serif'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'Noto Sans KR', 'sans-serif'],
           },
           boxShadow: {
             'ios': '0 8px 30px rgba(0, 0, 0, 0.08)',
@@ -40,14 +43,22 @@
     }
   </script>
   <style>
+    /* iOS Custom Aesthetics */
     body {
       -webkit-tap-highlight-color: transparent;
       user-select: none;
       background-color: #F2F2F7;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
-    .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 12px); }
-    .card-touch-area { touch-action: pan-y pinch-zoom; }
+    .safe-top {
+      padding-top: max(env(safe-area-inset-top, 0px), 12px);
+    }
+    .safe-bottom {
+      padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+    }
+    .card-touch-area {
+      touch-action: pan-y pinch-zoom;
+    }
     .glass-nav {
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px);
@@ -59,10 +70,21 @@
       color: #000000;
       font-weight: 600;
     }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .card-enter-next { animation: slideNext 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .card-enter-prev { animation: slidePrev 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Card Transition Animations */
+    .card-enter-next {
+      animation: slideNext 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .card-enter-prev {
+      animation: slidePrev 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
     @keyframes slideNext {
       from { opacity: 0.3; transform: translateX(35px) scale(0.97); }
       to { opacity: 1; transform: translateX(0) scale(1); }
@@ -71,46 +93,61 @@
       from { opacity: 0.3; transform: translateX(-35px) scale(0.97); }
       to { opacity: 1; transform: translateX(0) scale(1); }
     }
+    /* Pulse on audio play */
     @keyframes audioPulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.15); }
     }
-    .playing-sound { animation: audioPulse 0.8s ease-in-out infinite; color: #007AFF !important; }
+    .playing-sound {
+      animation: audioPulse 0.8s ease-in-out infinite;
+      color: #007AFF !important;
+    }
   </style>
 </head>
 <body class="min-h-screen text-slate-900 bg-[#F2F2F7] flex flex-col items-center justify-start antialiased selection:bg-blue-200">
 
+  <!-- App Container (iPhone Pro Max Width bounded) -->
   <div id="app" class="w-full max-w-md mx-auto min-h-screen flex flex-col justify-between relative shadow-2xl bg-[#F2F2F7]">
     
-    <!-- Top Header -->
+    <!-- iOS Dynamic Top Bar -->
     <header class="sticky top-0 z-40 glass-nav border-b border-black/[0.06] safe-top px-4 pb-2.5 transition-all">
+      <!-- Dynamic Island / Title Area -->
       <div class="flex items-center justify-between py-1 mb-2">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
           <span class="text-[12px] font-semibold text-slate-500 uppercase tracking-wider">{{HEADER_TITLE}}</span>
         </div>
+        
+        <!-- Utility Action Buttons -->
         <div class="flex items-center gap-2">
+          <!-- Total Budget Button -->
           <button id="btnOpenBudget" class="flex items-center gap-1 text-[13px] font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 active:scale-95 px-2.5 py-1 rounded-full transition">
             <i class="ph-bold ph-coins text-sm"></i>
             <span>경비</span>
           </button>
-          <button id="btnOpenWish" class="flex items-center gap-1 text-[13px] font-semibold text-purple-600 bg-purple-50 hover:bg-purple-100 active:scale-95 px-2.5 py-1 rounded-full transition">
-            <i class="ph-bold ph-fork-knife text-sm"></i>
+          
+          <!-- Shopping / Wishlist Button -->
+          <button id="btnOpenShopping" class="flex items-center gap-1 text-[13px] font-semibold text-purple-600 bg-purple-50 hover:bg-purple-100 active:scale-95 px-2.5 py-1 rounded-full transition">
+            <i class="ph-bold ph-bag-simple text-sm"></i>
             <span>위시</span>
           </button>
+          
+          <!-- Emergency Info -->
           <button id="btnOpenEmergency" class="w-7 h-7 flex items-center justify-center rounded-full bg-slate-200/70 hover:bg-slate-300 text-slate-700 active:scale-90 transition">
             <i class="ph-bold ph-info text-sm"></i>
           </button>
         </div>
       </div>
 
-      <!-- Segmented Day Switcher -->
+      <!-- Segmented Day Switcher (Apple iOS Style) -->
       <div class="bg-slate-200/80 p-0.5 rounded-xl flex items-center justify-between text-xs font-medium text-slate-600 shadow-inner" id="dayTabsContainer">
-        <!-- Day buttons generated or placed here -->
+        <!-- Injected via JS or pre-rendered: <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center segmented-active" data-day="ALL">전체</button> ... -->
+        {{DAY_TABS_HTML}}
       </div>
 
-      <!-- Mode Switcher -->
+      <!-- View Switcher & Search Bar -->
       <div class="flex items-center justify-between mt-2.5 pt-1">
+        <!-- Card / List mode toggle -->
         <div class="flex items-center bg-white rounded-lg p-0.5 shadow-sm border border-slate-200/60">
           <button id="viewModeCard" class="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-600 text-white transition">
             <i class="ph-bold ph-cards text-xs"></i>
@@ -121,6 +158,8 @@
             <span>타임라인</span>
           </button>
         </div>
+
+        <!-- Quick Jump / Counter info -->
         <div class="text-[12px] font-semibold text-slate-500 flex items-center gap-1">
           <span id="currentCardIndexText" class="text-blue-600 font-bold text-sm">1</span>
           <span>/</span>
@@ -129,58 +168,90 @@
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col justify-start px-4 py-3 relative overflow-hidden">
-      <!-- Card News View -->
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 flex flex-col justify-start px-4 pt-3 pb-6 safe-bottom relative overflow-hidden">
+      
+      <!-- [MODE 1] CARD NEWS VIEW (순번별 1장씩 한 화면) -->
       <div id="cardViewContainer" class="flex-1 flex flex-col justify-between">
+        
+        <!-- Interactive Card Surface -->
         <div id="activeCard" class="card-touch-area bg-white rounded-[28px] p-5 shadow-ios border border-black/[0.04] flex flex-col justify-between transition-all duration-200 min-h-[515px] relative">
+          
+          <!-- Card Top Row: Sequence Badge, Day, Time -->
           <div>
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
-                <div id="cardSeqBadge" class="h-9 px-3.5 rounded-full bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-blue-500/20 tracking-tight">#1</div>
-                <span id="cardDayBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">DAY 1</span>
-                <span id="cardCategoryBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/50">카테고리</span>
+                <!-- Sequence Badge (iOS Pill) -->
+                <div id="cardSeqBadge" class="h-9 px-3.5 rounded-full bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-blue-500/20 tracking-tight">
+                  #1
+                </div>
+                <!-- Day Badge -->
+                <span id="cardDayBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+                  DAY 1
+                </span>
+                <!-- Category Tag -->
+                <span id="cardCategoryBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/50">
+                  카테고리
+                </span>
               </div>
+
+              <!-- Complete Checkbox Toggle -->
               <button id="btnToggleDone" title="완료 체크" class="w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 text-slate-300 hover:text-emerald-500 hover:border-emerald-500 transition active:scale-90">
                 <i class="ph-bold ph-check text-base"></i>
               </button>
             </div>
 
+            <!-- Time Display -->
             <div class="flex items-center gap-1.5 text-blue-600 text-sm font-semibold mb-1">
               <i class="ph-bold ph-clock"></i>
               <span id="cardTimeText">00:00 ~ 00:00</span>
             </div>
 
-            <h2 id="cardTitleText" class="text-xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">일정 제목</h2>
+            <!-- Title -->
+            <h2 id="cardTitleText" class="text-xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">
+              일정 제목
+            </h2>
 
+            <!-- Detailed Spot & Moving Tips (Key highlights) -->
             <div class="bg-slate-50/80 rounded-2xl p-3.5 mb-3.5 border border-slate-100">
               <div class="flex items-center gap-1.5 text-xs font-bold text-slate-500 mb-1.5">
                 <i class="ph-bold ph-navigation-arrow text-blue-500"></i>
                 <span>방문 스팟 & 이동 상세 꿀팁</span>
               </div>
-              <div id="cardDescriptionText" class="text-sm text-slate-700 leading-relaxed space-y-1"></div>
+              <div id="cardDescriptionText" class="text-sm text-slate-700 leading-relaxed space-y-1">
+                <!-- Injected via JS -->
+              </div>
             </div>
 
-            <!-- Phrase Box -->
+            <!-- Situational Native Phrase Box (현지 회화 특화) -->
             <div id="cardPhraseContainer" class="bg-gradient-to-br from-blue-50/90 to-indigo-50/70 rounded-2xl p-3.5 border border-blue-100/80 relative">
               <div class="flex items-center justify-between mb-1.5">
                 <span class="text-[11px] font-bold text-blue-700 flex items-center gap-1 uppercase tracking-wider">
                   <i class="ph-fill ph-chat-centered-text"></i>
                   현장 즉석 현지어 회화
                 </span>
+                <!-- Action Buttons: Audio Pronunciation & Fullscreen Show -->
                 <div class="flex items-center gap-1.5">
-                  <button id="btnPlayVoice" class="flex items-center gap-1 text-[11px] font-bold text-blue-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-blue-50 active:scale-95 transition">
+                  <button id="btnPlayVoice" class="flex items-center gap-1 text-[11px] font-bold text-blue-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-blue-50 active:scale-95 transition" title="원어민 발음 듣기">
                     <i class="ph-fill ph-speaker-high" id="speakerIcon"></i>
                     <span>발음듣기</span>
                   </button>
-                  <button id="btnShowLargePhrase" class="flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition">
+                  <button id="btnShowLargePhrase" class="flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition" title="직원/기사님께 보여주기">
                     <i class="ph-bold ph-arrows-out"></i>
                     <span>보여주기</span>
                   </button>
                 </div>
               </div>
-              <div id="cardPhraseKoSound" class="text-base font-extrabold text-blue-950 mb-0.5 leading-snug">한글 발음</div>
-              <div id="cardPhraseNative" class="text-xs font-semibold text-blue-700 mb-1 font-mono">현지어 원문</div>
+
+              <!-- Pronunciation in Korean -->
+              <div id="cardPhraseKoSound" class="text-base font-extrabold text-blue-950 mb-0.5 leading-snug">
+                한글 발음
+              </div>
+              <!-- Native Script -->
+              <div id="cardPhraseNative" class="text-xs font-semibold text-blue-700 mb-1 font-mono">
+                현지어 원문
+              </div>
+              <!-- Meaning in Korean -->
               <div id="cardPhraseMeaning" class="text-xs text-slate-600 flex items-center gap-1">
                 <i class="ph-bold ph-arrow-elbow-down-right text-slate-400"></i>
                 <span>한국어 뜻</span>
@@ -188,37 +259,48 @@
             </div>
           </div>
 
-          <!-- Bottom Action Row -->
+          <!-- Card Bottom Action Row (Maps & Quick Cost details) -->
           <div class="pt-3 border-t border-slate-100 mt-2 flex items-center justify-between">
+            <!-- Cost / Note Tag -->
             <div id="cardCostBadge" class="text-xs font-semibold text-slate-600 flex items-center gap-1">
               <i class="ph-fill ph-tag text-amber-500"></i>
               <span id="cardCostText">비용/정보</span>
             </div>
-            <a id="btnCardMapLink" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-full border border-emerald-200/60 active:scale-95 transition">
+
+            <!-- External Google Map Link Button -->
+            <a id="btnCardMapLink" href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-full border border-emerald-200/60 active:scale-95 transition">
               <i class="ph-bold ph-map-pin"></i>
               <span>구글지도 위치</span>
             </a>
           </div>
+
         </div>
 
-        <!-- Prev / Next Navigation -->
-        <div class="flex items-center justify-between gap-3 mt-3 pb-4">
+        <!-- Navigation Buttons: Previous & Next with iOS haptic feel -->
+        <div class="flex items-center justify-between gap-3 mt-3">
           <button id="btnPrevCard" class="flex-1 h-12 rounded-2xl bg-white border border-slate-200 shadow-ios-subtle flex items-center justify-center gap-2 text-slate-700 font-bold active:scale-95 transition disabled:opacity-35 disabled:pointer-events-none">
             <i class="ph-bold ph-caret-left text-lg"></i>
             <span>이전 일정</span>
           </button>
+          
+          <!-- Quick Progress Jump Mini Indicator -->
           <div class="px-2 text-center">
-            <div id="cardProgressDots" class="flex gap-1 items-center justify-center"></div>
+            <div id="cardProgressDots" class="flex gap-1 items-center justify-center">
+              <!-- Rendered via JS -->
+            </div>
           </div>
+
           <button id="btnNextCard" class="flex-1 h-12 rounded-2xl bg-blue-600 shadow-ios-glow flex items-center justify-center gap-2 text-white font-bold active:scale-95 transition disabled:opacity-35 disabled:pointer-events-none">
             <span>다음 일정</span>
             <i class="ph-bold ph-caret-right text-lg"></i>
           </button>
         </div>
+
       </div>
 
-      <!-- Timeline List View -->
+      <!-- [MODE 2] TIMELINE LIST VIEW (스크롤 목록 & 검색) -->
       <div id="listViewContainer" class="hidden flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Search bar -->
         <div class="relative mb-2.5">
           <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
           <input type="text" id="listSearchInput" placeholder="장소, 시간, 음식 또는 현지어 검색..." class="w-full bg-white pl-10 pr-8 py-2.5 rounded-xl border border-slate-200/80 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
@@ -226,64 +308,117 @@
             <i class="ph-bold ph-x-circle text-base"></i>
           </button>
         </div>
-        <div id="timelineScrollList" class="flex-1 overflow-y-auto space-y-2 pr-0.5 no-scrollbar pb-16"></div>
+
+        <!-- Scrollable Timeline Items List -->
+        <div id="timelineScrollList" class="flex-1 overflow-y-auto space-y-2 pr-0.5 no-scrollbar pb-16">
+          <!-- Rendered dynamically via JS -->
+        </div>
       </div>
+
     </main>
 
-    <!-- Modals -->
-    <!-- Modal 1: Budget -->
+    <!-- MODAL 1: TOTAL BUDGET SHEET -->
     <div id="modalBudget" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
-      <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[88vh] flex flex-col shadow-2xl overflow-hidden animate-slide-up">
+        
         <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><i class="ph-bold ph-coins text-lg"></i></div>
-            <h3 class="font-extrabold text-base text-slate-900">필수 총경비 내역</h3>
+            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+              <i class="ph-bold ph-coins text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900">필수 총경비 내역</h3>
+              <p class="text-xs text-slate-500">{{BUDGET_SUBTITLE}}</p>
+            </div>
           </div>
-          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
+            <i class="ph-bold ph-x text-base"></i>
+          </button>
         </div>
-        <div class="p-5 overflow-y-auto space-y-4 text-sm text-slate-700 no-scrollbar" id="modalBudgetContent"></div>
+
+        <div class="p-5 overflow-y-auto space-y-4 text-sm text-slate-700 no-scrollbar" id="modalBudgetContent">
+          {{MODAL_BUDGET_CONTENT}}
+        </div>
+
       </div>
     </div>
 
-    <!-- Modal 2: Wish -->
-    <div id="modalWish" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
+    <!-- MODAL 2: SHOPPING / WISHLIST CHECKLIST -->
+    <div id="modalShopping" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
       <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        
         <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><i class="ph-bold ph-fork-knife text-lg"></i></div>
-            <h3 class="font-extrabold text-base text-slate-900">미식 & 쇼핑 위시 달성표</h3>
+            <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+              <i class="ph-bold ph-bag-simple text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900">미식 & 쇼핑 위시 100% 달성표</h3>
+              <p class="text-xs text-slate-500">동선에 녹아있는 큐레이션 스팟</p>
+            </div>
           </div>
-          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
+            <i class="ph-bold ph-x text-base"></i>
+          </button>
         </div>
-        <div class="p-5 overflow-y-auto space-y-2.5 text-sm no-scrollbar" id="modalWishContent"></div>
+
+        <div class="p-5 overflow-y-auto space-y-2.5 text-sm no-scrollbar" id="modalWishContent">
+          {{MODAL_WISH_CONTENT}}
+        </div>
+
       </div>
     </div>
 
-    <!-- Modal 3: Emergency -->
+    <!-- MODAL 3: EMERGENCY & HOTEL INFO -->
     <div id="modalEmergency" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
       <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        
         <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center"><i class="ph-bold ph-first-aid text-lg"></i></div>
-            <h3 class="font-extrabold text-base text-slate-900">호텔 안내 & 긴급 지원</h3>
+            <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center">
+              <i class="ph-bold ph-first-aid text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900">호텔 안내 & 긴급 지원</h3>
+              <p class="text-xs text-slate-500">택시 기사님께 보여주는 현지어 주소 및 긴급망</p>
+            </div>
           </div>
-          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
+            <i class="ph-bold ph-x text-base"></i>
+          </button>
         </div>
-        <div class="p-5 overflow-y-auto space-y-4 text-sm no-scrollbar" id="modalEmergencyContent"></div>
+
+        <div class="p-5 overflow-y-auto space-y-4 text-sm no-scrollbar" id="modalEmergencyContent">
+          {{MODAL_EMERGENCY_CONTENT}}
+        </div>
+
       </div>
     </div>
 
-    <!-- Modal 4: Large Phrase Show -->
+    <!-- MODAL 4: FULLSCREEN NATIVE SHOWING SCREEN -->
     <div id="modalShowPhrase" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-5 transition-opacity">
-      <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl flex flex-col text-center relative">
-        <button class="modal-close-btn absolute right-4 top-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full"><i class="ph-bold ph-x text-lg"></i></button>
+      <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl flex flex-col text-center relative animate-slide-up">
+        <button class="modal-close-btn absolute right-4 top-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full">
+          <i class="ph-bold ph-x text-lg"></i>
+        </button>
+        
         <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">직원 / 기사님께 화면을 보여주세요</div>
-        <div id="modalLargeNativeText" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug my-4 px-2 font-mono"></div>
-        <div id="modalLargeKoSound" class="text-base font-extrabold text-blue-700 mb-2"></div>
-        <div id="modalLargeMeaning" class="text-sm font-semibold text-slate-600 bg-slate-100 p-2.5 rounded-xl mb-4"></div>
+        
+        <div id="modalLargeNativeText" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug my-4 px-2 font-mono">
+          <!-- Native Script -->
+        </div>
+
+        <div id="modalLargeKoSound" class="text-base font-extrabold text-blue-700 mb-2">
+          <!-- Korean Pronunciation -->
+        </div>
+
+        <div id="modalLargeMeaning" class="text-sm font-semibold text-slate-600 bg-slate-100 p-2.5 rounded-xl mb-4">
+          <!-- Korean Meaning -->
+        </div>
+
         <button id="modalLargePlayBtn" class="h-12 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition shadow-ios-glow">
           <i class="ph-fill ph-speaker-high text-lg"></i>
-          <span>음성으로 재생</span>
+          <span>원어민 음성으로 재생</span>
         </button>
       </div>
     </div>
@@ -291,8 +426,401 @@
   </div>
 
   <script>
-    // Database and dynamic logic injected per destination
-    // TTS: window.speechSynthesis with destination lang code (e.g., 'vi-VN', 'ja-JP', 'en-US')
+    /* Complete Database of Tour Items */
+    const itineraryData = {{ITINERARY_DATA_JSON}};
+
+    /* Destination TTS Language Code (e.g., 'ja-JP', 'vi-VN', 'en-US', 'zh-TW', 'th-TH') */
+    const DEST_LANG_CODE = "{{LANG_CODE}}";
+
+    /* State Management */
+    let currentIndex = 0;
+    let currentFilterDay = "ALL";
+    let filteredIndices = itineraryData.map((_, i) => i);
+    let completedSet = new Set();
+
+    // DOM Elements
+    const activeCard = document.getElementById('activeCard');
+    const cardSeqBadge = document.getElementById('cardSeqBadge');
+    const cardDayBadge = document.getElementById('cardDayBadge');
+    const cardCategoryBadge = document.getElementById('cardCategoryBadge');
+    const cardTimeText = document.getElementById('cardTimeText');
+    const cardTitleText = document.getElementById('cardTitleText');
+    const cardDescriptionText = document.getElementById('cardDescriptionText');
+    const cardPhraseKoSound = document.getElementById('cardPhraseKoSound');
+    const cardPhraseNative = document.getElementById('cardPhraseNative');
+    const cardPhraseMeaning = document.getElementById('cardPhraseMeaning');
+    const cardCostBadge = document.getElementById('cardCostBadge');
+    const cardCostText = document.getElementById('cardCostText');
+    const btnCardMapLink = document.getElementById('btnCardMapLink');
+    const currentCardIndexText = document.getElementById('currentCardIndexText');
+    const totalCardsCountText = document.getElementById('totalCardsCountText');
+    const btnPrevCard = document.getElementById('btnPrevCard');
+    const btnNextCard = document.getElementById('btnNextCard');
+    const btnToggleDone = document.getElementById('btnToggleDone');
+    const cardProgressDots = document.getElementById('cardProgressDots');
+    const speakerIcon = document.getElementById('speakerIcon');
+
+    // Speech Synthesis
+    function speakNative(text) {
+      if (!('speechSynthesis' in window)) {
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = DEST_LANG_CODE || 'en-US';
+      utterance.rate = 0.9;
+      
+      speakerIcon.classList.add('playing-sound');
+      utterance.onend = () => speakerIcon.classList.remove('playing-sound');
+      utterance.onerror = () => speakerIcon.classList.remove('playing-sound');
+      
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Render Card with animations
+    function renderCard(direction = null) {
+      const globalIndex = filteredIndices[currentIndex];
+      const item = itineraryData[globalIndex];
+      if (!item) return;
+
+      // Animation classes
+      activeCard.classList.remove('card-enter-next', 'card-enter-prev');
+      void activeCard.offsetWidth; // trigger reflow
+      if (direction === 'next') activeCard.classList.add('card-enter-next');
+      if (direction === 'prev') activeCard.classList.add('card-enter-prev');
+
+      // Update Card Content
+      cardSeqBadge.textContent = `#${item.id}`;
+      cardDayBadge.textContent = `DAY ${item.day}`;
+      cardCategoryBadge.textContent = item.category;
+      cardTimeText.textContent = item.time;
+      cardTitleText.textContent = item.title;
+
+      // Format description with bullet lines
+      const descLines = (item.description || '').split('\n');
+      cardDescriptionText.innerHTML = descLines.map(line => `<div>${line}</div>`).join('');
+
+      cardPhraseKoSound.textContent = item.phraseKo || '';
+      cardPhraseNative.textContent = item.phraseNative || item.phraseJa || item.phraseVi || '';
+      cardPhraseMeaning.textContent = item.phraseMeaning || '';
+      cardCostText.textContent = item.cost || '';
+
+      // Google maps link
+      btnCardMapLink.href = item.mapQuery ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}` : '#';
+
+      // Update Completion state
+      if (completedSet.has(item.id)) {
+        btnToggleDone.className = "w-8 h-8 rounded-full flex items-center justify-center bg-emerald-500 text-white shadow-sm transition active:scale-90";
+      } else {
+        btnToggleDone.className = "w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 text-slate-300 hover:text-emerald-500 hover:border-emerald-500 transition active:scale-90";
+      }
+
+      // Counter numbers
+      currentCardIndexText.textContent = currentIndex + 1;
+      totalCardsCountText.textContent = filteredIndices.length;
+
+      // Disable/Enable Nav buttons
+      btnPrevCard.disabled = currentIndex <= 0;
+      btnNextCard.disabled = currentIndex >= filteredIndices.length - 1;
+
+      // Update micro progress indicator dots
+      renderDots();
+    }
+
+    function renderDots() {
+      cardProgressDots.innerHTML = '';
+      const total = filteredIndices.length;
+      const maxDots = 7;
+      let start = Math.max(0, currentIndex - Math.floor(maxDots / 2));
+      let end = Math.min(total, start + maxDots);
+      if (end - start < maxDots) {
+        start = Math.max(0, end - maxDots);
+      }
+
+      for (let i = start; i < end; i++) {
+        const dot = document.createElement('span');
+        const isActive = (i === currentIndex);
+        dot.className = isActive 
+          ? 'w-4 h-1.5 rounded-full bg-blue-600 transition-all duration-300' 
+          : 'w-1.5 h-1.5 rounded-full bg-slate-300 transition-all';
+        cardProgressDots.appendChild(dot);
+      }
+    }
+
+    // Touch Gestures (Swipe Left / Swipe Right)
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    activeCard.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    activeCard.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const threshold = 45;
+      if (touchEndX < touchStartX - threshold) {
+        if (currentIndex < filteredIndices.length - 1) {
+          currentIndex++;
+          renderCard('next');
+        }
+      } else if (touchEndX > touchStartX + threshold) {
+        if (currentIndex > 0) {
+          currentIndex--;
+          renderCard('prev');
+        }
+      }
+    }
+
+    // Keyboard Arrow Keys
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentIndex < filteredIndices.length - 1) {
+        currentIndex++;
+        renderCard('next');
+      } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        currentIndex--;
+        renderCard('prev');
+      }
+    });
+
+    // Next / Prev button triggers
+    btnNextCard.addEventListener('click', () => {
+      if (currentIndex < filteredIndices.length - 1) {
+        currentIndex++;
+        renderCard('next');
+      }
+    });
+
+    btnPrevCard.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderCard('prev');
+      }
+    });
+
+    // Toggle Done
+    btnToggleDone.addEventListener('click', () => {
+      const currentItem = itineraryData[filteredIndices[currentIndex]];
+      if (completedSet.has(currentItem.id)) {
+        completedSet.delete(currentItem.id);
+      } else {
+        completedSet.add(currentItem.id);
+      }
+      renderCard();
+      renderTimelineList();
+    });
+
+    // Play Voice Button
+    document.getElementById('btnPlayVoice').addEventListener('click', () => {
+      const item = itineraryData[filteredIndices[currentIndex]];
+      speakNative(item.phraseNative || item.phraseJa || item.phraseVi || '');
+    });
+
+    // Day Tab Filters
+    const dayTabs = document.querySelectorAll('.day-tab');
+    dayTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        dayTabs.forEach(t => t.classList.remove('segmented-active'));
+        tab.classList.add('segmented-active');
+        const selectedDay = tab.dataset.day;
+        currentFilterDay = selectedDay;
+
+        if (selectedDay === 'ALL') {
+          filteredIndices = itineraryData.map((_, i) => i);
+        } else {
+          const targetDayNum = parseInt(selectedDay, 10);
+          filteredIndices = [];
+          itineraryData.forEach((item, index) => {
+            if (item.day === targetDayNum) filteredIndices.push(index);
+          });
+        }
+
+        currentIndex = 0;
+        renderCard();
+        renderTimelineList();
+      });
+    });
+
+    // Render Timeline List View
+    const timelineScrollList = document.getElementById('timelineScrollList');
+    function renderTimelineList(filterQuery = '') {
+      timelineScrollList.innerHTML = '';
+      const query = filterQuery.trim().toLowerCase();
+
+      let visibleIndices = filteredIndices;
+      if (query) {
+        visibleIndices = visibleIndices.filter(idx => {
+          const it = itineraryData[idx];
+          const nativeText = (it.phraseNative || it.phraseJa || it.phraseVi || '').toLowerCase();
+          return (it.title || '').toLowerCase().includes(query) ||
+                 (it.description || '').toLowerCase().includes(query) ||
+                 (it.phraseKo || '').toLowerCase().includes(query) ||
+                 nativeText.includes(query) ||
+                 (it.time || '').toLowerCase().includes(query);
+        });
+      }
+
+      if (visibleIndices.length === 0) {
+        timelineScrollList.innerHTML = `
+          <div class="text-center py-12 text-slate-400">
+            <i class="ph-bold ph-magnifying-glass text-3xl mb-1"></i>
+            <p class="text-xs">일치하는 일정이 없습니다.</p>
+          </div>
+        `;
+        return;
+      }
+
+      visibleIndices.forEach((globalIdx) => {
+        const item = itineraryData[globalIdx];
+        const isDone = completedSet.has(item.id);
+
+        const cardItem = document.createElement('div');
+        cardItem.className = `p-3.5 bg-white rounded-2xl border ${isDone ? 'border-emerald-200 bg-emerald-50/20' : 'border-black/[0.04]'} shadow-ios-subtle active:scale-[0.99] transition cursor-pointer`;
+        
+        cardItem.innerHTML = `
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+              <span class="w-6 h-6 rounded-full ${isDone ? 'bg-emerald-500 text-white' : 'bg-blue-600 text-white'} text-[11px] font-extrabold flex items-center justify-center">
+                ${item.id}
+              </span>
+              <span class="text-xs font-bold text-slate-700">DAY ${item.day}</span>
+              <span class="text-xs font-semibold text-blue-600">${item.time}</span>
+            </div>
+            <span class="text-[11px] font-semibold text-slate-500">${item.category}</span>
+          </div>
+          <div class="font-extrabold text-sm text-slate-900 mb-1 leading-snug">${item.title}</div>
+          <div class="text-xs text-slate-600 line-clamp-1">${(item.description || '').replace(/\n/g, ' ')}</div>
+          <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div class="text-blue-700 font-semibold text-[11px] truncate pr-2">
+              🗣️ ${item.phraseKo || ''}
+            </div>
+            <span class="text-slate-400 text-[10px] whitespace-nowrap">탭하여 카드보기 →</span>
+          </div>
+        `;
+
+        cardItem.addEventListener('click', () => {
+          const targetCardIdx = filteredIndices.indexOf(globalIdx);
+          if (targetCardIdx !== -1) {
+            currentIndex = targetCardIdx;
+            switchViewMode('card');
+            renderCard();
+          }
+        });
+
+        timelineScrollList.appendChild(cardItem);
+      });
+    }
+
+    // View Switcher (Card vs List)
+    const viewModeCard = document.getElementById('viewModeCard');
+    const viewModeList = document.getElementById('viewModeList');
+    const cardViewContainer = document.getElementById('cardViewContainer');
+    const listViewContainer = document.getElementById('listViewContainer');
+
+    function switchViewMode(mode) {
+      if (mode === 'card') {
+        viewModeCard.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-600 text-white transition";
+        viewModeList.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+        cardViewContainer.classList.remove('hidden');
+        listViewContainer.classList.add('hidden');
+      } else {
+        viewModeList.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-600 text-white transition";
+        viewModeCard.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+        listViewContainer.classList.remove('hidden');
+        cardViewContainer.classList.add('hidden');
+        renderTimelineList();
+      }
+    }
+
+    viewModeCard.addEventListener('click', () => switchViewMode('card'));
+    viewModeList.addEventListener('click', () => switchViewMode('list'));
+
+    // Search Box Logic
+    const listSearchInput = document.getElementById('listSearchInput');
+    const listSearchClear = document.getElementById('listSearchClear');
+
+    listSearchInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      listSearchClear.classList.toggle('hidden', val.length === 0);
+      renderTimelineList(val);
+    });
+
+    listSearchClear.addEventListener('click', () => {
+      listSearchInput.value = '';
+      listSearchClear.classList.add('hidden');
+      renderTimelineList('');
+    });
+
+    // Fullscreen Large Phrase Modal
+    const modalShowPhrase = document.getElementById('modalShowPhrase');
+    const modalLargeNativeText = document.getElementById('modalLargeNativeText');
+    const modalLargeKoSound = document.getElementById('modalLargeKoSound');
+    const modalLargeMeaning = document.getElementById('modalLargeMeaning');
+    const modalLargePlayBtn = document.getElementById('modalLargePlayBtn');
+
+    document.getElementById('btnShowLargePhrase').addEventListener('click', () => {
+      const item = itineraryData[filteredIndices[currentIndex]];
+      modalLargeNativeText.textContent = item.phraseNative || item.phraseJa || item.phraseVi || '';
+      modalLargeKoSound.textContent = item.phraseKo || '';
+      modalLargeMeaning.textContent = item.phraseMeaning || '';
+      modalShowPhrase.classList.remove('hidden');
+    });
+
+    modalLargePlayBtn.addEventListener('click', () => {
+      const item = itineraryData[filteredIndices[currentIndex]];
+      speakNative(item.phraseNative || item.phraseJa || item.phraseVi || '');
+    });
+
+    // Modals Wiring (Budget, Shopping, Emergency)
+    const modalBudget = document.getElementById('modalBudget');
+    const modalShopping = document.getElementById('modalShopping');
+    const modalEmergency = document.getElementById('modalEmergency');
+
+    document.getElementById('btnOpenBudget').addEventListener('click', () => modalBudget.classList.remove('hidden'));
+    document.getElementById('btnOpenShopping').addEventListener('click', () => modalShopping.classList.remove('hidden'));
+    document.getElementById('btnOpenEmergency').addEventListener('click', () => modalEmergency.classList.remove('hidden'));
+
+    // Universal Modal Closer
+    document.querySelectorAll('.modal-close-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        modalBudget.classList.add('hidden');
+        modalShopping.classList.add('hidden');
+        modalEmergency.classList.add('hidden');
+        modalShowPhrase.classList.add('hidden');
+      });
+    });
+
+    [modalBudget, modalShopping, modalEmergency, modalShowPhrase].forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+      });
+    });
+
+    // Helper: Copy Text to Clipboard
+    window.copyToClipboard = function(text) {
+      const tempInput = document.createElement("input");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      // Temporary visual toast
+      const toast = document.createElement("div");
+      toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white text-xs px-4 py-2 rounded-full shadow-lg backdrop-blur-sm";
+      toast.textContent = "주소가 클립보드에 복사되었습니다!";
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 1800);
+    };
+
+    // Initial Execution
+    window.addEventListener('load', () => {
+      renderCard();
+      renderTimelineList();
+    });
   </script>
 </body>
 </html>
