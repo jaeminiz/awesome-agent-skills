@@ -29,8 +29,8 @@ npx skills add https://github.com/jaeminiz/awesome-agent-skills --skill trip-pla
 4. **Minute-by-Minute Timeline Table & Google Maps Integration**
    - Delivers comprehensive 5-column daily timeline tables without abbreviations: minute-level timings, luggage drop-off checkpoints, situational local phrases (native script, pronunciation, and translation), and multi-stop Google Maps route links.
 5. **Google My Maps Complete Deliverables**
-   - **Day-by-Day 6-Column CSV (`day1_itinerary.csv`, `day2_itinerary.csv`...)**: Standard columns (`Date,Time,Place,GoogleMaps,Description,Transit_Notes`). Supports separate map layer imports with automatic `1, 2, 3...` sequence badge numbering.
-   - **All-in-One KML (`[City]_mymaps.kml`)**: A single import into Google My Maps produces day-separated layer folders, numbered pin markers, and themed polyline routes (`Day N Transit Route`) in seconds.
+   - **Day-by-Day 8-Column CSV (`day1_itinerary.csv`, `day2_itinerary.csv`...)**: Standard columns (`Date,Time,Place,Latitude,Longitude,GoogleMaps,Description,Transit_Notes`). Explicit Latitude and Longitude columns ensure 1-second instant pinpointing in Google My Maps, with automatic `1, 2, 3...` sequence badge numbering.
+   - **All-in-One & Day-by-Day KML (`[City]_mymaps.kml`, `[City]_DayN.kml`)**: 100% compliant with Google My Maps parser requirements with XML entity escaping (`&amp;`) and validated flat placemark architecture for error-free multi-layer imports.
 6. **Mobile-Optimized Apple iPhone (iOS) Card News Web App (`[City]_trip_cards.html`)**
    - **Swipeable Card News UI**: White glassmorphic aesthetic, touch swipe gestures, sequence/category badges, and persistent progress checkmarks (`localStorage`).
    - **Native Pronunciation TTS**: One-tap native voice playback using the device's built-in Web Speech API.

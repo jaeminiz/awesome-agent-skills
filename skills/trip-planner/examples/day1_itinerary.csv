@@ -1,10 +1,10 @@
-﻿날짜,시간,여행지,구글지도,설명,이동/메모
-2026-10-23,07:00-11:30,다낭 국제공항(DAD) 도착 및 입국,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport,"LCC 직항 탑승 및 다낭 입국심사, 위탁 수하물 수령 후 입국장 이동",공항 픽업 차량 또는 그랩 7인승 탑승 (호텔까지 약 15분 소요)
-2026-10-23,11:30-12:30,살라 다낭 비치 호텔 (짐 보관),https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,호텔 프론트 데스크에 캐리어 사전 보관 접수 및 환복,직원에게 바우처 제시 후 짐 보관 태그 수령. 도보 또는 그랩으로 포홍 이동
-2026-10-23,12:30-13:30,점심 - 포홍 (Pho Hong),https://www.google.com/maps/search/?api=1&query=Pho%20Hong%20Da%20Nang,현지인 & 한국인 검증 소고기 쌀국수(Pho Bo) 및 바삭한 수제 짜조 식사,고수 제외 요청 시: 'Khong rau mui' (콩 라우 무이). 그랩으로 한시장 이동
-2026-10-23,13:30-16:00,다낭 대성당(핑크성당) & 한시장,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20Cathedral,핑크빛 외벽 포토존 인증샷 촬영 및 한시장 금은방 환전·라탄백·크록스·원피스 쇼핑,100달러 신권 지폐로 환전 시 가장 우대 환율 적용. 한시장 맞은편 콩카페 도보 3분
-2026-10-23,16:00-17:30,콩카페 1호점 (Cong Caphe),https://www.google.com/maps/search/?api=1&query=Cong%20Caphe%2098-96%20Bach%20Dang,한강변 뷰 감상하며 시그니처 코코넛 스무디 커피 & 연유커피(카페쓰어다) 휴식,"그랩 호출하여 호텔 복귀 (약 10분, 요금 약 4만동)"
-2026-10-23,17:30-18:30,체크인 - 살라 다낭 비치 호텔,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,"오션뷰 객실 공식 체크인, 보관 짐 수령 및 쇼핑 짐 정비·휴식",13층/루프탑 인피니티 풀 위치 확인. 도보 또는 그랩으로 목식당 이동
-2026-10-23,18:30-20:30,저녁 - 목식당 (Moc Seafood - 미슐랭 2025),https://www.google.com/maps/search/?api=1&query=Moc%20Seafood%20Da%20Nang,칠리크랩·블랙페퍼 크랩·버터갈릭 새우·맛조개 모닝글로리·해산물 볶음밥 만찬,사전 예약 권장. 웨이팅 발생 시 카운터에 이름 등록. 식사 후 그랩으로 용다리 이동
-2026-10-23,20:30-21:30,한강 용다리 (Dragon Bridge),https://www.google.com/maps/search/?api=1&query=Dragon%20Bridge%20Da%20Nang,화려한 용다리 LED 조명 야경 및 한강변 산책 (주말 21:00 불쇼·물쇼 관람),물쇼 시 바람 방향에 따라 물이 튈 수 있으니 주의. 그랩으로 호텔 복귀
-2026-10-23,21:30-22:30,호텔 복귀 및 휴식 - 살라 다낭 비치 호텔,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,인근 K-Market 또는 로컬 편의점에서 과일·맥주 구매 후 내일 바나힐 투어를 위한 취침,호텔 바로 옆 편의점 도보 1분
+﻿날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모
+2026-10-23,07:00-11:30,다낭 국제공항(DAD) 도착 및 입국,16.0539,108.2022,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport,"LCC 직항 탑승 및 다낭 입국심사, 위탁 수하물 수령 후 입국장 이동",공항 픽업 차량 또는 그랩 7인승 탑승 (호텔까지 약 15분 소요)
+2026-10-23,11:30-12:30,살라 다낭 비치 호텔 (짐 보관),16.0641,108.2464,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,호텔 프론트 데스크에 캐리어 사전 보관 접수 및 환복,직원에게 바우처 제시 후 짐 보관 태그 수령. 도보 또는 그랩으로 포홍 이동
+2026-10-23,12:30-13:30,점심 - 포홍 (Pho Hong),16.0827,108.2255,https://www.google.com/maps/search/?api=1&query=Pho%20Hong%20Da%20Nang,현지인 & 한국인 검증 소고기 쌀국수(Pho Bo) 및 바삭한 수제 짜조 식사,고수 제외 요청 시: 'Khong rau mui' (콩 라우 무이). 그랩으로 한시장 이동
+2026-10-23,13:30-16:00,다낭 대성당(핑크성당) & 한시장,16.0667,108.2232,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20Cathedral,핑크빛 외벽 포토존 인증샷 촬영 및 한시장 금은방 환전·라탄백·크록스·원피스 쇼핑,100달러 신권 지폐로 환전 시 가장 우대 환율 적용. 한시장 맞은편 콩카페 도보 3분
+2026-10-23,16:00-17:30,콩카페 1호점 (Cong Caphe),16.0683,108.225,https://www.google.com/maps/search/?api=1&query=Cong%20Caphe%2098-96%20Bach%20Dang,한강변 뷰 감상하며 시그니처 코코넛 스무디 커피 & 연유커피(카페쓰어다) 휴식,"그랩 호출하여 호텔 복귀 (약 10분, 요금 약 4만동)"
+2026-10-23,17:30-18:30,체크인 - 살라 다낭 비치 호텔,16.0641,108.2464,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,"오션뷰 객실 공식 체크인, 보관 짐 수령 및 쇼핑 짐 정비·휴식",13층/루프탑 인피니티 풀 위치 확인. 도보 또는 그랩으로 목식당 이동
+2026-10-23,18:30-20:30,저녁 - 목식당 (Moc Seafood - 미슐랭 2025),16.0543,108.2415,https://www.google.com/maps/search/?api=1&query=Moc%20Seafood%20Da%20Nang,칠리크랩·블랙페퍼 크랩·버터갈릭 새우·맛조개 모닝글로리·해산물 볶음밥 만찬,사전 예약 권장. 웨이팅 발생 시 카운터에 이름 등록. 식사 후 그랩으로 용다리 이동
+2026-10-23,20:30-21:30,한강 용다리 (Dragon Bridge),16.0611,108.2272,https://www.google.com/maps/search/?api=1&query=Dragon%20Bridge%20Da%20Nang,화려한 용다리 LED 조명 야경 및 한강변 산책 (주말 21:00 불쇼·물쇼 관람),물쇼 시 바람 방향에 따라 물이 튈 수 있으니 주의. 그랩으로 호텔 복귀
+2026-10-23,21:30-22:30,호텔 복귀 및 휴식 - 살라 다낭 비치 호텔,16.0641,108.2464,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,인근 K-Market 또는 로컬 편의점에서 과일·맥주 구매 후 내일 바나힐 투어를 위한 취침,호텔 바로 옆 편의점 도보 1분

@@ -43,32 +43,32 @@
 
       <!-- 1번 장소 핀 -->
       <Placemark>
-        <name>1. 후쿠오카공항 국제선 도착</name>
+        <name>1. 다낭 국제공항(DAD) 도착 및 입국</name>
         <description><![CDATA[
           <b>날짜:</b> 2026-10-23<br>
-          <b>시간:</b> 09:00-09:30<br>
-          <b>설명:</b> 도착하자마자 캐리어를 호텔로 배송 접수 후 이동.<br>
-          <b>이동/메모:</b> 국제선 1층 2번 승차장 라라포트행 직행버스 탑승 (520엔)<br>
-          <a href="https://www.google.com/maps/search/?api=1&query=Fukuoka+Airport+International+Terminal">구글 지도에서 열기</a>
+          <b>시간:</b> 07:00-11:30<br>
+          <b>설명:</b> LCC 직항 탑승 및 다낭 입국심사, 위탁 수하물 수령 후 입국장 이동.<br>
+          <b>이동/메모:</b> 공항 픽업 차량 또는 그랩 7인승 탑승 (호텔까지 약 15분 소요)<br>
+          <a href="https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport">구글 지도에서 열기</a>
         ]]></description>
         <Point>
           <!-- 경도(longitude), 위도(latitude), 고도(altitude) 순서 -->
-          <coordinates>130.4447,33.5859,0</coordinates>
+          <coordinates>108.2022,16.0539,0</coordinates>
         </Point>
       </Placemark>
 
       <!-- 2번 장소 핀 -->
       <Placemark>
-        <name>2. 라라포트 후쿠오카</name>
+        <name>2. 살라 다낭 비치 호텔 (짐 보관)</name>
         <description><![CDATA[
           <b>날짜:</b> 2026-10-23<br>
-          <b>시간:</b> 09:40-13:00<br>
-          <b>설명:</b> 1:1 뉴건담 가동 연출 관람 및 4층 GUNDAM SIDE-F 방문.<br>
-          <b>이동/메모:</b> 같은 건물 3층 야키니쿠 카무라로 이동<br>
-          <a href="https://www.google.com/maps/search/?api=1&query=Mitsui+Shopping+Park+LaLaport+FUKUOKA">구글 지도에서 열기</a>
+          <b>시간:</b> 11:30-12:30<br>
+          <b>설명:</b> 호텔 프론트 데스크에 캐리어 사전 보관 접수 및 환복.<br>
+          <b>이동/메모:</b> 직원에게 바우처 제시 후 짐 보관 태그 수령. 도보 또는 그랩으로 포홍 이동<br>
+          <a href="https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel">구글 지도에서 열기</a>
         ]]></description>
         <Point>
-          <coordinates>130.4410,33.5658,0</coordinates>
+          <coordinates>108.2464,16.0641,0</coordinates>
         </Point>
       </Placemark>
 
@@ -79,8 +79,8 @@
         <LineString>
           <tessellate>1</tessellate>
           <coordinates>
-            130.4447,33.5859,0
-            130.4410,33.5658,0
+            108.2022,16.0539,0
+            108.2464,16.0641,0
           </coordinates>
         </LineString>
       </Placemark>

@@ -1,11 +1,11 @@
-﻿날짜,시간,여행지,구글지도,설명,이동/메모
-2026-10-24,08:00-09:00,조식 뷔페 - 살라 다낭 비치 호텔,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,오션뷰 레스토랑 조식 뷔페 든든히 식사 및 외출 준비 (선크림·얇은 겉옷 챙기기),09:00 로비에서 사전 예약한 7인승 대절 기사님 미팅
-2026-10-24,09:00-10:00,이동 - 살라 다낭 -> 바나힐 썬월드,https://www.google.com/maps/search/?api=1&query=Sun%20World%20Ba%20Na%20Hills%20Cable%20Car%20Station,"전용 대절 렌터카 탑승하여 해발 1,487m 바나힐로 이동",전용 차량 소요 약 45분. 케이블카 승강장 앞 도착
-2026-10-24,10:00-11:00,바나힐 케이블카 탑승,https://www.google.com/maps/search/?api=1&query=Sun%20World%20Ba%20Na%20Hills%20Cable%20Car%20Station,세계 최장급 기네스북 케이블카 탑승하여 정글과 폭포를 내려다보며 산정상 이동,모바일 QR 바코드 티켓 태그 후 바로 탑승. 고도 상승 시 기온 하강 대비
-2026-10-24,11:00-13:00,골든브릿지 (신의 손) & 르 자르뎅 정원,https://www.google.com/maps/search/?api=1&query=Golden%20Bridge%20Ba%20Na%20Hills,거대한 두 손이 황금 다리를 받치는 시그니처 랜드마크 인증샷 및 유럽풍 플라워 가든 산책,관광객 밀집 전 중앙 구간에서 사진 촬영 권장. 케이블카 환승하여 프랑스 마을 이동
-2026-10-24,13:00-14:30,점심 - 바나힐 프랑스 마을 & 비어 플라자,https://www.google.com/maps/search/?api=1&query=French%20Village%20Ba%20Na%20Hills,중세 프랑스 고딕풍 건축물 거리 구경 및 비어 플라자 뷔페/바비큐 점심 식사,도보 이동. 광장 거리 공연 및 퍼레이드 감상
-2026-10-24,14:30-16:00,판타지 파크 & 알파인 코스터,https://www.google.com/maps/search/?api=1&query=Fantasy%20Park%20Ba%20Na%20Hills,수동 브레이크로 속도를 조절하는 야외 알파인 코스터(루지) 탑승 및 실내 놀이시설,루지 대기시간 체크(15~30분 이내 권장). 하선 케이블카 탑승 준비
-2026-10-24,16:00-17:00,이동 - 바나힐 -> 다낭 시내 복귀,https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang,케이블카 하선 후 주차장에서 대절 기사님 미팅하여 다낭 시내 스파로 이동,전용 차량 소요 약 45분
-2026-10-24,17:00-19:00,스파 - 빌라드스파 (Villa de Spa),https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang,90분 시그니처 핫스톤 아로마 힐링 마사지로 바나힐 보행 피로 완전 해소,카카오톡 사전 예약 확정 필수. 마사지 후 도보 3분 거리 벱꾸온 이동
-2026-10-24,19:00-20:30,저녁 - 벱꾸온 (Bep Cuon),https://www.google.com/maps/search/?api=1&query=Bep%20Cuon%20Da%20Nang,에어컨 완비 깔끔한 분위기에서 반쎄오·분짜·넴루이·모닝글로리 베트남 가정식 만찬,라이스페이퍼에 싸먹는 쌈 요리 추천. 도보 5분 미케비치 이동
-2026-10-24,20:30-22:00,미케비치 밤바다 산책 & 호텔 루프탑,https://www.google.com/maps/search/?api=1&query=My%20Khe%20Beach%20Da%20Nang,시원한 파도 소리를 들으며 미케비치 산책 후 살라 호텔 루프탑 바에서 칵테일 한잔,호텔 도보 복귀 후 휴식
+﻿날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모
+2026-10-24,08:00-09:00,조식 뷔페 - 살라 다낭 비치 호텔,16.0641,108.2464,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,오션뷰 레스토랑 조식 뷔페 든든히 식사 및 외출 준비 (선크림·얇은 겉옷 챙기기),09:00 로비에서 사전 예약한 7인승 대절 기사님 미팅
+2026-10-24,09:00-10:00,이동 - 살라 다낭 -> 바나힐 썬월드,15.9989,108.0191,https://www.google.com/maps/search/?api=1&query=Sun%20World%20Ba%20Na%20Hills%20Cable%20Car%20Station,"전용 대절 렌터카 탑승하여 해발 1,487m 바나힐로 이동",전용 차량 소요 약 45분. 케이블카 승강장 앞 도착
+2026-10-24,10:00-11:00,바나힐 케이블카 탑승,15.9989,108.0191,https://www.google.com/maps/search/?api=1&query=Sun%20World%20Ba%20Na%20Hills%20Cable%20Car%20Station,세계 최장급 기네스북 케이블카 탑승하여 정글과 폭포를 내려다보며 산정상 이동,모바일 QR 바코드 티켓 태그 후 바로 탑승. 고도 상승 시 기온 하강 대비
+2026-10-24,11:00-13:00,골든브릿지 (신의 손) & 르 자르뎅 정원,15.9954,107.9965,https://www.google.com/maps/search/?api=1&query=Golden%20Bridge%20Ba%20Na%20Hills,거대한 두 손이 황금 다리를 받치는 시그니처 랜드마크 인증샷 및 유럽풍 플라워 가든 산책,관광객 밀집 전 중앙 구간에서 사진 촬영 권장. 케이블카 환승하여 프랑스 마을 이동
+2026-10-24,13:00-14:30,점심 - 바나힐 프랑스 마을 & 비어 플라자,15.9982,107.9877,https://www.google.com/maps/search/?api=1&query=French%20Village%20Ba%20Na%20Hills,중세 프랑스 고딕풍 건축물 거리 구경 및 비어 플라자 뷔페/바비큐 점심 식사,도보 이동. 광장 거리 공연 및 퍼레이드 감상
+2026-10-24,14:30-16:00,판타지 파크 & 알파인 코스터,15.9976,107.9868,https://www.google.com/maps/search/?api=1&query=Fantasy%20Park%20Ba%20Na%20Hills,수동 브레이크로 속도를 조절하는 야외 알파인 코스터(루지) 탑승 및 실내 놀이시설,루지 대기시간 체크(15~30분 이내 권장). 하선 케이블카 탑승 준비
+2026-10-24,16:00-17:00,이동 - 바나힐 -> 다낭 시내 복귀,16.0583,108.241,https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang,케이블카 하선 후 주차장에서 대절 기사님 미팅하여 다낭 시내 스파로 이동,전용 차량 소요 약 45분
+2026-10-24,17:00-19:00,스파 - 빌라드스파 (Villa de Spa),16.0583,108.241,https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang,90분 시그니처 핫스톤 아로마 힐링 마사지로 바나힐 보행 피로 완전 해소,카카오톡 사전 예약 확정 필수. 마사지 후 도보 3분 거리 벱꾸온 이동
+2026-10-24,19:00-20:30,저녁 - 벱꾸온 (Bep Cuon),16.0592,108.2428,https://www.google.com/maps/search/?api=1&query=Bep%20Cuon%20Da%20Nang,에어컨 완비 깔끔한 분위기에서 반쎄오·분짜·넴루이·모닝글로리 베트남 가정식 만찬,라이스페이퍼에 싸먹는 쌈 요리 추천. 도보 5분 미케비치 이동
+2026-10-24,20:30-22:00,미케비치 밤바다 산책 & 호텔 루프탑,16.0617,108.2469,https://www.google.com/maps/search/?api=1&query=My%20Khe%20Beach%20Da%20Nang,시원한 파도 소리를 들으며 미케비치 산책 후 살라 호텔 루프탑 바에서 칵테일 한잔,호텔 도보 복귀 후 휴식

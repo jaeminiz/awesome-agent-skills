@@ -1,9 +1,9 @@
-﻿날짜,시간,여행지,구글지도,설명,이동/메모
-2026-10-26,08:30-10:30,모닝 호캉스 & 조식 - 살라 다낭 비치 호텔,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,미케비치 전망 인피니티 풀에서 모닝 수영 후 여유로운 조식 뷔페 식사,수영 후 샤워 및 캐리어 최종 패킹
-2026-10-26,10:30-11:00,체크아웃 - 살라 다낭 비치 호텔,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,프론트 체크아웃 정산 및 전용 차량 트렁크에 캐리어 적재,그랩 또는 대절 차량으로 바빌론 스테이크 이동
-2026-10-26,11:00-12:30,점심 - 바빌론 스테이크 본점,https://www.google.com/maps/search/?api=1&query=Babylon%20Steak%20Garden%201%20Da%20Nang,지글지글 뜨거운 돌판에 구워먹는 프리미엄 안심 스테이크 & 모닝글로리 점심 만찬,식사 후 그랩으로 롯데마트 다낭점 이동 (약 10분)
-2026-10-26,12:30-14:30,기념품 쇼핑 - 롯데마트 다낭점,https://www.google.com/maps/search/?api=1&query=Lotte%20Mart%20Da%20Nang,다낭 필수 쇼핑리스트(다람쥐똥 콘삭 커피·건망고·캐슈넛·친수 칠리소스·게리 치즈크래커),2층 고객센터 무료 짐보관 서비스 이용 가능. 계산대에서 택스리펀 영수증 발급 필수
-2026-10-26,14:30-16:30,출국 전 스파 & 환복 - 다낭 시내 스파,https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang,귀국 비행 전 60분 발마사지 및 무료 샤워실 이용하여 산뜻하게 한국 귀국용 복장 환복,샤워 및 짐 재정비 완료. 도보/그랩으로 인근 레트로 카페 이동
-2026-10-26,16:30-17:30,카페 & 정산 - 웃티크 카페 (Ut Tich Cafe),https://www.google.com/maps/search/?api=1&query=Ut%20Tich%20Cafe%20Da%20Nang,고풍스러운 베트남 빈티지 감성 카페에서 시원한 과일 음료 마시며 여행 경비 최종 정산,공항 차량 탑승 전 마지막 여유. 공항까지 차량 15분 소요
-2026-10-26,17:30-19:30,다낭 국제공항(DAD) 국제선 출국 수속,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport,"항공사 카운터 체크인, 위탁 수하물 발송, 세관 택스리펀(Tax Refund) 창구 환급 및 출국심사",보안검색 후 면세점 구경 및 탑승 게이트 대기
-2026-10-26,19:30-02:00,다낭 출발 -> 한국 귀국,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport,직항편 탑승하여 한국 무사 귀국 및 안전한 귀가,기내 휴식 및 도착 후 세관 신고
+﻿날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모
+2026-10-26,08:30-10:30,모닝 호캉스 & 조식 - 살라 다낭 비치 호텔,16.0641,108.2464,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,미케비치 전망 인피니티 풀에서 모닝 수영 후 여유로운 조식 뷔페 식사,수영 후 샤워 및 캐리어 최종 패킹
+2026-10-26,10:30-11:00,체크아웃 - 살라 다낭 비치 호텔,16.0641,108.2464,https://www.google.com/maps/search/?api=1&query=Sala%20Danang%20Beach%20Hotel,프론트 체크아웃 정산 및 전용 차량 트렁크에 캐리어 적재,그랩 또는 대절 차량으로 바빌론 스테이크 이동
+2026-10-26,11:00-12:30,점심 - 바빌론 스테이크 본점,16.0463,108.2442,https://www.google.com/maps/search/?api=1&query=Babylon%20Steak%20Garden%201%20Da%20Nang,지글지글 뜨거운 돌판에 구워먹는 프리미엄 안심 스테이크 & 모닝글로리 점심 만찬,식사 후 그랩으로 롯데마트 다낭점 이동 (약 10분)
+2026-10-26,12:30-14:30,기념품 쇼핑 - 롯데마트 다낭점,16.0354,108.2274,https://www.google.com/maps/search/?api=1&query=Lotte%20Mart%20Da%20Nang,다낭 필수 쇼핑리스트(다람쥐똥 콘삭 커피·건망고·캐슈넛·친수 칠리소스·게리 치즈크래커),2층 고객센터 무료 짐보관 서비스 이용 가능. 계산대에서 택스리펀 영수증 발급 필수
+2026-10-26,14:30-16:30,출국 전 스파 & 환복 - 다낭 시내 스파,16.0583,108.241,https://www.google.com/maps/search/?api=1&query=Villa%20de%20Spa%20Da%20Nang,귀국 비행 전 60분 발마사지 및 무료 샤워실 이용하여 산뜻하게 한국 귀국용 복장 환복,샤워 및 짐 재정비 완료. 도보/그랩으로 인근 레트로 카페 이동
+2026-10-26,16:30-17:30,카페 & 정산 - 웃티크 카페 (Ut Tich Cafe),16.0694,108.2238,https://www.google.com/maps/search/?api=1&query=Ut%20Tich%20Cafe%20Da%20Nang,고풍스러운 베트남 빈티지 감성 카페에서 시원한 과일 음료 마시며 여행 경비 최종 정산,공항 차량 탑승 전 마지막 여유. 공항까지 차량 15분 소요
+2026-10-26,17:30-19:30,다낭 국제공항(DAD) 국제선 출국 수속,16.0539,108.2022,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport,"항공사 카운터 체크인, 위탁 수하물 발송, 세관 택스리펀(Tax Refund) 창구 환급 및 출국심사",보안검색 후 면세점 구경 및 탑승 게이트 대기
+2026-10-26,19:30-02:00,다낭 출발 -> 한국 귀국,16.0539,108.2022,https://www.google.com/maps/search/?api=1&query=Da%20Nang%20International%20Airport,직항편 탑승하여 한국 무사 귀국 및 안전한 귀가,기내 휴식 및 도착 후 세관 신고

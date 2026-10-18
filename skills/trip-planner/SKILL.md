@@ -76,14 +76,15 @@ This skill automatically detects and adapts to the user's preferred language:
 ## 📦 Multi-Modal Deliverables
 
 ### 1. Google My Maps Day-by-Day CSVs (`day1_itinerary.csv`, `day2_itinerary.csv`...)
-* Standard 6-column format: `Date,Time,Place,GoogleMaps,Description,Transit_Notes`.
+* Standard 8-column format: `Date,Time,Place,Latitude,Longitude,GoogleMaps,Description,Transit_Notes`.
+* Explicit Latitude and Longitude columns ensure 1-second instant pinpointing without parsing ambiguity in Google My Maps.
 * When imported into Google My Maps and styled with [Sequence of numbers], pins are automatically marked `1, 2, 3...` in chronological order.
 
-### 2. All-in-One KML File (`[City]_mymaps.kml`)
-* A single drag-and-drop into Google My Maps generates:
-  - Separate layer folders for each day (`Day 1`, `Day 2`...)
-  - Chronological numbered pins (`#1`, `#2`...)
-  - Colored transit route polylines connecting daily spots (`Day N Transit Route`)
+### 2. All-in-One & Day-by-Day KML Files (`[City]_mymaps.kml`, `[City]_DayN.kml`)
+* 100% compliant with Google My Maps parser requirements:
+  - **XML Entity Escaped**: All `&` characters in names and descriptions are strictly encoded as `&amp;` to prevent XML syntax parse errors.
+  - **Clean Flat Placemarks**: Structured for seamless single-layer import, with optional day-specific KMLs for multi-layer mapping.
+  - Chronological numbered pins (`#1`, `#2`...) with clean HTML balloon popups.
 
 ### 3. Apple iPhone (iOS) Style Card News Web App (`[City]_trip_cards.html`)
 * **Glassmorphic UI**: SF Pro typography, Phosphor Icons, and white glassmorphism design.
