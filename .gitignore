@@ -5,3 +5,14 @@ Thumbs.db
 # Temporary & Log files
 *.log
 *.tmp
+
+# Personal agent settings & rules (strictly local/private)
+AGENTS.md
+GEMINI.md
+.agents/
+.gemini/
+
+# Private drafts & blog postings
+*_POST.md
+*.draft.md
+private/
