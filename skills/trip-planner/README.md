@@ -31,6 +31,10 @@ npx skills add https://github.com/jaeminiz/awesome-agent-skills --skill trip-pla
 5. **Google My Maps Complete Deliverables**
    - **Day-by-Day 8-Column CSV (`day1_itinerary.csv`, `day2_itinerary.csv`...)**: Standard columns (`Date,Time,Place,Latitude,Longitude,GoogleMaps,Description,Transit_Notes`). Explicit Latitude and Longitude columns ensure 1-second instant pinpointing in Google My Maps, with automatic `1, 2, 3...` sequence badge numbering.
    - **All-in-One & Day-by-Day KML (`[City]_mymaps.kml`, `[City]_DayN.kml`)**: 100% compliant with Google My Maps parser requirements with XML entity escaping (`&amp;`) and validated flat placemark architecture for error-free multi-layer imports.
+   - 🗺️ **User Guide for Importing into Google My Maps**:
+     * **[Method A: CSV Import - Recommended]**: Go to [Google My Maps](https://www.google.com/maps/d/) ➔ [Create a new map] ➔ Click [Import] ➔ Upload CSV ➔ Confirm auto-detected `Latitude` and `Longitude` ➔ Choose `Place` as marker title ➔ Set [Sequence of numbers] style with [Place] label for automatic `1, 2, 3...` chronological pin badges.
+     * **[Method B: KML Import - One-Click]**: [Create a new map] ➔ [Import] ➔ Drag & drop `.kml` ➔ Instant numbered pins and popup descriptions with zero XML parse errors.
+     * 💡 **Troubleshooting**: If an import error modal appears due to previous session caching, simply hit **F5 (Refresh)** in your browser and re-import into a new layer.
 6. **Mobile-Optimized Apple iPhone (iOS) Card News Web App (`[City]_trip_cards.html`)**
    - **Swipeable Card News UI**: White glassmorphic aesthetic, touch swipe gestures, sequence/category badges, and persistent progress checkmarks (`localStorage`).
    - **Native Pronunciation TTS**: One-tap native voice playback using the device's built-in Web Speech API.

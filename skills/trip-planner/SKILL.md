@@ -86,6 +86,24 @@ This skill automatically detects and adapts to the user's preferred language:
   - **Clean Flat Placemarks**: Structured for seamless single-layer import, with optional day-specific KMLs for multi-layer mapping.
   - Chronological numbered pins (`#1`, `#2`...) with clean HTML balloon popups.
 
+#### 💡 User Guide: How to Import into Google My Maps
+Standard step-by-step instructions for travelers to import deliverables into Google My Maps:
+
+##### [Method A] Import via CSV (Most Reliable & Recommended)
+1. Navigate to **[Google My Maps](https://www.google.com/maps/d/)** ➔ Click **[+ Create a new map]**.
+2. Click the blue **[Import]** button under the untitled layer ➔ Upload `day1_itinerary.csv` (or full `danang_itinerary.csv`).
+3. **Choose columns to position placemarks**: Google Maps auto-detects `Latitude` and `Longitude`. Click **[Continue]**.
+4. **Choose a column to title markers**: Select **`Place` (or `여행지`)** and click **[Finish]**.
+5. 💡 **Numbered Sequence Badges Tip**: Click **[Uniform style]** under the layer title ➔ Change to **[Sequence of numbers]** ➔ Set **[Set labels: Place]**. Number badges `1, 2, 3, 4...` are automatically mapped in chronological order.
+
+##### [Method B] Import via KML (One-Click Instant)
+1. Open Google My Maps ➔ Click **[+ Create a new map]**.
+2. Click **[Import]** on the layer ➔ Drag and drop `danang_mymaps.kml`.
+3. All spots, numbered placemarks, and detailed HTML popups are populated instantly without parse errors.
+
+> [!TIP]
+> **If an import error occurs**: Browser caching from a previous corrupted session can cause temporary failures. Simply press **`F5` (Refresh)** in your browser and re-import into a new layer.
+
 ### 3. Apple iPhone (iOS) Style Card News Web App (`[City]_trip_cards.html`)
 * **Glassmorphic UI**: SF Pro typography, Phosphor Icons, and white glassmorphism design.
 * **1-Card-at-a-Time View**: Sequence badge (`#1`), Day badge, time range, transit tips, and local situational phrase box.
