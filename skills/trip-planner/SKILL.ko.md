@@ -173,39 +173,43 @@ description: >-
 #### 3. 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션 (`[도시]_trip_cards.html`)
 스마트폰 브라우저(Safari, Chrome)에서 오프라인으로 완벽 동작하는 단일 파일 인터랙티브 웹앱을 생성합니다.
 
+* **⛔ 양식 및 레이아웃 절대 변경 금지 (Strict Layout & Schema Preservation)**:
+  * `[도시]_trip_cards.html` 생성 시 반드시 **[`resources/ios_card_app_template.html`](./resources/ios_card_app_template.html) (또는 [`examples/danang_trip_cards.html`](./examples/danang_trip_cards.html))을 그대로 베이스로 복제**해야 하며, HTML DOM ID, CSS 클래스, 상단 3대 모달 + 점원 보여주기 모달 구조, JavaScript 렌더링 엔진을 **단 1%도 임의 변경하거나 변형해서는 안 됩니다.**
+  * 오직 상단 타이틀/모달 내 텍스트와 `const itineraryData = [ ... ];` 배열의 데이터만 아래 고정 스키마로 교체합니다:
+    `{ id, day, time, title, category, description, phraseKo, phraseJa, phraseMeaning, cost, mapQuery }` (`description`은 `\n`으로 구분된 `• ` 글머리 기호 문자열).
 * **UI/UX 디자인 시스템**:
   * Apple iOS 화이트 글래스모피즘 (`bg-[#F2F2F7]`, `rounded-[28px]`, `shadow-ios`, `glass-nav`).
   * Phosphor Icons (`https://unpkg.com/@phosphor-icons/web`) 및 Tailwind CSS 활용.
   * SF Pro 시스템 폰트 감성의 볼드하고 정갈한 타이포그래피.
 * **1장씩 한 화면에 보는 카드뉴스 뷰 (`#activeCard`)**:
-  * **상단 뱃지**: 순번 뱃지(`#1`), Day 뱃지(`DAY 1`), 카테고리 태그(`✈️ 출국/입국`), 완료 체크 버튼(`btnToggleDone`, `localStorage` 보존).
+  * **상단 뱃지**: 순번 뱃지(`#1`), Day 뱃지(`DAY 1`), 카테고리 태그(`✈️ 출국/입국`), 완료 체크 버튼(`btnToggleDone`).
   * **시간 & 타이틀**: 시계 아이콘 + 시간 범위, 볼드 제목.
-  * **방문 스팟 & 이동 상세 꿀팁 상자**: 내비게이션 화살표 아이콘 및 글머리 기호 팁.
-  * **현장 즉석 현지어 회화 상자**:
-    * 한글 발음(크고 굵게), 현지어 원문, 한국어 뜻 표시.
-    * 🔊 **발음듣기 버튼**: Web Speech API (`speechSynthesis`) 기반 현지어 원어민 TTS 음성 재생.
-    * ⛶ **보여주기 버튼**: 시끄러운 식당/택시 안에서 직원/기사님께 보여줄 수 있는 36px 대형 텍스트 풀스크린 모달.
-  * **하단 정보 & 지도 연동**: 비용/노트 태그 및 📍 **구글지도 위치 원클릭 링크 버튼**.
+  * **방문 스팟 & 이동 상세 꿀팁 상자 (`#cardDescriptionText`)**: 내비게이션 화살표 아이콘 및 글머리 기호 팁.
+  * **현장 즉석 현지어 회화 상자 (`#cardPhraseContainer`)**:
+    * 한글 발음(`#cardPhraseKoSound`), 현지어 원문(`#cardPhraseJa`), 한국어 뜻(`#cardPhraseMeaning`) 표시.
+    * 🔊 **발음듣기 버튼 (`#btnPlayVoice`)**: Web Speech API (`speechSynthesis`) 기반 현지어 원어민 TTS 음성 재생.
+    * ⛶ **보여주기 버튼 (`#btnShowLargeJapanese`)**: 시끄러운 식당/택시 안에서 직원/기사님께 보여줄 수 있는 대형 텍스트 풀스크린 모달(`#modalShowJapanese`).
+  * **하단 정보 & 지도 연동**: 비용/노트 태그(`#cardCostText`) 및 📍 **구글지도 위치 원클릭 링크 버튼 (`#btnCardMapLink`)**.
 * **모바일 최적화 내비게이션 조작**:
   * 터치 좌/우 스와이프 제스처 지원 (`touchstart`, `touchend`).
   * 카드 하단 `[ < 이전 일정 ]` + 컨텍스트 프로그레스 도트(최대 7개) + `[ 다음 일정 > ]` 버튼.
-* **상단 iOS 세그먼트 Day 탭**: `전체` | `DAY 1` | `DAY 2` | `DAY 3` 등 원클릭 즉시 필터링.
-* **카드형 ↔ 타임라인 목록 뷰 전환**:
-  * 상단 토글로 전환 가능하며, 타임라인 목록에는 **실시간 검색창**을 제공하여 장소/시간/음식/현지어 즉시 검색 지원.
-* **상단 3대 필수 유틸리티 모달**:
-  * 🪙 **경비 모달**: 인원별 고정비, 식비, 교통비, 투어비 정밀 예산표.
-  * 🛍️ **위시 모달**: 큐레이션된 맛집/카페/쇼핑 위시 달성표 및 방문 팁.
-  * ℹ️ **비상/호텔 모달**: 숙소 및 공항 택시 기사님용 현지어 주소 원클릭 복사 + 총영사관, 영사콜센터, 응급실 원클릭 전화걸기 지원.
+* **상단 iOS 세그먼트 Day 탭 (`.day-tab`)**: `전체` | `DAY 1` | `DAY 2` | `DAY 3` 등 원클릭 즉시 필터링.
+* **카드형 ↔ 타임라인 목록 뷰 전환 (`#viewModeCard` / `#viewModeList`)**:
+  * 상단 토글로 전환 가능하며, 타임라인 목록에는 **실시간 검색창 (`#listSearchInput`)**을 제공하여 장소/시간/음식/현지어 즉시 검색 지원.
+* **상단 3대 필수 유틸리티 모달 (고정 레이아웃)**:
+  * 🪙 **경비 모달 (`#modalBudget`, `#btnOpenBudget`)**: 블루-인디고 그라데이션 총경비 하이라이트 박스 + 3개 섹션 카드(총 예상 식비, 현지 교통비, 관광/온천/투어비).
+  * 🛍️ **위시 모달 (`#modalShopping`, `#btnOpenShopping`)**: 일차 뱃지(`D1`, `D2`, `D3`) + 스팟명(`#순번`) + 상세 위치/쇼핑 팁 카드 리스트.
+  * ℹ️ **비상/호텔 모달 (`#modalEmergency`, `#btnOpenEmergency`)**: 다크 슬레이트(`bg-slate-900`) 숙소 택시 기사님용 주소 카드 & 귀국 공항 택시 기사님용 카드(`copyToClipboard` 원클릭 복사 버튼 포함) + 긴급 비상 연락망 박스(총영사관, 영사콜센터, 경찰/구급).
 
 ---
 
 ## 📂 템플릿 및 리소스 링크
 * [마스터 일정표 템플릿](./resources/master_itinerary_template.md): 글로벌 표준 Markdown 마스터 일정표 구조
 * [실전 예산표 템플릿](./resources/budget_template.md): 다통화 환율 및 팁/세금 포함 글로벌 예산 템플릿
-* [구글 내 지도 CSV 템플릿](./resources/itinerary_template.csv): 표준 6개 컬럼 구글 내 지도 호환 CSV 헤더
+* [구글 내 지도 CSV 템플릿](./resources/itinerary_template.csv): 표준 8개 컬럼 구글 내 지도 호환 CSV 헤더 (`날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모`)
 * [올인원 KML 템플릿](./resources/mymaps_template.kml): 레이어 폴더, 번호 마커, 동선 연결선 포함 KML 규격
 * [지도 데이터 자동 생성기](./resources/generate_maps_data.py): Day별 CSV 및 올인원 KML 자동 빌드 스크립트
-* [애플 iOS 카드뉴스 웹앱 템플릿](./resources/ios_card_app_template.html): Phosphor Icons & TTS 탑재 모바일 최적화 웹앱 템플릿
+* [애플 iOS 카드뉴스 웹앱 템플릿](./resources/ios_card_app_template.html): 양식·레이아웃·4대 모달·`itineraryData` 스키마 고정 표준 템플릿
 * [전문가 글로벌 플래닝 플레이북](./references/trip_planning_playbook.md): 전 세계 권역별 동선/교통/안전 가이드라인
 
 ---
@@ -219,4 +223,4 @@ description: >-
 - [ ] 방문국 언어에 맞춘 실전 회화(한글 발음, 원문, 뜻)가 포함되었는가?
 - [ ] Phase 4에서 축약/생략 없이 `master_itinerary_template.md`의 **일자별 상세 타임라인 종합 정리표(테이블)** 전체와 **최종 정밀 예산표**를 채팅 본문에 온전히 출력했는가?
 - [ ] 최종 산출물 생성 전 **"구글 내 지도용 일자별 CSV 파일들(day1_itinerary.csv...)과 원클릭 올인원 KML 파일([도시]_mymaps.kml), 그리고 휴대폰에서 1장씩 볼 수 있는 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션([도시]_trip_cards.html) 생성을 해드릴까요?"**라고 사용자에게 승인을 구했는가?
-- [ ] 승인 후 `day1_itinerary.csv` 등 일자별 6컬럼 CSV 파일들과 함께, 일자별 레이어와 번호핀 및 이동경로 선이 포함된 `[도시]_mymaps.kml`, 그리고 1장씩 보기, 발음듣기(TTS), 기사님 보여주기, 구글지도 연동, 경비/위시/비상 모달이 탑재된 `[도시]_trip_cards.html`을 생성했는가?
+- [ ] 승인 후 `day1_itinerary.csv` 등 일자별 8컬럼 CSV 파일들과 `[도시]_mymaps.kml`, 그리고 `resources/ios_card_app_template.html`의 양식·레이아웃·4대 모달·`itineraryData` 스키마를 100% 그대로 보존한 `[도시]_trip_cards.html`을 생성했는가?

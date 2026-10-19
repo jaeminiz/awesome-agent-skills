@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>{{TRIP_TITLE}} - iOS Mobile Guide</title>
+  <title>{{TRIP_TITLE}}</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Phosphor Icons for iOS-style crisp icons -->
@@ -31,7 +31,7 @@
             }
           },
           fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'Noto Sans KR', 'sans-serif'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'sans-serif'],
           },
           boxShadow: {
             'ios': '0 8px 30px rgba(0, 0, 0, 0.08)',
@@ -43,7 +43,7 @@
     }
   </script>
   <style>
-    /* iOS Custom Aesthetics */
+    /* iOS Custom Aesthetics (DO NOT MODIFY LAYOUT OR STYLES) */
     body {
       -webkit-tap-highlight-color: transparent;
       user-select: none;
@@ -126,7 +126,7 @@
             <span>경비</span>
           </button>
           
-          <!-- Shopping / Wishlist Button -->
+          <!-- Shopping Wishlist -->
           <button id="btnOpenShopping" class="flex items-center gap-1 text-[13px] font-semibold text-purple-600 bg-purple-50 hover:bg-purple-100 active:scale-95 px-2.5 py-1 rounded-full transition">
             <i class="ph-bold ph-bag-simple text-sm"></i>
             <span>위시</span>
@@ -140,9 +140,12 @@
       </div>
 
       <!-- Segmented Day Switcher (Apple iOS Style) -->
-      <div class="bg-slate-200/80 p-0.5 rounded-xl flex items-center justify-between text-xs font-medium text-slate-600 shadow-inner" id="dayTabsContainer">
-        <!-- Injected via JS or pre-rendered: <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center segmented-active" data-day="ALL">전체</button> ... -->
-        {{DAY_TABS_HTML}}
+      <div class="bg-slate-200/80 p-0.5 rounded-xl flex items-center justify-between text-xs font-medium text-slate-600 shadow-inner">
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center segmented-active" data-day="ALL">전체</button>
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center" data-day="1">DAY 1</button>
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center" data-day="2">DAY 2</button>
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center" data-day="3">DAY 3</button>
+        <!-- Add DAY 4, DAY 5 buttons here as needed -->
       </div>
 
       <!-- View Switcher & Search Bar -->
@@ -191,7 +194,7 @@
                 </span>
                 <!-- Category Tag -->
                 <span id="cardCategoryBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/50">
-                  카테고리
+                  출국 / 입국
                 </span>
               </div>
 
@@ -223,7 +226,7 @@
               </div>
             </div>
 
-            <!-- Situational Native Phrase Box (현지 회화 특화) -->
+            <!-- Essential Local Phrase Box (현지 회화 특화) -->
             <div id="cardPhraseContainer" class="bg-gradient-to-br from-blue-50/90 to-indigo-50/70 rounded-2xl p-3.5 border border-blue-100/80 relative">
               <div class="flex items-center justify-between mb-1.5">
                 <span class="text-[11px] font-bold text-blue-700 flex items-center gap-1 uppercase tracking-wider">
@@ -236,7 +239,7 @@
                     <i class="ph-fill ph-speaker-high" id="speakerIcon"></i>
                     <span>발음듣기</span>
                   </button>
-                  <button id="btnShowLargePhrase" class="flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition" title="직원/기사님께 보여주기">
+                  <button id="btnShowLargeJapanese" class="flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition" title="점원/기사님께 보여주기">
                     <i class="ph-bold ph-arrows-out"></i>
                     <span>보여주기</span>
                   </button>
@@ -248,7 +251,7 @@
                 한글 발음
               </div>
               <!-- Native Script -->
-              <div id="cardPhraseNative" class="text-xs font-semibold text-blue-700 mb-1 font-mono">
+              <div id="cardPhraseJa" class="text-xs font-semibold text-blue-700 mb-1 font-mono">
                 현지어 원문
               </div>
               <!-- Meaning in Korean -->
@@ -298,7 +301,7 @@
 
       </div>
 
-      <!-- [MODE 2] TIMELINE LIST VIEW (스크롤 목록 & 검색) -->
+      <!-- [MODE 2] TIMELINE LIST VIEW (전체 스크롤 목록 & 검색) -->
       <div id="listViewContainer" class="hidden flex-1 flex flex-col h-full overflow-hidden">
         <!-- Search bar -->
         <div class="relative mb-2.5">
@@ -317,7 +320,8 @@
 
     </main>
 
-    <!-- MODAL 1: TOTAL BUDGET SHEET -->
+
+    <!-- MODAL 1: TOTAL BUDGET SHEET (최신 정밀 경비 내역 모달 - 레이아웃 절대 유지) -->
     <div id="modalBudget" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
       <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[88vh] flex flex-col shadow-2xl overflow-hidden animate-slide-up">
         
@@ -327,7 +331,7 @@
               <i class="ph-bold ph-coins text-lg"></i>
             </div>
             <div>
-              <h3 class="font-extrabold text-base text-slate-900">필수 총경비 내역</h3>
+              <h3 class="font-extrabold text-base text-slate-900">{{BUDGET_TITLE}}</h3>
               <p class="text-xs text-slate-500">{{BUDGET_SUBTITLE}}</p>
             </div>
           </div>
@@ -336,14 +340,64 @@
           </button>
         </div>
 
-        <div class="p-5 overflow-y-auto space-y-4 text-sm text-slate-700 no-scrollbar" id="modalBudgetContent">
-          {{MODAL_BUDGET_CONTENT}}
+        <div class="p-5 overflow-y-auto space-y-4 text-sm text-slate-700 no-scrollbar">
+          <!-- Total Highlights Box -->
+          <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-4 text-white shadow-lg shadow-blue-500/20">
+            <span class="text-xs text-blue-100 font-medium">{{BUDGET_SUMMARY_LABEL}}</span>
+            <div class="text-2xl font-black mt-0.5">{{BUDGET_TOTAL_KRW}}</div>
+            <div class="flex items-center justify-between mt-2 pt-2 border-t border-white/20 text-xs text-blue-100">
+              <span>현지 지출: {{BUDGET_TOTAL_LOCAL}}</span>
+              <span>1인당: {{BUDGET_PER_PERSON}}</span>
+            </div>
+          </div>
+
+          <!-- Section 1: Food breakdown -->
+          <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50">
+            <div class="flex items-center justify-between font-bold text-slate-900 mb-2">
+              <span class="flex items-center gap-1.5"><i class="ph-bold ph-fork-knife text-orange-500"></i> 총 예상 식비</span>
+              <span class="text-blue-600">{{FOOD_TOTAL_TEXT}}</span>
+            </div>
+            <ul class="text-xs space-y-1.5 text-slate-600">
+              <li class="flex justify-between"><span>• DAY 1 식비 & 카페</span><span class="font-semibold">{{DAY1_FOOD_COST}}</span></li>
+              <li class="flex justify-between"><span>• DAY 2 식비 & 카페</span><span class="font-semibold">{{DAY2_FOOD_COST}}</span></li>
+              <li class="flex justify-between"><span>• DAY 3 식비 & 카페</span><span class="font-semibold">{{DAY3_FOOD_COST}}</span></li>
+            </ul>
+          </div>
+
+          <!-- Section 2: Transportation Breakdown -->
+          <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50">
+            <div class="flex items-center justify-between font-bold text-slate-900 mb-2">
+              <span class="flex items-center gap-1.5"><i class="ph-bold ph-bus text-blue-500"></i> 현지 교통비</span>
+              <span class="text-blue-600">{{TRANSPORT_TOTAL_TEXT}}</span>
+            </div>
+            <ul class="text-xs space-y-1.5 text-slate-600">
+              <li class="flex justify-between"><span>• 공항 ➔ 호텔 이동</span><span class="font-semibold">{{AIRPORT_TO_HOTEL_COST}}</span></li>
+              <li class="flex justify-between"><span>• 시내/근교 대중교통·택시</span><span class="font-semibold">{{LOCAL_TRANSIT_COST}}</span></li>
+              <li class="flex justify-between"><span>• 호텔 ➔ 공항 이동</span><span class="font-semibold">{{HOTEL_TO_AIRPORT_COST}}</span></li>
+            </ul>
+          </div>
+
+          <!-- Section 3: Tickets & Tours -->
+          <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50">
+            <div class="flex items-center justify-between font-bold text-slate-900 mb-2">
+              <span class="flex items-center gap-1.5"><i class="ph-bold ph-ticket text-purple-500"></i> 관광/액티비티/투어비</span>
+              <span class="text-blue-600">{{TOUR_TOTAL_TEXT}}</span>
+            </div>
+            <ul class="text-xs space-y-1.5 text-slate-600">
+              <li class="flex justify-between"><span>• 주요 관광지 입장권</span><span class="font-semibold">{{TICKETS_COST}}</span></li>
+              <li class="flex justify-between"><span>• 스파/온천/일일투어</span><span class="font-semibold text-purple-600">{{TOURS_COST}}</span></li>
+            </ul>
+          </div>
+          
+          <div class="text-[11px] text-slate-400 text-center pb-2">
+            ※ 현지 결제 팁: 현금 소액권 + 트래블월렛/트래블로그 카드 병행 권장
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- MODAL 2: SHOPPING / WISHLIST CHECKLIST -->
+    <!-- MODAL 2: SHOPPING & GOURMET WISHES (위시 달성표 - 레이아웃 절대 유지) -->
     <div id="modalShopping" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
       <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
         
@@ -353,8 +407,8 @@
               <i class="ph-bold ph-bag-simple text-lg"></i>
             </div>
             <div>
-              <h3 class="font-extrabold text-base text-slate-900">미식 & 쇼핑 위시 100% 달성표</h3>
-              <p class="text-xs text-slate-500">동선에 녹아있는 큐레이션 스팟</p>
+              <h3 class="font-extrabold text-base text-slate-900">핵심 위시리스트 100% 달성표</h3>
+              <p class="text-xs text-slate-500">동선에 완벽하게 녹아있는 필수 방문 스팟</p>
             </div>
           </div>
           <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
@@ -362,14 +416,37 @@
           </button>
         </div>
 
-        <div class="p-5 overflow-y-auto space-y-2.5 text-sm no-scrollbar" id="modalWishContent">
-          {{MODAL_WISH_CONTENT}}
+        <div class="p-5 overflow-y-auto space-y-2.5 text-sm no-scrollbar">
+          <!-- Day-badged wish card pattern (Repeat per wish spot) -->
+          <div class="p-3 bg-purple-50/60 rounded-2xl border border-purple-100 flex items-start gap-3">
+            <span class="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded-lg mt-0.5">D1</span>
+            <div>
+              <h4 class="font-bold text-slate-900">1. {{WISH_SPOT_1_TITLE}}</h4>
+              <p class="text-xs text-slate-600 mt-0.5">{{WISH_SPOT_1_DESC}}</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/80 flex items-start gap-3">
+            <span class="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded-lg mt-0.5">D2</span>
+            <div>
+              <h4 class="font-bold text-slate-900">2. {{WISH_SPOT_2_TITLE}}</h4>
+              <p class="text-xs text-slate-600 mt-0.5">{{WISH_SPOT_2_DESC}}</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-amber-50/60 rounded-2xl border border-amber-100 flex items-start gap-3">
+            <span class="px-2 py-1 bg-amber-600 text-white text-xs font-bold rounded-lg mt-0.5">D3</span>
+            <div>
+              <h4 class="font-bold text-slate-900">3. {{WISH_SPOT_3_TITLE}}</h4>
+              <p class="text-xs text-slate-600 mt-0.5">{{WISH_SPOT_3_DESC}}</p>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- MODAL 3: EMERGENCY & HOTEL INFO -->
+    <!-- MODAL 3: EMERGENCY & HOTEL INFO (비상 연락처 및 기사님용 주소 안내문 - 레이아웃 절대 유지) -->
     <div id="modalEmergency" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
       <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
         
@@ -380,7 +457,7 @@
             </div>
             <div>
               <h3 class="font-extrabold text-base text-slate-900">호텔 안내 & 긴급 지원</h3>
-              <p class="text-xs text-slate-500">택시 기사님께 보여주는 현지어 주소 및 긴급망</p>
+              <p class="text-xs text-slate-500">택시 기사님께 보여주는 현지어 카드</p>
             </div>
           </div>
           <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
@@ -388,32 +465,81 @@
           </button>
         </div>
 
-        <div class="p-5 overflow-y-auto space-y-4 text-sm no-scrollbar" id="modalEmergencyContent">
-          {{MODAL_EMERGENCY_CONTENT}}
+        <div class="p-5 overflow-y-auto space-y-4 text-sm no-scrollbar">
+          <!-- Hotel Taxi Card -->
+          <div class="p-4 bg-slate-900 text-white rounded-2xl">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+              <span>숙소 택시 기사님용 주소</span>
+              <button onclick="copyToClipboard('{{HOTEL_COPY_TEXT}}')" class="text-blue-400 font-bold hover:underline flex items-center gap-1">
+                <i class="ph-bold ph-copy"></i> 복사
+              </button>
+            </div>
+            <div class="text-lg font-bold text-amber-300 mb-1">{{HOTEL_LOCAL_NAME}}</div>
+            <div class="text-xs text-slate-300">{{HOTEL_KO_NAME}}</div>
+            <div class="mt-2 text-sm bg-white/10 p-2.5 rounded-xl text-white font-mono">
+              {{HOTEL_ADDRESS}}<br>
+              TEL: {{HOTEL_PHONE}}
+            </div>
+          </div>
+
+          <!-- Airport Taxi Card -->
+          <div class="p-4 bg-slate-900 text-white rounded-2xl">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+              <span>귀국 시 공항 택시 기사님용</span>
+              <button onclick="copyToClipboard('{{AIRPORT_COPY_TEXT}}')" class="text-blue-400 font-bold hover:underline flex items-center gap-1">
+                <i class="ph-bold ph-copy"></i> 복사
+              </button>
+            </div>
+            <div class="text-base font-bold text-amber-300">{{AIRPORT_LOCAL_NAME}}</div>
+            <div class="text-xs text-slate-300">{{AIRPORT_KO_NAME}}</div>
+            <div class="mt-1 text-xs text-slate-400">
+              "{{AIRPORT_PHRASE_PRONUNCIATION}}"
+            </div>
+          </div>
+
+          <!-- Important Emergency Numbers -->
+          <div class="border border-slate-200 rounded-2xl p-3.5 space-y-2">
+            <h4 class="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
+              <i class="ph-bold ph-phone-call text-rose-500"></i>
+              긴급 비상 연락망
+            </h4>
+            <div class="flex justify-between text-xs text-slate-600">
+              <span>현지 대한민국 대사관/총영사관</span>
+              <span class="font-mono font-bold">{{EMBASSY_PHONE}}</span>
+            </div>
+            <div class="flex justify-between text-xs text-slate-600">
+              <span>외교부 영사콜센터 (24시간)</span>
+              <span class="font-mono font-bold">+82 2-3210-0404</span>
+            </div>
+            <div class="flex justify-between text-xs text-slate-600">
+              <span>현지 경찰 / 화재·구급</span>
+              <span class="font-mono font-bold">{{LOCAL_EMERGENCY_NUMBERS}}</span>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <!-- MODAL 4: FULLSCREEN NATIVE SHOWING SCREEN -->
-    <div id="modalShowPhrase" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-5 transition-opacity">
+    <!-- MODAL 4: FULLSCREEN LOCAL PHRASE SHOWING SCREEN (점원/기사님께 크게 보여주는 모드) -->
+    <div id="modalShowJapanese" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-5 transition-opacity">
       <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl flex flex-col text-center relative animate-slide-up">
         <button class="modal-close-btn absolute right-4 top-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full">
           <i class="ph-bold ph-x text-lg"></i>
         </button>
         
-        <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">직원 / 기사님께 화면을 보여주세요</div>
+        <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">점원에게 화면을 보여주세요</div>
         
-        <div id="modalLargeNativeText" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug my-4 px-2 font-mono">
-          <!-- Native Script -->
+        <div id="modalLargeJaText" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug my-4 px-2 font-mono">
+          현지어 원문
         </div>
 
         <div id="modalLargeKoSound" class="text-base font-extrabold text-blue-700 mb-2">
-          <!-- Korean Pronunciation -->
+          한글 발음
         </div>
 
         <div id="modalLargeMeaning" class="text-sm font-semibold text-slate-600 bg-slate-100 p-2.5 rounded-xl mb-4">
-          <!-- Korean Meaning -->
+          한국어 뜻
         </div>
 
         <button id="modalLargePlayBtn" class="h-12 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition shadow-ios-glow">
@@ -426,11 +552,24 @@
   </div>
 
   <script>
-    /* Complete Database of Tour Items */
-    const itineraryData = {{ITINERARY_DATA_JSON}};
+    /*
+     * STRICT SCHEMA RULE (양식 및 레이아웃 절대 변경 금지):
+     * Each item in itineraryData MUST follow this exact object schema:
+     * {
+     *   id: 1, day: 1, time: "07:00 ~ 07:55",
+     *   title: "...",
+     *   category: "...",
+     *   description: "• 줄1\n• 줄2",
+     *   phraseKo: "...",
+     *   phraseJa: "...", // (or phraseNative for non-Japanese destinations)
+     *   phraseMeaning: "...",
+     *   cost: "...",
+     *   mapQuery: "..."
+     * }
+     */
+    const DEST_LANG_CODE = "{{LANG_CODE}}"; // e.g. 'ja-JP', 'vi-VN', 'en-US', 'zh-TW', 'th-TH'
 
-    /* Destination TTS Language Code (e.g., 'ja-JP', 'vi-VN', 'en-US', 'zh-TW', 'th-TH') */
-    const DEST_LANG_CODE = "{{LANG_CODE}}";
+    const itineraryData = {{ITINERARY_DATA_JSON}};
 
     /* State Management */
     let currentIndex = 0;
@@ -447,7 +586,7 @@
     const cardTitleText = document.getElementById('cardTitleText');
     const cardDescriptionText = document.getElementById('cardDescriptionText');
     const cardPhraseKoSound = document.getElementById('cardPhraseKoSound');
-    const cardPhraseNative = document.getElementById('cardPhraseNative');
+    const cardPhraseJa = document.getElementById('cardPhraseJa');
     const cardPhraseMeaning = document.getElementById('cardPhraseMeaning');
     const cardCostBadge = document.getElementById('cardCostBadge');
     const cardCostText = document.getElementById('cardCostText');
@@ -460,15 +599,19 @@
     const cardProgressDots = document.getElementById('cardProgressDots');
     const speakerIcon = document.getElementById('speakerIcon');
 
-    // Speech Synthesis
-    function speakNative(text) {
+    function getNativePhrase(item) {
+      return item.phraseJa || item.phraseNative || item.phraseVi || '';
+    }
+
+    // Speech Synthesis for Local Language
+    function speakJapanese(text) {
       if (!('speechSynthesis' in window)) {
         return;
       }
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = DEST_LANG_CODE || 'en-US';
-      utterance.rate = 0.9;
+      utterance.lang = DEST_LANG_CODE || 'ja-JP';
+      utterance.rate = 0.9; // natural comfortable pace
       
       speakerIcon.classList.add('playing-sound');
       utterance.onend = () => speakerIcon.classList.remove('playing-sound');
@@ -500,13 +643,13 @@
       const descLines = (item.description || '').split('\n');
       cardDescriptionText.innerHTML = descLines.map(line => `<div>${line}</div>`).join('');
 
-      cardPhraseKoSound.textContent = item.phraseKo || '';
-      cardPhraseNative.textContent = item.phraseNative || item.phraseJa || item.phraseVi || '';
-      cardPhraseMeaning.textContent = item.phraseMeaning || '';
-      cardCostText.textContent = item.cost || '';
+      cardPhraseKoSound.textContent = item.phraseKo;
+      cardPhraseJa.textContent = getNativePhrase(item);
+      cardPhraseMeaning.textContent = item.phraseMeaning;
+      cardCostText.textContent = item.cost;
 
       // Google maps link
-      btnCardMapLink.href = item.mapQuery ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}` : '#';
+      btnCardMapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`;
 
       // Update Completion state
       if (completedSet.has(item.id)) {
@@ -530,6 +673,7 @@
     function renderDots() {
       cardProgressDots.innerHTML = '';
       const total = filteredIndices.length;
+      // Show up to 7 contextual indicator dots
       const maxDots = 7;
       let start = Math.max(0, currentIndex - Math.floor(maxDots / 2));
       let end = Math.min(total, start + maxDots);
@@ -563,11 +707,13 @@
     function handleSwipe() {
       const threshold = 45;
       if (touchEndX < touchStartX - threshold) {
+        // Swiped Left -> Next Card
         if (currentIndex < filteredIndices.length - 1) {
           currentIndex++;
           renderCard('next');
         }
       } else if (touchEndX > touchStartX + threshold) {
+        // Swiped Right -> Prev Card
         if (currentIndex > 0) {
           currentIndex--;
           renderCard('prev');
@@ -616,7 +762,7 @@
     // Play Voice Button
     document.getElementById('btnPlayVoice').addEventListener('click', () => {
       const item = itineraryData[filteredIndices[currentIndex]];
-      speakNative(item.phraseNative || item.phraseJa || item.phraseVi || '');
+      speakJapanese(getNativePhrase(item));
     });
 
     // Day Tab Filters
@@ -654,12 +800,11 @@
       if (query) {
         visibleIndices = visibleIndices.filter(idx => {
           const it = itineraryData[idx];
-          const nativeText = (it.phraseNative || it.phraseJa || it.phraseVi || '').toLowerCase();
-          return (it.title || '').toLowerCase().includes(query) ||
-                 (it.description || '').toLowerCase().includes(query) ||
-                 (it.phraseKo || '').toLowerCase().includes(query) ||
-                 nativeText.includes(query) ||
-                 (it.time || '').toLowerCase().includes(query);
+          return it.title.toLowerCase().includes(query) ||
+                 it.description.toLowerCase().includes(query) ||
+                 it.phraseKo.toLowerCase().includes(query) ||
+                 getNativePhrase(it).toLowerCase().includes(query) ||
+                 it.time.toLowerCase().includes(query);
         });
       }
 
@@ -692,16 +837,17 @@
             <span class="text-[11px] font-semibold text-slate-500">${item.category}</span>
           </div>
           <div class="font-extrabold text-sm text-slate-900 mb-1 leading-snug">${item.title}</div>
-          <div class="text-xs text-slate-600 line-clamp-1">${(item.description || '').replace(/\n/g, ' ')}</div>
+          <div class="text-xs text-slate-600 line-clamp-1">${item.description.replace(/\n/g, ' ')}</div>
           <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
             <div class="text-blue-700 font-semibold text-[11px] truncate pr-2">
-              🗣️ ${item.phraseKo || ''}
+              🗣️ ${item.phraseKo}
             </div>
             <span class="text-slate-400 text-[10px] whitespace-nowrap">탭하여 카드보기 →</span>
           </div>
         `;
 
         cardItem.addEventListener('click', () => {
+          // Find index in filteredIndices
           const targetCardIdx = filteredIndices.indexOf(globalIdx);
           if (targetCardIdx !== -1) {
             currentIndex = targetCardIdx;
@@ -754,24 +900,25 @@
       renderTimelineList('');
     });
 
-    // Fullscreen Large Phrase Modal
-    const modalShowPhrase = document.getElementById('modalShowPhrase');
-    const modalLargeNativeText = document.getElementById('modalLargeNativeText');
+
+    // Fullscreen Local Phrase Modal
+    const modalShowJapanese = document.getElementById('modalShowJapanese');
+    const modalLargeJaText = document.getElementById('modalLargeJaText');
     const modalLargeKoSound = document.getElementById('modalLargeKoSound');
     const modalLargeMeaning = document.getElementById('modalLargeMeaning');
     const modalLargePlayBtn = document.getElementById('modalLargePlayBtn');
 
-    document.getElementById('btnShowLargePhrase').addEventListener('click', () => {
+    document.getElementById('btnShowLargeJapanese').addEventListener('click', () => {
       const item = itineraryData[filteredIndices[currentIndex]];
-      modalLargeNativeText.textContent = item.phraseNative || item.phraseJa || item.phraseVi || '';
-      modalLargeKoSound.textContent = item.phraseKo || '';
-      modalLargeMeaning.textContent = item.phraseMeaning || '';
-      modalShowPhrase.classList.remove('hidden');
+      modalLargeJaText.textContent = getNativePhrase(item);
+      modalLargeKoSound.textContent = item.phraseKo;
+      modalLargeMeaning.textContent = item.phraseMeaning;
+      modalShowJapanese.classList.remove('hidden');
     });
 
     modalLargePlayBtn.addEventListener('click', () => {
       const item = itineraryData[filteredIndices[currentIndex]];
-      speakNative(item.phraseNative || item.phraseJa || item.phraseVi || '');
+      speakJapanese(getNativePhrase(item));
     });
 
     // Modals Wiring (Budget, Shopping, Emergency)
@@ -789,11 +936,11 @@
         modalBudget.classList.add('hidden');
         modalShopping.classList.add('hidden');
         modalEmergency.classList.add('hidden');
-        modalShowPhrase.classList.add('hidden');
+        modalShowJapanese.classList.add('hidden');
       });
     });
 
-    [modalBudget, modalShopping, modalEmergency, modalShowPhrase].forEach(modal => {
+    [modalBudget, modalShopping, modalEmergency, modalShowJapanese].forEach(modal => {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.classList.add('hidden');
       });

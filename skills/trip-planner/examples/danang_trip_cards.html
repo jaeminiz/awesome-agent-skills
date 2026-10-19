@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>다낭·호이안 3박 4일 모바일 카드 가이드</title>
+  <title>다낭·호이안 3박 4일 여행 마스터 가이드</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Phosphor Icons for iOS-style crisp icons -->
@@ -23,12 +23,15 @@
               red: '#FF3B30',
               purple: '#AF52DE',
               teal: '#5AC8FA',
+              darkBg: '#000000',
+              darkCard: '#1C1C1E',
+              darkElevated: '#2C2C2E',
               subtext: '#8E8E93',
               separator: 'rgba(60, 60, 67, 0.12)'
             }
           },
           fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Inter', 'sans-serif'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'sans-serif'],
           },
           boxShadow: {
             'ios': '0 8px 30px rgba(0, 0, 0, 0.08)',
@@ -40,29 +43,48 @@
     }
   </script>
   <style>
+    /* iOS Custom Aesthetics (DO NOT MODIFY LAYOUT OR STYLES) */
     body {
       -webkit-tap-highlight-color: transparent;
       user-select: none;
       background-color: #F2F2F7;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     }
-    .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 12px); }
-    .card-touch-area { touch-action: pan-y pinch-zoom; }
+    .safe-top {
+      padding-top: max(env(safe-area-inset-top, 0px), 12px);
+    }
+    .safe-bottom {
+      padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+    }
+    .card-touch-area {
+      touch-action: pan-y pinch-zoom;
+    }
     .glass-nav {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
     .segmented-active {
       background: #FFFFFF;
       box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-      color: #007AFF;
-      font-weight: 700;
+      color: #000000;
+      font-weight: 600;
     }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .card-enter-next { animation: slideNext 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .card-enter-prev { animation: slidePrev 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Card Transition Animations */
+    .card-enter-next {
+      animation: slideNext 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .card-enter-prev {
+      animation: slidePrev 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
     @keyframes slideNext {
       from { opacity: 0.3; transform: translateX(35px) scale(0.97); }
       to { opacity: 1; transform: translateX(0) scale(1); }
@@ -71,50 +93,64 @@
       from { opacity: 0.3; transform: translateX(-35px) scale(0.97); }
       to { opacity: 1; transform: translateX(0) scale(1); }
     }
+    /* Pulse on audio play */
     @keyframes audioPulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.15); }
     }
-    .playing-sound { animation: audioPulse 0.8s ease-in-out infinite; color: #007AFF !important; }
+    .playing-sound {
+      animation: audioPulse 0.8s ease-in-out infinite;
+      color: #007AFF !important;
+    }
   </style>
 </head>
 <body class="min-h-screen text-slate-900 bg-[#F2F2F7] flex flex-col items-center justify-start antialiased selection:bg-blue-200">
 
+  <!-- App Container (iPhone Pro Max Width bounded) -->
   <div id="app" class="w-full max-w-md mx-auto min-h-screen flex flex-col justify-between relative shadow-2xl bg-[#F2F2F7]">
     
-    <!-- Top Header -->
+    <!-- iOS Dynamic Top Bar -->
     <header class="sticky top-0 z-40 glass-nav border-b border-black/[0.06] safe-top px-4 pb-2.5 transition-all">
+      <!-- Dynamic Island / Title Area -->
       <div class="flex items-center justify-between py-1 mb-2">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="text-[12px] font-bold text-slate-700 tracking-tight">🇻🇳 다낭·호이안 3박4일 (3인)</span>
+          <span class="text-[12px] font-semibold text-slate-500 uppercase tracking-wider">DANANG · HOI AN TRIP</span>
         </div>
-        <div class="flex items-center gap-1.5">
-          <button id="btnOpenBudget" class="flex items-center gap-1 text-[12px] font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 active:scale-95 px-2.5 py-1 rounded-full transition border border-blue-200/50">
+        
+        <!-- Utility Action Buttons -->
+        <div class="flex items-center gap-2">
+          <!-- Total Budget Button -->
+          <button id="btnOpenBudget" class="flex items-center gap-1 text-[13px] font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 active:scale-95 px-2.5 py-1 rounded-full transition">
             <i class="ph-bold ph-coins text-sm"></i>
             <span>경비</span>
           </button>
-          <button id="btnOpenWish" class="flex items-center gap-1 text-[12px] font-bold text-purple-600 bg-purple-50 hover:bg-purple-100 active:scale-95 px-2.5 py-1 rounded-full transition border border-purple-200/50">
-            <i class="ph-bold ph-fork-knife text-sm"></i>
+          
+          <!-- Shopping Wishlist -->
+          <button id="btnOpenShopping" class="flex items-center gap-1 text-[13px] font-semibold text-purple-600 bg-purple-50 hover:bg-purple-100 active:scale-95 px-2.5 py-1 rounded-full transition">
+            <i class="ph-bold ph-bag-simple text-sm"></i>
             <span>위시</span>
           </button>
-          <button id="btnOpenEmergency" title="호텔 및 비상연락처" class="w-7 h-7 flex items-center justify-center rounded-full bg-slate-200/80 hover:bg-slate-300 text-slate-700 active:scale-90 transition">
+          
+          <!-- Emergency Info -->
+          <button id="btnOpenEmergency" class="w-7 h-7 flex items-center justify-center rounded-full bg-slate-200/70 hover:bg-slate-300 text-slate-700 active:scale-90 transition">
             <i class="ph-bold ph-info text-sm"></i>
           </button>
         </div>
       </div>
 
-      <!-- Segmented Day Switcher -->
-      <div class="bg-slate-200/80 p-0.5 rounded-xl flex items-center justify-between text-xs font-medium text-slate-600 shadow-inner" id="dayTabsContainer">
-        <button class="day-tab-btn flex-1 py-1.5 rounded-lg text-center transition segmented-active" data-day="ALL">전체</button>
-        <button class="day-tab-btn flex-1 py-1.5 rounded-lg text-center transition" data-day="1">DAY 1</button>
-        <button class="day-tab-btn flex-1 py-1.5 rounded-lg text-center transition" data-day="2">DAY 2</button>
-        <button class="day-tab-btn flex-1 py-1.5 rounded-lg text-center transition" data-day="3">DAY 3</button>
-        <button class="day-tab-btn flex-1 py-1.5 rounded-lg text-center transition" data-day="4">DAY 4</button>
+      <!-- Segmented Day Switcher (Apple iOS Style) -->
+      <div class="bg-slate-200/80 p-0.5 rounded-xl flex items-center justify-between text-xs font-medium text-slate-600 shadow-inner">
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center segmented-active" data-day="ALL">전체</button>
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center" data-day="1">DAY 1</button>
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center" data-day="2">DAY 2</button>
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center" data-day="3">DAY 3</button>
+        <button class="day-tab flex-1 py-1.5 rounded-lg transition-all text-center" data-day="4">DAY 4</button>
       </div>
 
-      <!-- Mode Switcher -->
-      <div class="flex items-center justify-between mt-2 pt-1">
+      <!-- View Switcher & Search Bar -->
+      <div class="flex items-center justify-between mt-2.5 pt-1">
+        <!-- Card / List mode toggle -->
         <div class="flex items-center bg-white rounded-lg p-0.5 shadow-sm border border-slate-200/60">
           <button id="viewModeCard" class="flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-600 text-white transition">
             <i class="ph-bold ph-cards text-xs"></i>
@@ -125,69 +161,100 @@
             <span>타임라인</span>
           </button>
         </div>
+
+        <!-- Quick Jump / Counter info -->
         <div class="text-[12px] font-semibold text-slate-500 flex items-center gap-1">
           <span id="currentCardIndexText" class="text-blue-600 font-bold text-sm">1</span>
           <span>/</span>
-          <span id="totalCardsCountText">0</span>
+          <span id="totalCardsCountText">32</span>
         </div>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col justify-start px-4 py-3 relative overflow-hidden">
-      <!-- Card News View -->
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 flex flex-col justify-start px-4 pt-3 pb-6 safe-bottom relative overflow-hidden">
+      
+      <!-- [MODE 1] CARD NEWS VIEW (순번별 1장씩 한 화면) -->
       <div id="cardViewContainer" class="flex-1 flex flex-col justify-between">
-        <div id="activeCard" class="card-touch-area bg-white rounded-[28px] p-5 shadow-ios border border-black/[0.04] flex flex-col justify-between transition-all duration-200 min-h-[520px] relative">
+        
+        <!-- Interactive Card Surface -->
+        <div id="activeCard" class="card-touch-area bg-white rounded-[28px] p-5 shadow-ios border border-black/[0.04] flex flex-col justify-between transition-all duration-200 min-h-[515px] relative">
+          
+          <!-- Card Top Row: Sequence Badge, Day, Time -->
           <div>
-            <!-- Badges & Done Check -->
-            <div class="flex items-start justify-between mb-2.5">
+            <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
-                <div id="cardSeqBadge" class="h-8 px-3 rounded-full bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center shadow-md shadow-blue-500/20 tracking-tight">#1</div>
-                <span id="cardDayBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">DAY 1</span>
-                <span id="cardCategoryBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/50">카테고리</span>
+                <!-- Sequence Badge (iOS Pill) -->
+                <div id="cardSeqBadge" class="h-9 px-3.5 rounded-full bg-blue-600 text-white font-extrabold text-sm flex items-center justify-center shadow-md shadow-blue-500/20 tracking-tight">
+                  #1
+                </div>
+                <!-- Day Badge -->
+                <span id="cardDayBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+                  DAY 1
+                </span>
+                <!-- Category Tag -->
+                <span id="cardCategoryBadge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200/50">
+                  출국 / 입국
+                </span>
               </div>
+
+              <!-- Complete Checkbox Toggle -->
               <button id="btnToggleDone" title="완료 체크" class="w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 text-slate-300 hover:text-emerald-500 hover:border-emerald-500 transition active:scale-90">
                 <i class="ph-bold ph-check text-base"></i>
               </button>
             </div>
 
-            <!-- Time & Title -->
-            <div class="flex items-center gap-1.5 text-blue-600 text-xs font-bold mb-1">
+            <!-- Time Display -->
+            <div class="flex items-center gap-1.5 text-blue-600 text-sm font-semibold mb-1">
               <i class="ph-bold ph-clock"></i>
               <span id="cardTimeText">00:00 ~ 00:00</span>
             </div>
 
-            <h2 id="cardTitleText" class="text-lg font-extrabold text-slate-900 tracking-tight leading-snug mb-3">일정 제목</h2>
+            <!-- Title -->
+            <h2 id="cardTitleText" class="text-xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">
+              일정 제목
+            </h2>
 
-            <!-- Spot & Tip Box -->
-            <div class="bg-slate-50/90 rounded-2xl p-3.5 mb-3 border border-slate-100">
-              <div class="flex items-center gap-1.5 text-xs font-bold text-slate-600 mb-1.5">
+            <!-- Detailed Spot & Moving Tips (Key highlights) -->
+            <div class="bg-slate-50/80 rounded-2xl p-3.5 mb-3.5 border border-slate-100">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-slate-500 mb-1.5">
                 <i class="ph-bold ph-navigation-arrow text-blue-500"></i>
-                <span>방문 스팟 & 동선 꿀팁</span>
+                <span>방문 스팟 & 이동 상세 꿀팁</span>
               </div>
-              <ul id="cardDescriptionList" class="text-[13px] text-slate-700 leading-relaxed space-y-1 list-disc list-inside"></ul>
+              <div id="cardDescriptionText" class="text-sm text-slate-700 leading-relaxed space-y-1">
+                <!-- Injected via JS -->
+              </div>
             </div>
 
-            <!-- Native Phrase Box -->
+            <!-- Essential Local Phrase Box (현지 회화 특화) -->
             <div id="cardPhraseContainer" class="bg-gradient-to-br from-blue-50/90 to-indigo-50/70 rounded-2xl p-3.5 border border-blue-100/80 relative">
               <div class="flex items-center justify-between mb-1.5">
                 <span class="text-[11px] font-bold text-blue-700 flex items-center gap-1 uppercase tracking-wider">
                   <i class="ph-fill ph-chat-centered-text"></i>
                   현장 즉석 베트남어 회화
                 </span>
+                <!-- Action Buttons: Audio Pronunciation & Fullscreen Show -->
                 <div class="flex items-center gap-1.5">
-                  <button id="btnPlayVoice" class="flex items-center gap-1 text-[11px] font-bold text-blue-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-blue-50 active:scale-95 transition">
+                  <button id="btnPlayVoice" class="flex items-center gap-1 text-[11px] font-bold text-blue-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-blue-50 active:scale-95 transition" title="원어민 발음 듣기">
                     <i class="ph-fill ph-speaker-high" id="speakerIcon"></i>
                     <span>발음듣기</span>
                   </button>
-                  <button id="btnShowLargePhrase" class="flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition">
+                  <button id="btnShowLargeJapanese" class="flex items-center gap-1 text-[11px] font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition" title="점원/기사님께 보여주기">
                     <i class="ph-bold ph-arrows-out"></i>
                     <span>보여주기</span>
                   </button>
                 </div>
               </div>
-              <div id="cardPhraseKoSound" class="text-[15px] font-extrabold text-blue-950 mb-0.5 leading-snug">한글 발음</div>
-              <div id="cardPhraseNative" class="text-xs font-semibold text-blue-700 mb-1 font-mono">현지어 원문</div>
+
+              <!-- Pronunciation in Korean -->
+              <div id="cardPhraseKoSound" class="text-base font-extrabold text-blue-950 mb-0.5 leading-snug">
+                한글 발음
+              </div>
+              <!-- Native Script -->
+              <div id="cardPhraseJa" class="text-xs font-semibold text-blue-700 mb-1 font-mono">
+                현지어 원문
+              </div>
+              <!-- Meaning in Korean -->
               <div id="cardPhraseMeaning" class="text-xs text-slate-600 flex items-center gap-1">
                 <i class="ph-bold ph-arrow-elbow-down-right text-slate-400"></i>
                 <span>한국어 뜻</span>
@@ -195,37 +262,48 @@
             </div>
           </div>
 
-          <!-- Bottom Action Row -->
+          <!-- Card Bottom Action Row (Maps & Quick Cost details) -->
           <div class="pt-3 border-t border-slate-100 mt-2 flex items-center justify-between">
+            <!-- Cost / Note Tag -->
             <div id="cardCostBadge" class="text-xs font-semibold text-slate-600 flex items-center gap-1">
               <i class="ph-fill ph-tag text-amber-500"></i>
               <span id="cardCostText">비용/정보</span>
             </div>
-            <a id="btnCardMapLink" href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-full border border-emerald-200/60 active:scale-95 transition">
+
+            <!-- External Google Map Link Button -->
+            <a id="btnCardMapLink" href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-full border border-emerald-200/60 active:scale-95 transition">
               <i class="ph-bold ph-map-pin"></i>
               <span>구글지도 위치</span>
             </a>
           </div>
+
         </div>
 
-        <!-- Prev / Next Navigation -->
-        <div class="flex items-center justify-between gap-3 mt-3 pb-3">
+        <!-- Navigation Buttons: Previous & Next with iOS haptic feel -->
+        <div class="flex items-center justify-between gap-3 mt-3">
           <button id="btnPrevCard" class="flex-1 h-12 rounded-2xl bg-white border border-slate-200 shadow-ios-subtle flex items-center justify-center gap-2 text-slate-700 font-bold active:scale-95 transition disabled:opacity-35 disabled:pointer-events-none">
             <i class="ph-bold ph-caret-left text-lg"></i>
             <span>이전 일정</span>
           </button>
+          
+          <!-- Quick Progress Jump Mini Indicator -->
           <div class="px-2 text-center">
-            <div id="cardProgressDots" class="flex gap-1 items-center justify-center"></div>
+            <div id="cardProgressDots" class="flex gap-1 items-center justify-center">
+              <!-- Rendered via JS -->
+            </div>
           </div>
+
           <button id="btnNextCard" class="flex-1 h-12 rounded-2xl bg-blue-600 shadow-ios-glow flex items-center justify-center gap-2 text-white font-bold active:scale-95 transition disabled:opacity-35 disabled:pointer-events-none">
             <span>다음 일정</span>
             <i class="ph-bold ph-caret-right text-lg"></i>
           </button>
         </div>
+
       </div>
 
-      <!-- Timeline List View -->
+      <!-- [MODE 2] TIMELINE LIST VIEW (전체 스크롤 목록 & 검색) -->
       <div id="listViewContainer" class="hidden flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Search bar -->
         <div class="relative mb-2.5">
           <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
           <input type="text" id="listSearchInput" placeholder="장소, 시간, 음식 또는 베트남어 검색..." class="w-full bg-white pl-10 pr-8 py-2.5 rounded-xl border border-slate-200/80 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
@@ -233,916 +311,1003 @@
             <i class="ph-bold ph-x-circle text-base"></i>
           </button>
         </div>
-        <div id="timelineScrollList" class="flex-1 overflow-y-auto space-y-2 pr-0.5 no-scrollbar pb-16"></div>
+
+        <!-- Scrollable Timeline Items List -->
+        <div id="timelineScrollList" class="flex-1 overflow-y-auto space-y-2 pr-0.5 no-scrollbar pb-16">
+          <!-- Rendered dynamically via JS -->
+        </div>
       </div>
+
     </main>
 
-    <!-- Modal 1: Budget -->
+
+    <!-- MODAL 1: TOTAL BUDGET SHEET (최신 정밀 경비 내역 모달 - 레이아웃 절대 유지) -->
     <div id="modalBudget" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
-      <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[88vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[88vh] flex flex-col shadow-2xl overflow-hidden animate-slide-up">
+        
         <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center"><i class="ph-bold ph-coins text-lg"></i></div>
+            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+              <i class="ph-bold ph-coins text-lg"></i>
+            </div>
             <div>
-              <h3 class="font-extrabold text-base text-slate-900">3인 총경비 & 환율 가이드</h3>
-              <p class="text-[11px] text-slate-500">1인 약 92만 원 (100만 원 언더 가성비 완비)</p>
+              <h3 class="font-extrabold text-base text-slate-900">3인 필수 총경비 내역</h3>
+              <p class="text-xs text-slate-500">환율 기준: 100동(VND) ≒ 5.5원 (쇼핑 제외)</p>
             </div>
           </div>
-          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
+            <i class="ph-bold ph-x text-base"></i>
+          </button>
         </div>
-        <div class="p-5 overflow-y-auto space-y-3.5 text-sm text-slate-700 no-scrollbar">
-          <!-- Exchange Tip -->
-          <div class="bg-amber-50 border border-amber-200/80 rounded-2xl p-3.5 text-amber-900">
-            <div class="font-extrabold text-xs mb-1 flex items-center gap-1.5 text-amber-800">
-              <i class="ph-fill ph-currency-circle-dollar text-base"></i>
-              <span>베트남 동(VND) 초간단 암산 팁</span>
+
+        <div class="p-5 overflow-y-auto space-y-4 text-sm text-slate-700 no-scrollbar">
+          <!-- Total Highlights Box -->
+          <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-4 text-white shadow-lg shadow-blue-500/20">
+            <span class="text-xs text-blue-100 font-medium">3인 순수 필수 총경비 (항공+숙박+식비+교통+투어)</span>
+            <div class="text-2xl font-black mt-0.5">약 2,760,000원</div>
+            <div class="flex items-center justify-between mt-2 pt-2 border-t border-white/20 text-xs text-blue-100">
+              <span>현지 지출: 약 19,800,000 VND (약 111만원)</span>
+              <span>1인당: 약 92만원</span>
             </div>
-            <p class="text-xs leading-relaxed">
-              <strong>100 VND ≈ 약 5.3 KRW</strong><br>
-              가격에서 <strong>'0' 하나 빼고 2로 나누면</strong> 원화입니다.<br>
-              <span class="text-slate-600">(예: 100,000동 ➔ 10,000 ÷ 2 = 약 5,000~5,300원)</span>
-            </p>
           </div>
 
-          <!-- Budget Matrix -->
-          <div class="border border-slate-200 rounded-2xl overflow-hidden">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-slate-100 text-slate-600 font-bold">
-                <tr>
-                  <th class="p-2.5">항목</th>
-                  <th class="p-2.5">3인 총액</th>
-                  <th class="p-2.5">1인 기준</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
-                <tr><td class="p-2.5 font-bold">✈️ 항공권 (LCC 왕복 직항)</td><td class="p-2.5 text-blue-600 font-bold">1,200,000원</td><td class="p-2.5">400,000원</td></tr>
-                <tr><td class="p-2.5 font-bold">🏨 살라 다낭 비치 호텔 (3박)</td><td class="p-2.5 text-blue-600 font-bold">450,000원</td><td class="p-2.5">150,000원</td></tr>
-                <tr><td class="p-2.5 font-bold">🚗 픽업 + 바나/호이안 7인승 대절</td><td class="p-2.5 text-blue-600 font-bold">180,000원</td><td class="p-2.5">60,000원</td></tr>
-                <tr><td class="p-2.5 font-bold">🎟️ 바나힐 & 호이안 소원배/바구니배</td><td class="p-2.5 text-blue-600 font-bold">240,000원</td><td class="p-2.5">80,000원</td></tr>
-                <tr><td class="p-2.5 font-bold">🍜 식비 & 콩카페 (목식당 등)</td><td class="p-2.5 text-blue-600 font-bold">360,000원</td><td class="p-2.5">120,000원</td></tr>
-                <tr><td class="p-2.5 font-bold">💆 스파 마사지 2회 (핫스톤+발)</td><td class="p-2.5 text-blue-600 font-bold">180,000원</td><td class="p-2.5">60,000원</td></tr>
-                <tr><td class="p-2.5 font-bold">🛡️ eSIM, 여행자보험, 예비비</td><td class="p-2.5 text-blue-600 font-bold">150,000원</td><td class="p-2.5">50,000원</td></tr>
-                <tr class="bg-blue-50/70 font-extrabold text-blue-900">
-                  <td class="p-2.5 text-sm">합계</td>
-                  <td class="p-2.5 text-sm text-blue-700">2,760,000원</td>
-                  <td class="p-2.5 text-sm text-blue-700">약 920,000원</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- Section 1: Food breakdown -->
+          <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50">
+            <div class="flex items-center justify-between font-bold text-slate-900 mb-2">
+              <span class="flex items-center gap-1.5"><i class="ph-bold ph-fork-knife text-orange-500"></i> 총 예상 식비</span>
+              <span class="text-blue-600">6,500,000 VND (360,000원)</span>
+            </div>
+            <ul class="text-xs space-y-1.5 text-slate-600">
+              <li class="flex justify-between"><span>• DAY 1 식비 & 카페</span><span class="font-semibold">1,800,000 VND (포홍+콩카페+목식당)</span></li>
+              <li class="flex justify-between"><span>• DAY 2 식비 & 카페</span><span class="font-semibold">1,700,000 VND (바나힐뷔페+벱꾸온+루프탑)</span></li>
+              <li class="flex justify-between"><span>• DAY 3 식비 & 카페</span><span class="font-semibold">3,000,000 VND (안방비치+미쓰리+바빌론)</span></li>
+            </ul>
+          </div>
+
+          <!-- Section 2: Transportation Breakdown -->
+          <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50">
+            <div class="flex items-center justify-between font-bold text-slate-900 mb-2">
+              <span class="flex items-center gap-1.5"><i class="ph-bold ph-bus text-blue-500"></i> 현지 교통비</span>
+              <span class="text-blue-600">3,270,000 VND (180,000원)</span>
+            </div>
+            <ul class="text-xs space-y-1.5 text-slate-600">
+              <li class="flex justify-between"><span>• 공항 ➔ 호텔 이동</span><span class="font-semibold">약 250,000 VND (픽업 차량)</span></li>
+              <li class="flex justify-between"><span>• 시내/근교 대중교통·택시</span><span class="font-semibold">약 2,770,000 VND (바나힐·호이안 7인승 대절)</span></li>
+              <li class="flex justify-between"><span>• 호텔 ➔ 공항 이동</span><span class="font-semibold">약 250,000 VND (그랩/샌딩)</span></li>
+            </ul>
+          </div>
+
+          <!-- Section 3: Tickets & Tours -->
+          <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50">
+            <div class="flex items-center justify-between font-bold text-slate-900 mb-2">
+              <span class="flex items-center gap-1.5"><i class="ph-bold ph-ticket text-purple-500"></i> 관광/액티비티/투어비</span>
+              <span class="text-blue-600">총 420,000원</span>
+            </div>
+            <ul class="text-xs space-y-1.5 text-slate-600">
+              <li class="flex justify-between"><span>• 주요 관광지 입장권</span><span class="font-semibold">4,360,000 VND (바나힐+소원배+바구니배 24만원)</span></li>
+              <li class="flex justify-between"><span>• 스파/온천/일일투어</span><span class="font-semibold text-purple-600">3,270,000 VND (전신 핫스톤·발 스파 2회 18만원)</span></li>
+            </ul>
+          </div>
+          
+          <div class="text-[11px] text-slate-400 text-center pb-2">
+            ※ 현지 결제 팁: 현금 소액권 + 트래블월렛/트래블로그 카드 병행 권장
           </div>
         </div>
+
       </div>
     </div>
 
-    <!-- Modal 2: Wish -->
-    <div id="modalWish" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
+    <!-- MODAL 2: SHOPPING & GOURMET WISHES (위시 달성표 - 레이아웃 절대 유지) -->
+    <div id="modalShopping" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
       <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        
         <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center"><i class="ph-bold ph-fork-knife text-lg"></i></div>
-            <h3 class="font-extrabold text-base text-slate-900">미식 & 쇼핑 위시 체크리스트</h3>
+            <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+              <i class="ph-bold ph-bag-simple text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900">핵심 위시리스트 100% 달성표</h3>
+              <p class="text-xs text-slate-500">동선에 완벽하게 녹아있는 필수 방문 스팟</p>
+            </div>
           </div>
-          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
+            <i class="ph-bold ph-x text-base"></i>
+          </button>
         </div>
-        <div class="p-5 overflow-y-auto space-y-2.5 text-xs no-scrollbar" id="wishlistContainer">
-          <!-- Dynamic wishlist items -->
+
+        <div class="p-5 overflow-y-auto space-y-2.5 text-sm no-scrollbar">
+          <!-- Day-badged wish card pattern (Repeat per wish spot) -->
+          <div class="p-3 bg-purple-50/60 rounded-2xl border border-purple-100 flex items-start gap-3">
+            <span class="px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded-lg mt-0.5">D1</span>
+            <div>
+              <h4 class="font-bold text-slate-900">1. 한시장 & 콩카페 1호점 (#4, #5)</h4>
+              <p class="text-xs text-slate-600 mt-0.5">라탄백·아오자이·망고 쇼핑 후 코코넛 스무디 커피 한잔! 이어서 미슐랭 목식당(#8) 해산물 만찬.</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/80 flex items-start gap-3">
+            <span class="px-2 py-1 bg-blue-600 text-white text-xs font-bold rounded-lg mt-0.5">D2</span>
+            <div>
+              <h4 class="font-bold text-slate-900">2. 바나힐 골든브릿지 & 벱꾸온 (#12, #17)</h4>
+              <p class="text-xs text-slate-600 mt-0.5">세계 최장 케이블카와 신의 손 인생샷 촬영 후 시내 복귀하여 핫스톤 스파(#16) 및 벱꾸온 반쎄오 만찬.</p>
+            </div>
+          </div>
+
+          <div class="p-3 bg-amber-50/60 rounded-2xl border border-amber-100 flex items-start gap-3">
+            <span class="px-2 py-1 bg-amber-600 text-white text-xs font-bold rounded-lg mt-0.5">D3</span>
+            <div>
+              <h4 class="font-bold text-slate-900">3. 호이안 올드타운 소원배 & 롯데마트 (#24, #29)</h4>
+              <p class="text-xs text-slate-600 mt-0.5">투본강 등불 소원배 체험 및 마지막 날 롯데마트 다낭점 콘삭커피·건망고·캐슈넛 원스톱 쇼핑.</p>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
-    <!-- Modal 3: Emergency & Hotel Info -->
+    <!-- MODAL 3: EMERGENCY & HOTEL INFO (비상 연락처 및 기사님용 주소 안내문 - 레이아웃 절대 유지) -->
     <div id="modalEmergency" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center transition-opacity">
       <div class="bg-white w-full max-w-md rounded-t-[32px] sm:rounded-[32px] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        
         <div class="p-5 pb-3 border-b border-slate-100 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center"><i class="ph-bold ph-first-aid text-lg"></i></div>
-            <h3 class="font-extrabold text-base text-slate-900">호텔 안내 & 비상 연락처</h3>
+            <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center">
+              <i class="ph-bold ph-first-aid text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900">호텔 안내 & 긴급 지원</h3>
+              <p class="text-xs text-slate-500">택시 기사님께 보여주는 현지어 카드</p>
+            </div>
           </div>
-          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100"><i class="ph-bold ph-x text-base"></i></button>
+          <button class="modal-close-btn p-1.5 rounded-full text-slate-400 hover:text-slate-700 bg-slate-100">
+            <i class="ph-bold ph-x text-base"></i>
+          </button>
         </div>
-        <div class="p-5 overflow-y-auto space-y-3.5 text-xs no-scrollbar">
-          <!-- Hotel Card -->
-          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5">
-            <div class="font-bold text-sm text-slate-900 mb-1">🏨 살라 다낭 비치 호텔</div>
-            <p class="text-slate-600 font-mono text-[11px] mb-2">Sala Danang Beach Hotel<br>36-38 Lâm Hoành, Phước Mỹ, Sơn Trà, Đà Nẵng</p>
-            <div class="flex gap-2">
-              <button id="btnCopyHotelAddr" class="flex-1 bg-white border border-slate-200 py-1.5 px-3 rounded-xl font-bold text-slate-700 flex items-center justify-center gap-1 active:scale-95 transition">
-                <i class="ph-bold ph-copy"></i>
-                <span>주소 복사</span>
+
+        <div class="p-5 overflow-y-auto space-y-4 text-sm no-scrollbar">
+          <!-- Hotel Taxi Card -->
+          <div class="p-4 bg-slate-900 text-white rounded-2xl">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+              <span>숙소 택시 기사님용 주소</span>
+              <button onclick="copyToClipboard('Sala Danang Beach Hotel (36-38 Lâm Hoành, Phước Mỹ, Sơn Trà, Đà Nẵng)')" class="text-blue-400 font-bold hover:underline flex items-center gap-1">
+                <i class="ph-bold ph-copy"></i> 복사
               </button>
-              <a href="tel:+842363658555" class="flex-1 bg-blue-50 text-blue-700 border border-blue-200 py-1.5 px-3 rounded-xl font-bold flex items-center justify-center gap-1 active:scale-95 transition">
-                <i class="ph-bold ph-phone"></i>
-                <span>호텔 전화</span>
-              </a>
+            </div>
+            <div class="text-lg font-bold text-amber-300 mb-1">Sala Danang Beach Hotel</div>
+            <div class="text-xs text-slate-300">살라 다낭 비치 호텔 (미케비치 앞)</div>
+            <div class="mt-2 text-sm bg-white/10 p-2.5 rounded-xl text-white font-mono">
+              36-38 Lâm Hoành, Phước Mỹ, Sơn Trà, Đà Nẵng<br>
+              TEL: +84 236-3658-555
             </div>
           </div>
 
-          <!-- Emergency Contacts -->
-          <div class="space-y-2">
-            <a href="tel:+84931182020" class="flex items-center justify-between p-3 rounded-2xl bg-rose-50/70 border border-rose-200/60 text-rose-900 font-semibold active:scale-98 transition">
-              <div class="flex items-center gap-2">
-                <i class="ph-fill ph-shield-check text-rose-600 text-base"></i>
-                <span>주다낭 대한민국 총영사관</span>
-              </div>
-              <span class="text-[11px] font-bold text-rose-700 underline">+84-93-118-2020</span>
-            </a>
-            <a href="tel:+82232100404" class="flex items-center justify-between p-3 rounded-2xl bg-slate-100 border border-slate-200 text-slate-800 font-semibold active:scale-98 transition">
-              <div class="flex items-center gap-2">
-                <i class="ph-fill ph-phone-call text-slate-600 text-base"></i>
-                <span>외교부 영사콜센터 (24시간)</span>
-              </div>
-              <span class="text-[11px] font-bold text-slate-700 underline">+82-2-3210-0404</span>
-            </a>
-            <a href="tel:+842363582699" class="flex items-center justify-between p-3 rounded-2xl bg-emerald-50/70 border border-emerald-200/60 text-emerald-900 font-semibold active:scale-98 transition">
-              <div class="flex items-center gap-2">
-                <i class="ph-fill ph-hospital text-emerald-600 text-base"></i>
-                <span>패밀리 메디컬 (국제응급의원)</span>
-              </div>
-              <span class="text-[11px] font-bold text-emerald-700 underline">+84-236-3582-699</span>
-            </a>
+          <!-- Airport Taxi Card -->
+          <div class="p-4 bg-slate-900 text-white rounded-2xl">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+              <span>귀국 시 공항 택시 기사님용</span>
+              <button onclick="copyToClipboard('Đi Sân bay Quốc tế Đà Nẵng (Ga Quốc tế)')" class="text-blue-400 font-bold hover:underline flex items-center gap-1">
+                <i class="ph-bold ph-copy"></i> 복사
+              </button>
+            </div>
+            <div class="text-base font-bold text-amber-300">Sân bay Quốc tế Đà Nẵng (Ga Quốc tế)</div>
+            <div class="text-xs text-slate-300">다낭 국제공항 국제선 터미널</div>
+            <div class="mt-1 text-xs text-slate-400">
+              "디 싼 바이 꾸옥 떼 다낭"
+            </div>
+          </div>
+
+          <!-- Important Emergency Numbers -->
+          <div class="border border-slate-200 rounded-2xl p-3.5 space-y-2">
+            <h4 class="font-bold text-slate-900 flex items-center gap-1.5 text-xs">
+              <i class="ph-bold ph-phone-call text-rose-500"></i>
+              긴급 비상 연락망
+            </h4>
+            <div class="flex justify-between text-xs text-slate-600">
+              <span>현지 대한민국 대사관/총영사관</span>
+              <span class="font-mono font-bold">+84 236-356-6100 (주다낭 총영사관)</span>
+            </div>
+            <div class="flex justify-between text-xs text-slate-600">
+              <span>외교부 영사콜센터 (24시간)</span>
+              <span class="font-mono font-bold">+82 2-3210-0404</span>
+            </div>
+            <div class="flex justify-between text-xs text-slate-600">
+              <span>현지 경찰 / 화재·구급</span>
+              <span class="font-mono font-bold">113 (경찰) / 114 (화재) / 115 (구급)</span>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
 
-    <!-- Modal 4: Large Phrase Show -->
-    <div id="modalShowPhrase" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-5 transition-opacity">
-      <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl flex flex-col text-center relative">
-        <button class="modal-close-btn absolute right-4 top-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full"><i class="ph-bold ph-x text-lg"></i></button>
-        <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">직원 / 기사님께 화면을 보여주세요</div>
-        <div id="modalLargeNativeText" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug my-4 px-2 font-mono"></div>
-        <div id="modalLargeKoSound" class="text-base font-extrabold text-blue-700 mb-2"></div>
-        <div id="modalLargeMeaning" class="text-sm font-semibold text-slate-600 bg-slate-100 p-2.5 rounded-xl mb-4"></div>
+    <!-- MODAL 4: FULLSCREEN LOCAL PHRASE SHOWING SCREEN (점원/기사님께 크게 보여주는 모드) -->
+    <div id="modalShowJapanese" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-5 transition-opacity">
+      <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl flex flex-col text-center relative animate-slide-up">
+        <button class="modal-close-btn absolute right-4 top-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full">
+          <i class="ph-bold ph-x text-lg"></i>
+        </button>
+        
+        <div class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">점원에게 화면을 보여주세요</div>
+        
+        <div id="modalLargeJaText" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug my-4 px-2 font-mono">
+          현지어 원문
+        </div>
+
+        <div id="modalLargeKoSound" class="text-base font-extrabold text-blue-700 mb-2">
+          한글 발음
+        </div>
+
+        <div id="modalLargeMeaning" class="text-sm font-semibold text-slate-600 bg-slate-100 p-2.5 rounded-xl mb-4">
+          한국어 뜻
+        </div>
+
         <button id="modalLargePlayBtn" class="h-12 bg-blue-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition shadow-ios-glow">
           <i class="ph-fill ph-speaker-high text-lg"></i>
-          <span>음성으로 재생 (TTS)</span>
+          <span>원어민 음성으로 재생</span>
         </button>
       </div>
     </div>
 
   </div>
 
-  <!-- App Data & Interactive Scripts -->
   <script>
-    const TRIP_CARDS_DATA = [
-      // Day 1
-      {
-        id: 1, day: 1, category: "✈️ 출국/입국", time: "07:00 ~ 11:30",
-        title: "인천/김해공항 ➔ 다낭 국제공항(DAD) 도착",
-        tips: [
-          "LCC 직항 비행시간 약 4시간 50분 소요",
-          "대한민국 여권은 45일간 무비자 입국 가능 (입국 도장 날짜 확인)",
-          "공항 밖으로 나와 예약된 7인승 픽업 차량 또는 그랩 미팅"
-        ],
-        phrase: { koSound: "[디 싼 바이 다낭]", native: "Đi sân bay Đà Nẵng", meaning: "다낭 공항으로 가주세요" },
-        cost: "비용: 항공권 포함 / 비자 무료",
-        mapQuery: "Da Nang International Airport"
-      },
-      {
-        id: 2, day: 1, category: "🏨 호텔/짐보관", time: "11:30 ~ 12:30",
-        title: "살라 다낭 비치 호텔 도착 & 짐 보관",
-        tips: [
-          "공항에서 미케비치 살라 다낭 호텔까지 차량 약 15분 소요",
-          "얼리 체크인 가능 여부 확인 후 캐리어 안전하게 보관",
-          "호텔 프론트에서 와이파이 연결 및 외출 준비"
-        ],
-        phrase: { koSound: "[디 칵 산 살라 다낭]", native: "Đi khách sạn Sala Danang", meaning: "살라 다낭 호텔로 가주세요" },
-        cost: "교통: 픽업차량 / 그랩 약 12만 동",
-        mapQuery: "Sala Danang Beach Hotel"
-      },
-      {
-        id: 3, day: 1, category: "🍜 점심식사", time: "12:30 ~ 13:30",
-        title: "포홍 (Pho Hong) - 진한 소고기 쌀국수 만찬",
-        tips: [
-          "다낭 시내 대표 쌀국수 명점 (양지·차돌 쌀국수 Pho Bo)",
-          "바삭한 튀김 스프링롤(짜조) 곁들여 주문 필수",
-          "향신료 민감 시 'Không rau mùi (고수 빼주세요)' 외치기"
-        ],
-        phrase: { koSound: "[콩 라우 무이]", native: "Không rau mùi", meaning: "고수 빼주세요!" },
-        cost: "예상: 1인 약 60,000 ~ 80,000 동 (약 3,500원)",
-        mapQuery: "Pho Hong Da Nang"
-      },
-      {
-        id: 4, day: 1, category: "🌁 시내 관광", time: "13:30 ~ 14:30",
-        title: "다낭 대성당 (핑크성당) 포토타임",
-        tips: [
-          "프랑스 식민지 시절 건축된 네오고딕 양식의 분홍빛 성당",
-          "성당 앞마당 정면과 측면 스테인드글라스 창문이 인생샷 명당",
-          "미사 시간 외에는 마당 관람 자유 (복장 단정 권장)"
-        ],
-        phrase: { koSound: "[씬 짜오]", native: "Xin chào", meaning: "안녕하세요" },
-        cost: "입장료: 무료",
-        mapQuery: "Da Nang Cathedral"
-      },
-      {
-        id: 5, day: 1, category: "🛍️ 환전 & 쇼핑", time: "14:30 ~ 16:00",
-        title: "한시장(Han Market) & 금은방 환전 쇼핑",
-        tips: [
-          "한시장 정문 맞은편 금은방(SOAN HA 등)에서 100달러 신권 우대 환전",
-          "1층: 건망고, 캐슈넛, 커피 / 2층: 원피스, 아오자이, 크록스",
-          "기분 좋은 웃음과 함께 흥정 기술 발휘 (Bớt giá đi)"
-        ],
-        phrase: { koSound: "[벗 자 디]", native: "Bớt giá đi", meaning: "좀 깎아주세요~" },
-        cost: "쇼핑: 현금 결제 (동화 지출)",
-        mapQuery: "Han Market Da Nang"
-      },
-      {
-        id: 6, day: 1, category: "☕ 힐링 카페", time: "16:00 ~ 17:30",
-        title: "콩카페 1호점 (Cong Caphe) 코코넛 스무디",
-        tips: [
-          "한시장 도보 3분 한강변 위치 레트로 베트남 밀리터리 감성 카페",
-          "시그니처 코코넛 스무디 커피(Cà phê cốt dừa) 필수 주문",
-          "시원한 에어컨 바람 쐬며 한강 뷰를 바라보며 휴식"
-        ],
-        phrase: { koSound: "[쪼 또이 쎔 메뉴]", native: "Cho tôi xem menu", meaning: "메뉴판 보여주세요" },
-        cost: "음료: 1인 약 55,000 ~ 65,000 동",
-        mapQuery: "Cong Caphe Han River Da Nang"
-      },
-      {
-        id: 7, day: 1, category: "🏨 체크인/정비", time: "17:30 ~ 18:30",
-        title: "살라 다낭 호텔 정식 체크인 & 휴식",
-        tips: [
-          "그랩 호출하여 한시장에서 살라 다낭 호텔로 복귀 (약 10분)",
-          "패밀리 스위트 객실 체크인 후 짐 정리 및 가벼운 환복",
-          "발코니에서 미케비치 석양 조망"
-        ],
-        phrase: { koSound: "[깜 ơn]", native: "Cảm ơn", meaning: "감사합니다" },
-        cost: "그랩: 약 60,000 동",
-        mapQuery: "Sala Danang Beach Hotel"
-      },
-      {
-        id: 8, day: 1, category: "🍽️ 저녁 만찬", time: "18:30 ~ 20:30",
-        title: "목식당 (Moc Quan - 2025 미슐랭) 해산물",
-        tips: [
-          "2025 미슐랭 가이드 선정 다낭 최고 인기 해산물 식당",
-          "필수 메뉴: 갈릭버터 새우, 칠리크랩, 모닝글로리, 해산물 볶음밥",
-          "에어컨 룸 사전 예약 권장 / 직원이 새우 껍질을 직접 까줌"
-        ],
-        phrase: { koSound: "[응온 람!]", native: "Ngon lắm", meaning: "정말 맛있어요!" },
-        cost: "식비: 3인 약 1,200,000 ~ 1,600,000 동",
-        mapQuery: "Moc Seafood Restaurant Da Nang"
-      },
-      {
-        id: 9, day: 1, category: "🌃 야경/산책", time: "20:30 ~ 22:00",
-        title: "한강 용다리 (Dragon Bridge) 야경 & 불쇼",
-        tips: [
-          "다낭의 랜드마크인 거대한 황금 용 다리 야경 산책",
-          "주말(토/일) 밤 21:00 정각에 화려한 불쇼 & 물쇼 진행",
-          "주변 야경 감상 후 편의점에서 과일/맥주 구매하여 호텔 복귀"
-        ],
-        phrase: { koSound: "[띤 띠엔 냐]", native: "Tính tiền nha", meaning: "계산해 주세요" },
-        cost: "야경 관람 무료",
-        mapQuery: "Dragon Bridge Da Nang"
-      },
+    /*
+     * STRICT SCHEMA RULE (양식 및 레이아웃 절대 변경 금지):
+     * Each item in itineraryData MUST follow this exact object schema:
+     * {
+     *   id: 1, day: 1, time: "07:00 ~ 07:55",
+     *   title: "...",
+     *   category: "...",
+     *   description: "• 줄1\n• 줄2",
+     *   phraseKo: "...",
+     *   phraseJa: "...", // (or phraseNative for non-Japanese destinations)
+     *   phraseMeaning: "...",
+     *   cost: "...",
+     *   mapQuery: "..."
+     * }
+     */
+    const DEST_LANG_CODE = "vi-VN"; // e.g. 'ja-JP', 'vi-VN', 'en-US', 'zh-TW', 'th-TH'
 
-      // Day 2
+    const itineraryData = [
       {
-        id: 10, day: 2, category: "🍳 조식 & 출발", time: "08:00 ~ 09:30",
-        title: "살라 다낭 조식 뷔페 & 바나힐 전용차량 출발",
-        tips: [
-          "살라 다낭 고층 레스토랑에서 든든한 조식 뷔페 식사",
-          "09:00 로비에서 전일 7인승 대절 기사님 미팅",
-          "바나힐은 고지대라 날씨가 선선할 수 있으니 얇은 겉옷 챙기기"
-        ],
-        phrase: { koSound: "[디 바나힐]", native: "Đi Bà Nà Hills", meaning: "바나힐로 가주세요" },
-        cost: "조식 포함 / 7인승 대절 차량",
-        mapQuery: "Sala Danang Beach Hotel"
+            "id": 1,
+            "day": 1,
+            "time": "07:00 ~ 11:30",
+            "title": "인천/김해공항 ➔ 다낭 국제공항(DAD) 도착",
+            "category": "✈️ 출국/입국",
+            "description": "• LCC 직항 비행시간 약 4시간 50분 소요\n• 대한민국 여권은 45일간 무비자 입국 가능 (입국 도장 날짜 확인)\n• 공항 밖으로 나와 예약된 7인승 픽업 차량 또는 그랩 미팅",
+            "phraseKo": "디 싼 바이 다낭",
+            "phraseJa": "Đi sân bay Đà Nẵng",
+            "phraseMeaning": "다낭 공항으로 가주세요",
+            "cost": "비용: 항공권 포함 / 비자 무료",
+            "mapQuery": "Da Nang International Airport"
       },
       {
-        id: 11, day: 2, category: "🚠 케이블카", time: "09:30 ~ 10:30",
-        title: "바나힐 썬월드 도착 & 세계 최장 케이블카",
-        tips: [
-          "기네스북에 등재된 5,801m 길이의 케이블카 탑승 (편도 20분)",
-          "울창한 원시림 계곡과 폭포를 발아래로 내려다보는 압도적 장관",
-          "모바일 사전 예매 바코드로 매표소 대기 없이 바로 통과"
-        ],
-        phrase: { koSound: "[쪼 또이 씬 느억 따]", native: "Cho tôi xin nước đá", meaning: "얼음물 좀 주세요" },
-        cost: "입장권: 1인 약 900,000 동 (케이블카 포함)",
-        mapQuery: "Sun World Ba Na Hills"
+            "id": 2,
+            "day": 1,
+            "time": "11:30 ~ 12:30",
+            "title": "살라 다낭 비치 호텔 도착 & 짐 보관",
+            "category": "🏨 호텔/짐보관",
+            "description": "• 공항에서 미케비치 살라 다낭 호텔까지 차량 약 15분 소요\n• 얼리 체크인 가능 여부 확인 후 캐리어 안전하게 보관\n• 호텔 프론트에서 와이파이 연결 및 외출 준비",
+            "phraseKo": "디 칵 산 살라 다낭",
+            "phraseJa": "Đi khách sạn Sala Danang",
+            "phraseMeaning": "살라 다낭 호텔로 가주세요",
+            "cost": "교통: 픽업차량 / 그랩 약 12만 동",
+            "mapQuery": "Sala Danang Beach Hotel"
       },
       {
-        id: 12, day: 2, category: "🌁 랜드마크", time: "10:30 ~ 12:30",
-        title: "골든브릿지 (신의 손) & 르 자르뎅 정원",
-        tips: [
-          "거대한 석조 손이 황금 다리를 받치는 세계적 명소 인생샷 촬영",
-          "안개가 수시로 바뀌므로 구름이 걷힐 때 빠르게 연속 셔터",
-          "인근 플라워 가든(Le Jardin D'Amour)과 린응 바나사원 산책"
-        ],
-        phrase: { koSound: "[쭙 힌 쥼 또이]", native: "Chụp hình giùm tôi", meaning: "사진 좀 찍어주세요" },
-        cost: "바나힐 입장권에 포함",
-        mapQuery: "Golden Bridge Ba Na Hills"
+            "id": 3,
+            "day": 1,
+            "time": "12:30 ~ 13:30",
+            "title": "포홍 (Pho Hong) - 진한 소고기 쌀국수 만찬",
+            "category": "🍜 점심식사",
+            "description": "• 다낭 시내 대표 쌀국수 명점 (양지·차돌 쌀국수 Pho Bo)\n• 바삭한 튀김 스프링롤(짜조) 곁들여 주문 필수\n• 향신료 민감 시 'Không rau mùi (고수 빼주세요)' 외치기",
+            "phraseKo": "콩 라우 무이",
+            "phraseJa": "Không rau mùi",
+            "phraseMeaning": "고수 빼주세요!",
+            "cost": "예상: 1인 약 60,000 ~ 80,000 동 (약 3,500원)",
+            "mapQuery": "Pho Hong Da Nang"
       },
       {
-        id: 13, day: 2, category: "🍽️ 점심식사", time: "12:30 ~ 14:00",
-        title: "프랑스 마을 & 비어 플라자 (Beer Plaza)",
-        tips: [
-          "케이블카를 한 번 더 환승하여 산정상 중세 프랑스 마을 진입",
-          "비어 플라자에서 시원한 생맥주와 바비큐/뷔페 점심 식사",
-          "거리 곳곳에서 펼쳐지는 유럽 댄서들의 버스킹 공연 관람"
-        ],
-        phrase: { koSound: "[모 하이 바, 요!]", native: "Một hai ba, dô!", meaning: "하나 둘 셋, 건배!" },
-        cost: "식비: 1인 약 250,000 ~ 350,000 동",
-        mapQuery: "French Village Ba Na Hills"
+            "id": 4,
+            "day": 1,
+            "time": "13:30 ~ 14:30",
+            "title": "다낭 대성당 (핑크성당) 포토타임",
+            "category": "🌁 시내 관광",
+            "description": "• 프랑스 식민지 시절 건축된 네오고딕 양식의 분홍빛 성당\n• 성당 앞마당 정면과 측면 스테인드글라스 창문이 인생샷 명당\n• 미사 시간 외에는 마당 관람 자유 (복장 단정 권장)",
+            "phraseKo": "씬 짜오",
+            "phraseJa": "Xin chào",
+            "phraseMeaning": "안녕하세요",
+            "cost": "입장료: 무료",
+            "mapQuery": "Da Nang Cathedral"
       },
       {
-        id: 14, day: 2, category: "🎢 어트랙션", time: "14:00 ~ 16:00",
-        title: "알파인 코스터 (루지) & 판타지 파크",
-        tips: [
-          "바나힐 최고 인기 액티비티인 알파인 코스터 레일 슬라이드 탑승",
-          "브레이크 레버로 속도를 직접 조절하며 질주하는 짜릿한 스릴",
-          "실내 판타지 파크에서 자이로드롭 및 오락시설 무료 이용"
-        ],
-        phrase: { koSound: "[븨 람!]", native: "Vui lắm", meaning: "정말 신나요!" },
-        cost: "루지 및 어트랙션 기본 포함",
-        mapQuery: "Fantasy Park Ba Na Hills"
+            "id": 5,
+            "day": 1,
+            "time": "14:30 ~ 16:00",
+            "title": "한시장(Han Market) & 금은방 환전 쇼핑",
+            "category": "🛍️ 환전 & 쇼핑",
+            "description": "• 한시장 정문 맞은편 금은방(SOAN HA 등)에서 100달러 신권 우대 환전\n• 1층: 건망고, 캐슈넛, 커피 / 2층: 원피스, 아오자이, 크록스\n• 기분 좋은 웃음과 함께 흥정 기술 발휘 (Bớt giá đi)",
+            "phraseKo": "벗 자 디",
+            "phraseJa": "Bớt giá đi",
+            "phraseMeaning": "좀 깎아주세요~",
+            "cost": "쇼핑: 현금 결제 (동화 지출)",
+            "mapQuery": "Han Market Da Nang"
       },
       {
-        id: 15, day: 2, category: "🚗 하선/복귀", time: "16:00 ~ 17:00",
-        title: "케이블카 하선 및 다낭 시내 복귀",
-        tips: [
-          "오후 하선 케이블카 탑승하여 지상 주차장으로 이동",
-          "주차장에서 대기 중인 7인승 대절 기사님과 미팅",
-          "에어컨 빵빵한 전용차량에서 다낭 시내 스파샵으로 이동"
-        ],
-        phrase: { koSound: "[디 베]", native: "Đi về", meaning: "돌아가 주세요" },
-        cost: "대절 차량 이용",
-        mapQuery: "Sun World Ba Na Hills"
+            "id": 6,
+            "day": 1,
+            "time": "16:00 ~ 17:30",
+            "title": "콩카페 1호점 (Cong Caphe) 코코넛 스무디",
+            "category": "☕ 힐링 카페",
+            "description": "• 한시장 도보 3분 한강변 위치 레트로 베트남 밀리터리 감성 카페\n• 시그니처 코코넛 스무디 커피(Cà phê cốt dừa) 필수 주문\n• 시원한 에어컨 바람 쐬며 한강 뷰를 바라보며 휴식",
+            "phraseKo": "쪼 또이 쎔 메뉴",
+            "phraseJa": "Cho tôi xem menu",
+            "phraseMeaning": "메뉴판 보여주세요",
+            "cost": "음료: 1인 약 55,000 ~ 65,000 동",
+            "mapQuery": "Cong Caphe Han River Da Nang"
       },
       {
-        id: 16, day: 2, category: "💆 힐링 스파", time: "17:00 ~ 19:00",
-        title: "빌라드스파 (Villa de Spa) 90분 핫스톤",
-        tips: [
-          "바나힐 도보 일정 후 쌓인 다리 피로를 완벽하게 풀어주는 힐링",
-          "시그니처 아로마 핫스톤 마사지 90분 코스 추천",
-          "카카오톡 사전 예약 필수 / 압 강도 선택 가능 (Mạnh / Nhẹ)"
-        ],
-        phrase: { koSound: "[만 못 쭛 / 렝 못 쭛]", native: "Mạnh một chút / Nhẹ một chút", meaning: "더 세게 / 살살 해주세요" },
-        cost: "마사지: 1인 약 600,000 ~ 700,000 동 (팁 포함)",
-        mapQuery: "Villa de Spa Da Nang"
+            "id": 7,
+            "day": 1,
+            "time": "17:30 ~ 18:30",
+            "title": "살라 다낭 호텔 정식 체크인 & 휴식",
+            "category": "🏨 체크인/정비",
+            "description": "• 그랩 호출하여 한시장에서 살라 다낭 호텔로 복귀 (약 10분)\n• 패밀리 스위트 객실 체크인 후 짐 정리 및 가벼운 환복\n• 발코니에서 미케비치 석양 조망",
+            "phraseKo": "깜 ơn",
+            "phraseJa": "Cảm ơn",
+            "phraseMeaning": "감사합니다",
+            "cost": "그랩: 약 60,000 동",
+            "mapQuery": "Sala Danang Beach Hotel"
       },
       {
-        id: 17, day: 2, category: "🍲 저녁 만찬", time: "19:00 ~ 20:30",
-        title: "벱꾸온 (Bep Cuon) - 정갈한 베트남 한상",
-        tips: [
-          "미케비치 근처 한국인과 로컬 모두에게 사랑받는 감성 가정식",
-          "라이스페이퍼에 싸먹는 바삭한 반쎄오(Bánh xèo), 분짜, 스프링롤",
-          "쾌적하고 깔끔한 인테리어로 3인 가족/친구 식사에 안성맞춤"
-        ],
-        phrase: { koSound: "[쪼 또이 호아 돈]", native: "Cho tôi hóa đơn", meaning: "영수증 주세요" },
-        cost: "식비: 3인 약 500,000 ~ 700,000 동",
-        mapQuery: "Bep Cuon Da Nang"
+            "id": 8,
+            "day": 1,
+            "time": "18:30 ~ 20:30",
+            "title": "목식당 (Moc Quan - 2025 미슐랭) 해산물",
+            "category": "🍽️ 저녁 만찬",
+            "description": "• 2025 미슐랭 가이드 선정 다낭 최고 인기 해산물 식당\n• 필수 메뉴: 갈릭버터 새우, 칠리크랩, 모닝글로리, 해산물 볶음밥\n• 에어컨 룸 사전 예약 권장 / 직원이 새우 껍질을 직접 까줌",
+            "phraseKo": "응온 람!",
+            "phraseJa": "Ngon lắm",
+            "phraseMeaning": "정말 맛있어요!",
+            "cost": "식비: 3인 약 1,200,000 ~ 1,600,000 동",
+            "mapQuery": "Moc Seafood Restaurant Da Nang"
       },
       {
-        id: 18, day: 2, category: "🍸 루프탑/야경", time: "20:30 ~ 22:00",
-        title: "살라 다낭 루프탑 인피니티 바 휴식",
-        tips: [
-          "살라 다낭 최상층 루프탑 바에서 미케비치 밤바다 감상",
-          "시원한 망고 스무디 또는 트로피컬 칵테일 한잔",
-          "룸으로 내려가 푹신한 베드에서 2일차 꿀잠"
-        ],
-        phrase: { koSound: "[쭉 응우 응온]", native: "Chúc ngủ ngon", meaning: "안녕히 주무세요 (굿나잇)" },
-        cost: "음료: 1잔 약 100,000 ~ 150,000 동",
-        mapQuery: "Sala Danang Beach Hotel"
-      },
-
-      // Day 3
-      {
-        id: 19, day: 3, category: "🌁 랜드마크", time: "09:00 ~ 11:00",
-        title: "손짜반도 영흥사 (린응사 / Linh Ung Pagoda)",
-        tips: [
-          "호텔 조식 후 7인승 대절 차량으로 손짜반도 이동 (약 20분)",
-          "67m 높이의 거대한 동양 최대급 해수관음상 관람",
-          "탁 트인 미케비치 해안선 파노라마 절경 감상 (원숭이 조심)"
-        ],
-        phrase: { koSound: "[디 쭈아 린 응]", native: "Đi Chùa Linh Ứng", meaning: "린응사로 가주세요" },
-        cost: "입장료 무료 / 차량 이동",
-        mapQuery: "Linh Ung Pagoda Da Nang"
+            "id": 9,
+            "day": 1,
+            "time": "20:30 ~ 22:00",
+            "title": "한강 용다리 (Dragon Bridge) 야경 & 불쇼",
+            "category": "🌃 야경/산책",
+            "description": "• 다낭의 랜드마크인 거대한 황금 용 다리 야경 산책\n• 주말(토/일) 밤 21:00 정각에 화려한 불쇼 & 물쇼 진행\n• 주변 야경 감상 후 편의점에서 과일/맥주 구매하여 호텔 복귀",
+            "phraseKo": "띤 띠엔 냐",
+            "phraseJa": "Tính tiền nha",
+            "phraseMeaning": "계산해 주세요",
+            "cost": "야경 관람 무료",
+            "mapQuery": "Dragon Bridge Da Nang"
       },
       {
-        id: 20, day: 3, category: "🌊 비치 & 점심", time: "11:00 ~ 12:30",
-        title: "호이안 안방 비치 (라플라주 La Plage)",
-        tips: [
-          "대절 차량으로 호이안 안방 비치로 이동 (약 35분)",
-          "야자수 그늘 아래 에메랄드빛 바다를 바라보며 점심 식사",
-          "총알오징어 구이, 갈릭 모닝글로리, 망고 스무디 추천"
-        ],
-        phrase: { koSound: "[디 비엔 안방]", native: "Đi biển An Bàng", meaning: "안방 비치로 가주세요" },
-        cost: "식비: 3인 약 600,000 ~ 800,000 동",
-        mapQuery: "La Plage An Bang Beach Hoi An"
+            "id": 10,
+            "day": 2,
+            "time": "08:00 ~ 09:30",
+            "title": "살라 다낭 조식 뷔페 & 바나힐 전용차량 출발",
+            "category": "🍳 조식 & 출발",
+            "description": "• 살라 다낭 고층 레스토랑에서 든든한 조식 뷔페 식사\n• 09:00 로비에서 전일 7인승 대절 기사님 미팅\n• 바나힐은 고지대라 날씨가 선선할 수 있으니 얇은 겉옷 챙기기",
+            "phraseKo": "디 바나힐",
+            "phraseJa": "Đi Bà Nà Hills",
+            "phraseMeaning": "바나힐로 가주세요",
+            "cost": "조식 포함 / 7인승 대절 차량",
+            "mapQuery": "Sala Danang Beach Hotel"
       },
       {
-        id: 21, day: 3, category: "🛶 액티비티", time: "12:30 ~ 14:30",
-        title: "호이안 코코넛 숲 바구니배 (틴퉁)",
-        tips: [
-          "울창한 코코넛 수로를 따라 둥근 전통 바구니배 탐험",
-          "사공의 화려한 스핀 쇼와 한국 트로트 공연의 유쾌한 콜라보",
-          "체험 후 사공에게 감사의 매너팁 20,000~50,000동 준비"
-        ],
-        phrase: { koSound: "[띠엔 팁]", native: "Tiền tip", meaning: "팁 여기 있습니다" },
-        cost: "체험비: 1인 약 100,000 ~ 150,000 동",
-        mapQuery: "Bay Mau Coconut Forest Hoi An"
+            "id": 11,
+            "day": 2,
+            "time": "09:30 ~ 10:30",
+            "title": "바나힐 썬월드 도착 & 세계 최장 케이블카",
+            "category": "🚠 케이블카",
+            "description": "• 기네스북에 등재된 5,801m 길이의 케이블카 탑승 (편도 20분)\n• 울창한 원시림 계곡과 폭포를 발아래로 내려다보는 압도적 장관\n• 모바일 사전 예매 바코드로 매표소 대기 없이 바로 통과",
+            "phraseKo": "쪼 또이 씬 느억 따",
+            "phraseJa": "Cho tôi xin nước đá",
+            "phraseMeaning": "얼음물 좀 주세요",
+            "cost": "입장권: 1인 약 900,000 동 (케이블카 포함)",
+            "mapQuery": "Sun World Ba Na Hills"
       },
       {
-        id: 22, day: 3, category: "🏮 올드타운/카페", time: "14:30 ~ 17:30",
-        title: "호이안 올드타운 & 파이포 커피 루프탑",
-        tips: [
-          "유네스코 세계문화유산 노란 벽 거리 탐방 (내원교, 풍흥고가)",
-          "파이포 커피(Faifo Coffee) 3층 루프탑에서 기와지붕 배경 인생샷",
-          "해질녘 붉게 물드는 올드타운 골목길 산책"
-        ],
-        phrase: { koSound: "[디 포 꼬 호이안]", native: "Đi phố cổ Hội An", meaning: "호이안 올드타운으로 가주세요" },
-        cost: "통합입장권: 120,000 동 / 음료 약 60,000 동",
-        mapQuery: "Faifo Coffee Hoi An"
+            "id": 12,
+            "day": 2,
+            "time": "10:30 ~ 12:30",
+            "title": "골든브릿지 (신의 손) & 르 자르뎅 정원",
+            "category": "🌁 랜드마크",
+            "description": "• 거대한 석조 손이 황금 다리를 받치는 세계적 명소 인생샷 촬영\n• 안개가 수시로 바뀌므로 구름이 걷힐 때 빠르게 연속 셔터\n• 인근 플라워 가든(Le Jardin D'Amour)과 린응 바나사원 산책",
+            "phraseKo": "쭙 힌 쥼 또이",
+            "phraseJa": "Chụp hình giùm tôi",
+            "phraseMeaning": "사진 좀 찍어주세요",
+            "cost": "바나힐 입장권에 포함",
+            "mapQuery": "Golden Bridge Ba Na Hills"
       },
       {
-        id: 23, day: 3, category: "🍽️ 저녁 만찬", time: "17:30 ~ 19:00",
-        title: "미쓰리 (Miss Ly) - 호이안 3대 미식 명점",
-        tips: [
-          "호이안 올드타운에서 가장 유명한 30년 전통의 로컬 레스토랑",
-          "필수 3종: 화이트 로즈(물만두), 프라이드 완탕, 까오라우(비빔국수)",
-          "웨이팅이 있을 수 있으니 17:30 브레이크 직후 이른 방문 권장"
-        ],
-        phrase: { koSound: "[바오 니에우 띠엔?]", native: "Bao nhiêu tiền?", meaning: "얼마예요?" },
-        cost: "식비: 3인 약 500,000 ~ 700,000 동",
-        mapQuery: "Miss Ly Hoi An"
+            "id": 13,
+            "day": 2,
+            "time": "12:30 ~ 14:00",
+            "title": "프랑스 마을 & 비어 플라자 (Beer Plaza)",
+            "category": "🍽️ 점심식사",
+            "description": "• 케이블카를 한 번 더 환승하여 산정상 중세 프랑스 마을 진입\n• 비어 플라자에서 시원한 생맥주와 바비큐/뷔페 점심 식사\n• 거리 곳곳에서 펼쳐지는 유럽 댄서들의 버스킹 공연 관람",
+            "phraseKo": "모 하이 바, 요!",
+            "phraseJa": "Một hai ba, dô!",
+            "phraseMeaning": "하나 둘 셋, 건배!",
+            "cost": "식비: 1인 약 250,000 ~ 350,000 동",
+            "mapQuery": "French Village Ba Na Hills"
       },
       {
-        id: 24, day: 3, category: "🏮 야경/체험", time: "19:00 ~ 20:30",
-        title: "투본강 소원배 & 호이안 야시장 등불 투어",
-        tips: [
-          "형형색색 등불이 켜진 투본강에서 나룻배를 타고 촛불 소원 띄우기",
-          "올드타운 다리 건너 야시장에서 화려한 등불 사진 찍기",
-          "길거리 간식(철판 아이스크림, 반미)과 라탄 공예품 구경"
-        ],
-        phrase: { koSound: "[딥 람!]", native: "Đẹp lắm", meaning: "정말 아름다워요!" },
-        cost: "소원배: 배 1척당 약 150,000 ~ 200,000 동",
-        mapQuery: "Hoi An Night Market"
+            "id": 14,
+            "day": 2,
+            "time": "14:00 ~ 16:00",
+            "title": "알파인 코스터 (루지) & 판타지 파크",
+            "category": "🎢 어트랙션",
+            "description": "• 바나힐 최고 인기 액티비티인 알파인 코스터 레일 슬라이드 탑승\n• 브레이크 레버로 속도를 직접 조절하며 질주하는 짜릿한 스릴\n• 실내 판타지 파크에서 자이로드롭 및 오락시설 무료 이용",
+            "phraseKo": "븨 람!",
+            "phraseJa": "Vui lắm",
+            "phraseMeaning": "정말 신나요!",
+            "cost": "루지 및 어트랙션 기본 포함",
+            "mapQuery": "Fantasy Park Ba Na Hills"
       },
       {
-        id: 25, day: 3, category: "🚗 다낭 복귀", time: "20:30 ~ 21:30",
-        title: "호이안 ➔ 다낭 살라 호텔 복귀 & 휴식",
-        tips: [
-          "호이안 약속 장소에서 7인승 대절 기사님 미팅",
-          "편안하게 차에 탑승하여 다낭 살라 호텔로 안전하게 이동 (약 40분)",
-          "마지막 날 호캉스와 쇼핑을 위해 푹 쉬기"
-        ],
-        phrase: { koSound: "[디 칵 산 살라 다낭]", native: "Đi khách sạn Sala Danang", meaning: "살라 다낭 호텔로 가주세요" },
-        cost: "대절 차량 이용",
-        mapQuery: "Sala Danang Beach Hotel"
-      },
-
-      // Day 4
-      {
-        id: 26, day: 4, category: "🏊 호캉스/수영", time: "08:30 ~ 10:30",
-        title: "살라 다낭 루프탑 인피니티 풀 모닝 수영",
-        tips: [
-          "호텔 조식 뷔페 식사 후 최상층 루프탑 인피니티 풀 이용",
-          "미케비치의 끝없는 수평선을 배경으로 감성 수영 사진 촬영",
-          "오전 선베드에서 여유로운 호캉스 만끽"
-        ],
-        phrase: { koSound: "[씬 짜오]", native: "Xin chào", meaning: "안녕하세요" },
-        cost: "투숙객 무료",
-        mapQuery: "Sala Danang Beach Hotel"
+            "id": 15,
+            "day": 2,
+            "time": "16:00 ~ 17:00",
+            "title": "케이블카 하선 및 다낭 시내 복귀",
+            "category": "🚗 하선/복귀",
+            "description": "• 오후 하선 케이블카 탑승하여 지상 주차장으로 이동\n• 주차장에서 대기 중인 7인승 대절 기사님과 미팅\n• 에어컨 빵빵한 전용차량에서 다낭 시내 스파샵으로 이동",
+            "phraseKo": "디 베",
+            "phraseJa": "Đi về",
+            "phraseMeaning": "돌아가 주세요",
+            "cost": "대절 차량 이용",
+            "mapQuery": "Sun World Ba Na Hills"
       },
       {
-        id: 27, day: 4, category: "🏨 체크아웃", time: "10:30 ~ 11:00",
-        title: "살라 다낭 비치 호텔 체크아웃",
-        tips: [
-          "객실 정돈 및 분실물 확인 후 체크아웃 완료",
-          "캐리어 짐은 예약된 공항 샌딩 차량에 미리 실어두기",
-          "마지막 날 홀가분하게 가벼운 몸으로 시내 이동"
-        ],
-        phrase: { koSound: "[짜 퐁]", native: "Trả phòng", meaning: "체크아웃 할게요" },
-        cost: "프론트 미니바 등 정산",
-        mapQuery: "Sala Danang Beach Hotel"
+            "id": 16,
+            "day": 2,
+            "time": "17:00 ~ 19:00",
+            "title": "빌라드스파 (Villa de Spa) 90분 핫스톤",
+            "category": "💆 힐링 스파",
+            "description": "• 바나힐 도보 일정 후 쌓인 다리 피로를 완벽하게 풀어주는 힐링\n• 시그니처 아로마 핫스톤 마사지 90분 코스 추천\n• 카카오톡 사전 예약 필수 / 압 강도 선택 가능 (Mạnh / Nhẹ)",
+            "phraseKo": "만 못 쭛 / 렝 못 쭛",
+            "phraseJa": "Mạnh một chút / Nhẹ một chút",
+            "phraseMeaning": "더 세게 / 살살 해주세요",
+            "cost": "마사지: 1인 약 600,000 ~ 700,000 동 (팁 포함)",
+            "mapQuery": "Villa de Spa Da Nang"
       },
       {
-        id: 28, day: 4, category: "🍽️ 점심식사", time: "11:00 ~ 12:30",
-        title: "바빌론 스테이크 또는 마담란 점심",
-        tips: [
-          "육즙 가득한 안심 스테이크 돌판 구이(바빌론) 또는 베트남 고급 만찬(마담란)",
-          "치즈 소스와 함께 굽는 부드러운 안심 스테이크가 인기",
-          "시원한 에어컨 룸에서 든든하게 점심 식사"
-        ],
-        phrase: { koSound: "[응온 람]", native: "Ngon lắm", meaning: "정말 맛있어요" },
-        cost: "식비: 3인 약 800,000 ~ 1,200,000 동",
-        mapQuery: "Babylon Steak Garden Da Nang"
+            "id": 17,
+            "day": 2,
+            "time": "19:00 ~ 20:30",
+            "title": "벱꾸온 (Bep Cuon) - 정갈한 베트남 한상",
+            "category": "🍲 저녁 만찬",
+            "description": "• 미케비치 근처 한국인과 로컬 모두에게 사랑받는 감성 가정식\n• 라이스페이퍼에 싸먹는 바삭한 반쎄오(Bánh xèo), 분짜, 스프링롤\n• 쾌적하고 깔끔한 인테리어로 3인 가족/친구 식사에 안성맞춤",
+            "phraseKo": "쪼 또이 호아 돈",
+            "phraseJa": "Cho tôi hóa đơn",
+            "phraseMeaning": "영수증 주세요",
+            "cost": "식비: 3인 약 500,000 ~ 700,000 동",
+            "mapQuery": "Bep Cuon Da Nang"
       },
       {
-        id: 29, day: 4, category: "🛍️ 기념품 쇼핑", time: "12:30 ~ 14:30",
-        title: "롯데마트 다낭점 - 필수 귀국 쇼핑",
-        tips: [
-          "에어컨 완비 대형 마트에서 원스톱 쇼핑 (2층 고객센터 짐보관 무료)",
-          "추천 품목: 콘삭 다람쥐똥 커피, 아치카페 코코넛, 건망고, 캐슈넛, 친수 칠리소스",
-          "일정 금액 이상 구매 시 공항 택스리펀(Tax Refund) 서류 요청"
-        ],
-        phrase: { koSound: "[호아 돈 환 투에]", native: "Hóa đơn hoàn thuế", meaning: "텍스리펀 영수증 주세요" },
-        cost: "쇼핑: 카드 결제 (트래블카드)",
-        mapQuery: "Lotte Mart Da Nang"
+            "id": 18,
+            "day": 2,
+            "time": "20:30 ~ 22:00",
+            "title": "살라 다낭 루프탑 인피니티 바 휴식",
+            "category": "🍸 루프탑/야경",
+            "description": "• 살라 다낭 최상층 루프탑 바에서 미케비치 밤바다 감상\n• 시원한 망고 스무디 또는 트로피컬 칵테일 한잔\n• 룸으로 내려가 푹신한 베드에서 2일차 꿀잠",
+            "phraseKo": "쭉 응우 응온",
+            "phraseJa": "Chúc ngủ ngon",
+            "phraseMeaning": "안녕히 주무세요 (굿나잇)",
+            "cost": "음료: 1잔 약 100,000 ~ 150,000 동",
+            "mapQuery": "Sala Danang Beach Hotel"
       },
       {
-        id: 30, day: 4, category: "💆 스파/환복", time: "14:30 ~ 16:30",
-        title: "출국 전 프리미엄 발마사지 (60분) & 샤워",
-        tips: [
-          "비행기 탑승 전 붓기를 빼주는 60분 발마사지",
-          "스파 샵 내 샤워실에서 개운하게 샤워 후 편안한 비행기 옷으로 환복",
-          "스파 샵에서 공항 무료 샌딩 서비스 연계 가능"
-        ],
-        phrase: { koSound: "[깜 ơn 냐]", native: "Cảm ơn nha", meaning: "정말 감사합니다" },
-        cost: "마사지: 1인 약 300,000 ~ 400,000 동",
-        mapQuery: "Forest Spa Da Nang"
+            "id": 19,
+            "day": 3,
+            "time": "09:00 ~ 11:00",
+            "title": "손짜반도 영흥사 (린응사 / Linh Ung Pagoda)",
+            "category": "🌁 랜드마크",
+            "description": "• 호텔 조식 후 7인승 대절 차량으로 손짜반도 이동 (약 20분)\n• 67m 높이의 거대한 동양 최대급 해수관음상 관람\n• 탁 트인 미케비치 해안선 파노라마 절경 감상 (원숭이 조심)",
+            "phraseKo": "디 쭈아 린 응",
+            "phraseJa": "Đi Chùa Linh Ứng",
+            "phraseMeaning": "린응사로 가주세요",
+            "cost": "입장료 무료 / 차량 이동",
+            "mapQuery": "Linh Ung Pagoda Da Nang"
       },
       {
-        id: 31, day: 4, category: "☕ 카페 & 정산", time: "16:30 ~ 17:30",
-        title: "시내 감성 카페 (웃티크 Ut Tich) & 정산",
-        tips: [
-          "공항 인근 레트로 베트남 감성 카페에서 시원한 연유 커피",
-          "3박 4일 동안 찍은 사진 정리 및 트래블카드 남은 잔액 확인",
-          "공항 이동 전 여권과 e티켓 최종 점검"
-        ],
-        phrase: { koSound: "[띤 띠엔 냐]", native: "Tính tiền nha", meaning: "계산해 주세요" },
-        cost: "음료: 1인 약 45,000 동",
-        mapQuery: "Ut Tich Cafe Da Nang"
+            "id": 20,
+            "day": 3,
+            "time": "11:00 ~ 12:30",
+            "title": "호이안 안방 비치 (라플라주 La Plage)",
+            "category": "🌊 비치 & 점심",
+            "description": "• 대절 차량으로 호이안 안방 비치로 이동 (약 35분)\n• 야자수 그늘 아래 에메랄드빛 바다를 바라보며 점심 식사\n• 총알오징어 구이, 갈릭 모닝글로리, 망고 스무디 추천",
+            "phraseKo": "디 비엔 안방",
+            "phraseJa": "Đi biển An Bàng",
+            "phraseMeaning": "안방 비치로 가주세요",
+            "cost": "식비: 3인 약 600,000 ~ 800,000 동",
+            "mapQuery": "La Plage An Bang Beach Hoi An"
       },
       {
-        id: 32, day: 4, category: "✈️ 출국/귀국", time: "17:30 ~ 02:00",
-        title: "다낭 공항 도착 ➔ 한국 귀국",
-        tips: [
-          "다낭 국제공항(DAD) 도착 후 롯데마트 택스리펀 도장 날인 및 환급",
-          "LCC 항공 카운터 체크인 및 위탁 수하물 부치기",
-          "비행기 탑승 후 한국으로 안전하고 행복하게 귀국!"
-        ],
-        phrase: { koSound: "[땀 비엣 다낭!]", native: "Tạm biệt Đà Nẵng!", meaning: "안녕 다낭! (작별 인사)" },
-        cost: "공항 이용",
-        mapQuery: "Da Nang International Airport"
+            "id": 21,
+            "day": 3,
+            "time": "12:30 ~ 14:30",
+            "title": "호이안 코코넛 숲 바구니배 (틴퉁)",
+            "category": "🛶 액티비티",
+            "description": "• 울창한 코코넛 수로를 따라 둥근 전통 바구니배 탐험\n• 사공의 화려한 스핀 쇼와 한국 트로트 공연의 유쾌한 콜라보\n• 체험 후 사공에게 감사의 매너팁 20,000~50,000동 준비",
+            "phraseKo": "띠엔 팁",
+            "phraseJa": "Tiền tip",
+            "phraseMeaning": "팁 여기 있습니다",
+            "cost": "체험비: 1인 약 100,000 ~ 150,000 동",
+            "mapQuery": "Bay Mau Coconut Forest Hoi An"
+      },
+      {
+            "id": 22,
+            "day": 3,
+            "time": "14:30 ~ 17:30",
+            "title": "호이안 올드타운 & 파이포 커피 루프탑",
+            "category": "🏮 올드타운/카페",
+            "description": "• 유네스코 세계문화유산 노란 벽 거리 탐방 (내원교, 풍흥고가)\n• 파이포 커피(Faifo Coffee) 3층 루프탑에서 기와지붕 배경 인생샷\n• 해질녘 붉게 물드는 올드타운 골목길 산책",
+            "phraseKo": "디 포 꼬 호이안",
+            "phraseJa": "Đi phố cổ Hội An",
+            "phraseMeaning": "호이안 올드타운으로 가주세요",
+            "cost": "통합입장권: 120,000 동 / 음료 약 60,000 동",
+            "mapQuery": "Faifo Coffee Hoi An"
+      },
+      {
+            "id": 23,
+            "day": 3,
+            "time": "17:30 ~ 19:00",
+            "title": "미쓰리 (Miss Ly) - 호이안 3대 미식 명점",
+            "category": "🍽️ 저녁 만찬",
+            "description": "• 호이안 올드타운에서 가장 유명한 30년 전통의 로컬 레스토랑\n• 필수 3종: 화이트 로즈(물만두), 프라이드 완탕, 까오라우(비빔국수)\n• 웨이팅이 있을 수 있으니 17:30 브레이크 직후 이른 방문 권장",
+            "phraseKo": "바오 니에우 띠엔?",
+            "phraseJa": "Bao nhiêu tiền?",
+            "phraseMeaning": "얼마예요?",
+            "cost": "식비: 3인 약 500,000 ~ 700,000 동",
+            "mapQuery": "Miss Ly Hoi An"
+      },
+      {
+            "id": 24,
+            "day": 3,
+            "time": "19:00 ~ 20:30",
+            "title": "투본강 소원배 & 호이안 야시장 등불 투어",
+            "category": "🏮 야경/체험",
+            "description": "• 형형색색 등불이 켜진 투본강에서 나룻배를 타고 촛불 소원 띄우기\n• 올드타운 다리 건너 야시장에서 화려한 등불 사진 찍기\n• 길거리 간식(철판 아이스크림, 반미)과 라탄 공예품 구경",
+            "phraseKo": "딥 람!",
+            "phraseJa": "Đẹp lắm",
+            "phraseMeaning": "정말 아름다워요!",
+            "cost": "소원배: 배 1척당 약 150,000 ~ 200,000 동",
+            "mapQuery": "Hoi An Night Market"
+      },
+      {
+            "id": 25,
+            "day": 3,
+            "time": "20:30 ~ 21:30",
+            "title": "호이안 ➔ 다낭 살라 호텔 복귀 & 휴식",
+            "category": "🚗 다낭 복귀",
+            "description": "• 호이안 약속 장소에서 7인승 대절 기사님 미팅\n• 편안하게 차에 탑승하여 다낭 살라 호텔로 안전하게 이동 (약 40분)\n• 마지막 날 호캉스와 쇼핑을 위해 푹 쉬기",
+            "phraseKo": "디 칵 산 살라 다낭",
+            "phraseJa": "Đi khách sạn Sala Danang",
+            "phraseMeaning": "살라 다낭 호텔로 가주세요",
+            "cost": "대절 차량 이용",
+            "mapQuery": "Sala Danang Beach Hotel"
+      },
+      {
+            "id": 26,
+            "day": 4,
+            "time": "08:30 ~ 10:30",
+            "title": "살라 다낭 루프탑 인피니티 풀 모닝 수영",
+            "category": "🏊 호캉스/수영",
+            "description": "• 호텔 조식 뷔페 식사 후 최상층 루프탑 인피니티 풀 이용\n• 미케비치의 끝없는 수평선을 배경으로 감성 수영 사진 촬영\n• 오전 선베드에서 여유로운 호캉스 만끽",
+            "phraseKo": "씬 짜오",
+            "phraseJa": "Xin chào",
+            "phraseMeaning": "안녕하세요",
+            "cost": "투숙객 무료",
+            "mapQuery": "Sala Danang Beach Hotel"
+      },
+      {
+            "id": 27,
+            "day": 4,
+            "time": "10:30 ~ 11:00",
+            "title": "살라 다낭 비치 호텔 체크아웃",
+            "category": "🏨 체크아웃",
+            "description": "• 객실 정돈 및 분실물 확인 후 체크아웃 완료\n• 캐리어 짐은 예약된 공항 샌딩 차량에 미리 실어두기\n• 마지막 날 홀가분하게 가벼운 몸으로 시내 이동",
+            "phraseKo": "짜 퐁",
+            "phraseJa": "Trả phòng",
+            "phraseMeaning": "체크아웃 할게요",
+            "cost": "프론트 미니바 등 정산",
+            "mapQuery": "Sala Danang Beach Hotel"
+      },
+      {
+            "id": 28,
+            "day": 4,
+            "time": "11:00 ~ 12:30",
+            "title": "바빌론 스테이크 또는 마담란 점심",
+            "category": "🍽️ 점심식사",
+            "description": "• 육즙 가득한 안심 스테이크 돌판 구이(바빌론) 또는 베트남 고급 만찬(마담란)\n• 치즈 소스와 함께 굽는 부드러운 안심 스테이크가 인기\n• 시원한 에어컨 룸에서 든든하게 점심 식사",
+            "phraseKo": "응온 람",
+            "phraseJa": "Ngon lắm",
+            "phraseMeaning": "정말 맛있어요",
+            "cost": "식비: 3인 약 800,000 ~ 1,200,000 동",
+            "mapQuery": "Babylon Steak Garden Da Nang"
+      },
+      {
+            "id": 29,
+            "day": 4,
+            "time": "12:30 ~ 14:30",
+            "title": "롯데마트 다낭점 - 필수 귀국 쇼핑",
+            "category": "🛍️ 기념품 쇼핑",
+            "description": "• 에어컨 완비 대형 마트에서 원스톱 쇼핑 (2층 고객센터 짐보관 무료)\n• 추천 품목: 콘삭 다람쥐똥 커피, 아치카페 코코넛, 건망고, 캐슈넛, 친수 칠리소스\n• 일정 금액 이상 구매 시 공항 택스리펀(Tax Refund) 서류 요청",
+            "phraseKo": "호아 돈 환 투에",
+            "phraseJa": "Hóa đơn hoàn thuế",
+            "phraseMeaning": "텍스리펀 영수증 주세요",
+            "cost": "쇼핑: 카드 결제 (트래블카드)",
+            "mapQuery": "Lotte Mart Da Nang"
+      },
+      {
+            "id": 30,
+            "day": 4,
+            "time": "14:30 ~ 16:30",
+            "title": "출국 전 프리미엄 발마사지 (60분) & 샤워",
+            "category": "💆 스파/환복",
+            "description": "• 비행기 탑승 전 붓기를 빼주는 60분 발마사지\n• 스파 샵 내 샤워실에서 개운하게 샤워 후 편안한 비행기 옷으로 환복\n• 스파 샵에서 공항 무료 샌딩 서비스 연계 가능",
+            "phraseKo": "깜 ơn 냐",
+            "phraseJa": "Cảm ơn nha",
+            "phraseMeaning": "정말 감사합니다",
+            "cost": "마사지: 1인 약 300,000 ~ 400,000 동",
+            "mapQuery": "Forest Spa Da Nang"
+      },
+      {
+            "id": 31,
+            "day": 4,
+            "time": "16:30 ~ 17:30",
+            "title": "시내 감성 카페 (웃티크 Ut Tich) & 정산",
+            "category": "☕ 카페 & 정산",
+            "description": "• 공항 인근 레트로 베트남 감성 카페에서 시원한 연유 커피\n• 3박 4일 동안 찍은 사진 정리 및 트래블카드 남은 잔액 확인\n• 공항 이동 전 여권과 e티켓 최종 점검",
+            "phraseKo": "띤 띠엔 냐",
+            "phraseJa": "Tính tiền nha",
+            "phraseMeaning": "계산해 주세요",
+            "cost": "음료: 1인 약 45,000 동",
+            "mapQuery": "Ut Tich Cafe Da Nang"
+      },
+      {
+            "id": 32,
+            "day": 4,
+            "time": "17:30 ~ 02:00",
+            "title": "다낭 공항 도착 ➔ 한국 귀국",
+            "category": "✈️ 출국/귀국",
+            "description": "• 다낭 국제공항(DAD) 도착 후 롯데마트 택스리펀 도장 날인 및 환급\n• LCC 항공 카운터 체크인 및 위탁 수하물 부치기\n• 비행기 탑승 후 한국으로 안전하고 행복하게 귀국!",
+            "phraseKo": "땀 비엣 다낭!",
+            "phraseJa": "Tạm biệt Đà Nẵng!",
+            "phraseMeaning": "안녕 다낭! (작별 인사)",
+            "cost": "공항 이용",
+            "mapQuery": "Da Nang International Airport"
       }
-    ];
+];
 
-    const WISHLIST_ITEMS = [
-      { text: "목식당 (Moc Quan) 미슐랭 갈릭버터 새우 & 칠리크랩", checked: false },
-      { text: "벱꾸온 (Bep Cuon) 정갈한 반쎄오 & 분짜 한상차림", checked: false },
-      { text: "포홍 (Pho Hong) 진한 양지 소고기 쌀국수", checked: false },
-      { text: "미쓰리 (Miss Ly) 호이안 화이트로즈 & 프라이드 완탕", checked: false },
-      { text: "콩카페 시그니처 코코넛 스무디 커피 (1호점)", checked: false },
-      { text: "바나힐 골든브릿지 거대한 신의 손 인생샷", checked: false },
-      { text: "바나힐 알파인 코스터 (루지) 스릴 만끽", checked: false },
-      { text: "손짜반도 린응사 67m 초대형 해수관음상 뷰", checked: false },
-      { text: "호이안 투본강 소원배 촛불 띄우기 & 야시장", checked: false },
-      { text: "호이안 코코넛 숲 바구니배 회전 쇼 관람", checked: false },
-      { text: "한시장 아오자이 / 라탄백 / 원피스 쇼핑", checked: false },
-      { text: "롯데마트 콘삭 다람쥐똥 커피 & 건망고 털기", checked: false }
-    ];
-
-    // State
-    let currentFilterDay = "ALL";
-    let filteredList = [...TRIP_CARDS_DATA];
+    /* State Management */
     let currentIndex = 0;
-    let doneCardIds = JSON.parse(localStorage.getItem('danang_trip_done_cards') || '[]');
-    let userWishlist = JSON.parse(localStorage.getItem('danang_trip_wishlist') || JSON.stringify(WISHLIST_ITEMS));
+    let currentFilterDay = "ALL";
+    let filteredIndices = itineraryData.map((_, i) => i);
+    let completedSet = new Set();
 
-    // Elements
-    const activeCardEl = document.getElementById('activeCard');
+    // DOM Elements
+    const activeCard = document.getElementById('activeCard');
     const cardSeqBadge = document.getElementById('cardSeqBadge');
     const cardDayBadge = document.getElementById('cardDayBadge');
     const cardCategoryBadge = document.getElementById('cardCategoryBadge');
     const cardTimeText = document.getElementById('cardTimeText');
     const cardTitleText = document.getElementById('cardTitleText');
-    const cardDescriptionList = document.getElementById('cardDescriptionList');
+    const cardDescriptionText = document.getElementById('cardDescriptionText');
     const cardPhraseKoSound = document.getElementById('cardPhraseKoSound');
-    const cardPhraseNative = document.getElementById('cardPhraseNative');
+    const cardPhraseJa = document.getElementById('cardPhraseJa');
     const cardPhraseMeaning = document.getElementById('cardPhraseMeaning');
+    const cardCostBadge = document.getElementById('cardCostBadge');
     const cardCostText = document.getElementById('cardCostText');
     const btnCardMapLink = document.getElementById('btnCardMapLink');
-    const btnToggleDone = document.getElementById('btnToggleDone');
-    const btnPrevCard = document.getElementById('btnPrevCard');
-    const btnNextCard = document.getElementById('btnNextCard');
-    const cardProgressDots = document.getElementById('cardProgressDots');
     const currentCardIndexText = document.getElementById('currentCardIndexText');
     const totalCardsCountText = document.getElementById('totalCardsCountText');
-    const btnPlayVoice = document.getElementById('btnPlayVoice');
-    const btnShowLargePhrase = document.getElementById('btnShowLargePhrase');
+    const btnPrevCard = document.getElementById('btnPrevCard');
+    const btnNextCard = document.getElementById('btnNextCard');
+    const btnToggleDone = document.getElementById('btnToggleDone');
+    const cardProgressDots = document.getElementById('cardProgressDots');
     const speakerIcon = document.getElementById('speakerIcon');
 
-    // Views
-    const cardViewContainer = document.getElementById('cardViewContainer');
-    const listViewContainer = document.getElementById('listViewContainer');
-    const viewModeCard = document.getElementById('viewModeCard');
-    const viewModeList = document.getElementById('viewModeList');
-    const timelineScrollList = document.getElementById('timelineScrollList');
-    const listSearchInput = document.getElementById('listSearchInput');
-    const listSearchClear = document.getElementById('listSearchClear');
-
-    // Modals
-    const modalBudget = document.getElementById('modalBudget');
-    const modalWish = document.getElementById('modalWish');
-    const modalEmergency = document.getElementById('modalEmergency');
-    const modalShowPhrase = document.getElementById('modalShowPhrase');
-    const modalLargeNativeText = document.getElementById('modalLargeNativeText');
-    const modalLargeKoSound = document.getElementById('modalLargeKoSound');
-    const modalLargeMeaning = document.getElementById('modalLargeMeaning');
-    const modalLargePlayBtn = document.getElementById('modalLargePlayBtn');
-    const wishlistContainer = document.getElementById('wishlistContainer');
-    const btnCopyHotelAddr = document.getElementById('btnCopyHotelAddr');
-
-    function applyDayFilter(day) {
-      currentFilterDay = day;
-      if (day === 'ALL') {
-        filteredList = [...TRIP_CARDS_DATA];
-      } else {
-        filteredList = TRIP_CARDS_DATA.filter(item => item.day === parseInt(day, 10));
-      }
-      currentIndex = 0;
-      renderCurrentCard('card-enter-next');
-      renderTimelineList();
+    function getNativePhrase(item) {
+      return item.phraseJa || item.phraseNative || item.phraseVi || '';
     }
 
-    function renderCurrentCard(animClass = '') {
-      if (!filteredList.length) return;
-      const card = filteredList[currentIndex];
-
-      if (animClass) {
-        activeCardEl.classList.remove('card-enter-next', 'card-enter-prev');
-        void activeCardEl.offsetWidth; // trigger reflow
-        activeCardEl.classList.add(animClass);
-      }
-
-      cardSeqBadge.textContent = `#${card.id}`;
-      cardDayBadge.textContent = `DAY ${card.day}`;
-      cardCategoryBadge.textContent = card.category;
-      cardTimeText.textContent = card.time;
-      cardTitleText.textContent = card.title;
-
-      // Tips List
-      cardDescriptionList.innerHTML = card.tips.map(t => `<li class="pl-1">${t}</li>`).join('');
-
-      // Phrase
-      cardPhraseKoSound.textContent = card.phrase.koSound;
-      cardPhraseNative.textContent = card.phrase.native;
-      cardPhraseMeaning.innerHTML = `<i class="ph-bold ph-arrow-elbow-down-right text-slate-400"></i><span>${card.phrase.meaning}</span>`;
-
-      // Cost & Map
-      cardCostText.textContent = card.cost;
-      btnCardMapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(card.mapQuery)}`;
-
-      // Done status
-      const isDone = doneCardIds.includes(card.id);
-      if (isDone) {
-        btnToggleDone.classList.add('bg-emerald-500', 'text-white', 'border-emerald-500');
-        btnToggleDone.classList.remove('border-slate-200', 'text-slate-300');
-        cardSeqBadge.classList.replace('bg-blue-600', 'bg-emerald-600');
-      } else {
-        btnToggleDone.classList.remove('bg-emerald-500', 'text-white', 'border-emerald-500');
-        btnToggleDone.classList.add('border-slate-200', 'text-slate-300');
-        cardSeqBadge.classList.replace('bg-emerald-600', 'bg-blue-600');
-      }
-
-      // Counter & Buttons
-      currentCardIndexText.textContent = currentIndex + 1;
-      totalCardsCountText.textContent = filteredList.length;
-
-      btnPrevCard.disabled = currentIndex === 0;
-      btnNextCard.disabled = currentIndex === filteredList.length - 1;
-
-      renderProgressDots();
-    }
-
-    function renderProgressDots() {
-      cardProgressDots.innerHTML = '';
-      const total = filteredList.length;
-      const maxDots = Math.min(total, 7);
-      
-      let start = Math.max(0, currentIndex - Math.floor(maxDots / 2));
-      let end = start + maxDots;
-      if (end > total) {
-        end = total;
-        start = Math.max(0, end - maxDots);
-      }
-
-      for (let i = start; i < end; i++) {
-        const dot = document.createElement('div');
-        dot.className = `transition-all duration-200 rounded-full ${i === currentIndex ? 'w-4 h-1.5 bg-blue-600' : 'w-1.5 h-1.5 bg-slate-300'}`;
-        cardProgressDots.appendChild(dot);
-      }
-    }
-
-    function renderTimelineList(filterQuery = '') {
-      const q = filterQuery.toLowerCase().trim();
-      let list = currentFilterDay === 'ALL' ? TRIP_CARDS_DATA : TRIP_CARDS_DATA.filter(item => item.day === parseInt(currentFilterDay, 10));
-      
-      if (q) {
-        list = list.filter(item => 
-          item.title.toLowerCase().includes(q) ||
-          item.tips.some(t => t.toLowerCase().includes(q)) ||
-          item.phrase.native.toLowerCase().includes(q) ||
-          item.phrase.meaning.toLowerCase().includes(q)
-        );
-      }
-
-      if (list.length === 0) {
-        timelineScrollList.innerHTML = `<div class="p-8 text-center text-xs text-slate-400">검색된 일정이 없습니다.</div>`;
-        return;
-      }
-
-      timelineScrollList.innerHTML = list.map(item => {
-        const isDone = doneCardIds.includes(item.id);
-        return `
-          <div data-id="${item.id}" class="timeline-item bg-white p-3.5 rounded-2xl border border-slate-200/70 shadow-sm flex items-start gap-3 cursor-pointer hover:border-blue-400 active:scale-98 transition">
-            <div class="h-8 w-8 rounded-full ${isDone ? 'bg-emerald-500 text-white' : 'bg-blue-50 text-blue-600 font-extrabold'} text-xs flex items-center justify-center shrink-0">
-              #${item.id}
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500 mb-0.5">
-                <span class="text-blue-600 font-extrabold">DAY ${item.day}</span>
-                <span>•</span>
-                <span>${item.time}</span>
-              </div>
-              <h4 class="text-sm font-extrabold text-slate-900 truncate mb-1">${item.title}</h4>
-              <p class="text-xs text-slate-600 line-clamp-1">${item.tips[0] || ''}</p>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      document.querySelectorAll('.timeline-item').forEach(el => {
-        el.addEventListener('click', () => {
-          const id = parseInt(el.dataset.id, 10);
-          jumpToCardById(id);
-        });
-      });
-    }
-
-    function jumpToCardById(id) {
-      const targetCard = TRIP_CARDS_DATA.find(item => item.id === id);
-      if (!targetCard) return;
-
-      // If current day filter hides it, switch to ALL
-      if (currentFilterDay !== 'ALL' && targetCard.day !== parseInt(currentFilterDay, 10)) {
-        document.querySelectorAll('.day-tab-btn').forEach(b => b.classList.remove('segmented-active'));
-        document.querySelector('.day-tab-btn[data-day="ALL"]').classList.add('segmented-active');
-        currentFilterDay = 'ALL';
-        filteredList = [...TRIP_CARDS_DATA];
-      }
-
-      currentIndex = filteredList.findIndex(item => item.id === id);
-      if (currentIndex === -1) currentIndex = 0;
-
-      // Switch to Card View
-      switchToCardView();
-      renderCurrentCard('card-enter-next');
-    }
-
-    function switchToCardView() {
-      viewModeCard.classList.add('bg-blue-600', 'text-white');
-      viewModeCard.classList.remove('text-slate-600');
-      viewModeList.classList.remove('bg-blue-600', 'text-white');
-      viewModeList.classList.add('text-slate-600');
-      cardViewContainer.classList.remove('hidden');
-      listViewContainer.classList.add('hidden');
-    }
-
-    function switchToListView() {
-      viewModeList.classList.add('bg-blue-600', 'text-white');
-      viewModeList.classList.remove('text-slate-600');
-      viewModeCard.classList.remove('bg-blue-600', 'text-white');
-      viewModeCard.classList.add('text-slate-600');
-      cardViewContainer.classList.add('hidden');
-      listViewContainer.classList.remove('hidden');
-      renderTimelineList(listSearchInput.value);
-    }
-
-    // TTS Audio Player
-    function speakVietnamese(text) {
+    // Speech Synthesis for Local Language
+    function speakJapanese(text) {
       if (!('speechSynthesis' in window)) {
-        alert("이 기기는 웹 음성 재생(TTS)을 지원하지 않습니다.");
         return;
       }
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'vi-VN';
-      utterance.rate = 0.9;
-
+      utterance.lang = DEST_LANG_CODE || 'ja-JP';
+      utterance.rate = 0.9; // natural comfortable pace
+      
       speakerIcon.classList.add('playing-sound');
       utterance.onend = () => speakerIcon.classList.remove('playing-sound');
       utterance.onerror = () => speakerIcon.classList.remove('playing-sound');
-
+      
       window.speechSynthesis.speak(utterance);
     }
 
-    // Wishlist Renderer
-    function renderWishlist() {
-      wishlistContainer.innerHTML = userWishlist.map((item, idx) => `
-        <label class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/70 hover:bg-slate-100/80 cursor-pointer transition">
-          <input type="checkbox" data-idx="${idx}" class="wish-check w-4 h-4 rounded text-blue-600 focus:ring-blue-500" ${item.checked ? 'checked' : ''}>
-          <span class="flex-1 ${item.checked ? 'line-through text-slate-400 font-medium' : 'text-slate-800 font-semibold'}">${item.text}</span>
-        </label>
-      `).join('');
+    // Render Card with animations
+    function renderCard(direction = null) {
+      const globalIndex = filteredIndices[currentIndex];
+      const item = itineraryData[globalIndex];
+      if (!item) return;
 
-      document.querySelectorAll('.wish-check').forEach(input => {
-        input.addEventListener('change', (e) => {
-          const idx = parseInt(e.target.dataset.idx, 10);
-          userWishlist[idx].checked = e.target.checked;
-          localStorage.setItem('danang_trip_wishlist', JSON.stringify(userWishlist));
-          renderWishlist();
-        });
-      });
+      // Animation classes
+      activeCard.classList.remove('card-enter-next', 'card-enter-prev');
+      void activeCard.offsetWidth; // trigger reflow
+      if (direction === 'next') activeCard.classList.add('card-enter-next');
+      if (direction === 'prev') activeCard.classList.add('card-enter-prev');
+
+      // Update Card Content
+      cardSeqBadge.textContent = `#${item.id}`;
+      cardDayBadge.textContent = `DAY ${item.day}`;
+      cardCategoryBadge.textContent = item.category;
+      cardTimeText.textContent = item.time;
+      cardTitleText.textContent = item.title;
+
+      // Format description with bullet lines
+      const descLines = (item.description || '').split('\n');
+      cardDescriptionText.innerHTML = descLines.map(line => `<div>${line}</div>`).join('');
+
+      cardPhraseKoSound.textContent = item.phraseKo;
+      cardPhraseJa.textContent = getNativePhrase(item);
+      cardPhraseMeaning.textContent = item.phraseMeaning;
+      cardCostText.textContent = item.cost;
+
+      // Google maps link
+      btnCardMapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`;
+
+      // Update Completion state
+      if (completedSet.has(item.id)) {
+        btnToggleDone.className = "w-8 h-8 rounded-full flex items-center justify-center bg-emerald-500 text-white shadow-sm transition active:scale-90";
+      } else {
+        btnToggleDone.className = "w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 text-slate-300 hover:text-emerald-500 hover:border-emerald-500 transition active:scale-90";
+      }
+
+      // Counter numbers
+      currentCardIndexText.textContent = currentIndex + 1;
+      totalCardsCountText.textContent = filteredIndices.length;
+
+      // Disable/Enable Nav buttons
+      btnPrevCard.disabled = currentIndex <= 0;
+      btnNextCard.disabled = currentIndex >= filteredIndices.length - 1;
+
+      // Update micro progress indicator dots
+      renderDots();
     }
 
-    // Events
-    document.querySelectorAll('.day-tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.day-tab-btn').forEach(b => b.classList.remove('segmented-active'));
-        btn.classList.add('segmented-active');
-        applyDayFilter(btn.dataset.day);
-      });
+    function renderDots() {
+      cardProgressDots.innerHTML = '';
+      const total = filteredIndices.length;
+      // Show up to 7 contextual indicator dots
+      const maxDots = 7;
+      let start = Math.max(0, currentIndex - Math.floor(maxDots / 2));
+      let end = Math.min(total, start + maxDots);
+      if (end - start < maxDots) {
+        start = Math.max(0, end - maxDots);
+      }
+
+      for (let i = start; i < end; i++) {
+        const dot = document.createElement('span');
+        const isActive = (i === currentIndex);
+        dot.className = isActive 
+          ? 'w-4 h-1.5 rounded-full bg-blue-600 transition-all duration-300' 
+          : 'w-1.5 h-1.5 rounded-full bg-slate-300 transition-all';
+        cardProgressDots.appendChild(dot);
+      }
+    }
+
+    // Touch Gestures (Swipe Left / Swipe Right)
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    activeCard.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    activeCard.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const threshold = 45;
+      if (touchEndX < touchStartX - threshold) {
+        // Swiped Left -> Next Card
+        if (currentIndex < filteredIndices.length - 1) {
+          currentIndex++;
+          renderCard('next');
+        }
+      } else if (touchEndX > touchStartX + threshold) {
+        // Swiped Right -> Prev Card
+        if (currentIndex > 0) {
+          currentIndex--;
+          renderCard('prev');
+        }
+      }
+    }
+
+    // Keyboard Arrow Keys
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentIndex < filteredIndices.length - 1) {
+        currentIndex++;
+        renderCard('next');
+      } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        currentIndex--;
+        renderCard('prev');
+      }
+    });
+
+    // Next / Prev button triggers
+    btnNextCard.addEventListener('click', () => {
+      if (currentIndex < filteredIndices.length - 1) {
+        currentIndex++;
+        renderCard('next');
+      }
     });
 
     btnPrevCard.addEventListener('click', () => {
       if (currentIndex > 0) {
         currentIndex--;
-        renderCurrentCard('card-enter-prev');
-      }
-    });
-
-    btnNextCard.addEventListener('click', () => {
-      if (currentIndex < filteredList.length - 1) {
-        currentIndex++;
-        renderCurrentCard('card-enter-next');
-      }
-    });
-
-    // Touch Swipe Support
-    let touchStartX = 0;
-    let touchStartY = 0;
-    activeCardEl.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
-    }, { passive: true });
-
-    activeCardEl.addEventListener('touchend', (e) => {
-      const diffX = e.changedTouches[0].screenX - touchStartX;
-      const diffY = e.changedTouches[0].screenY - touchStartY;
-      if (Math.abs(diffX) > 45 && Math.abs(diffY) < 60) {
-        if (diffX < 0 && currentIndex < filteredList.length - 1) {
-          currentIndex++;
-          renderCurrentCard('card-enter-next');
-        } else if (diffX > 0 && currentIndex > 0) {
-          currentIndex--;
-          renderCurrentCard('card-enter-prev');
-        }
-      }
-    }, { passive: true });
-
-    // Keyboard Arrow Keys
-    window.addEventListener('keydown', (e) => {
-      if (cardViewContainer.classList.contains('hidden')) return;
-      if (e.key === 'ArrowRight' && currentIndex < filteredList.length - 1) {
-        currentIndex++;
-        renderCurrentCard('card-enter-next');
-      } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-        currentIndex--;
-        renderCurrentCard('card-enter-prev');
+        renderCard('prev');
       }
     });
 
     // Toggle Done
     btnToggleDone.addEventListener('click', () => {
-      const card = filteredList[currentIndex];
-      if (doneCardIds.includes(card.id)) {
-        doneCardIds = doneCardIds.filter(id => id !== card.id);
+      const currentItem = itineraryData[filteredIndices[currentIndex]];
+      if (completedSet.has(currentItem.id)) {
+        completedSet.delete(currentItem.id);
       } else {
-        doneCardIds.push(card.id);
+        completedSet.add(currentItem.id);
       }
-      localStorage.setItem('danang_trip_done_cards', JSON.stringify(doneCardIds));
-      renderCurrentCard();
-      renderTimelineList(listSearchInput.value);
+      renderCard();
+      renderTimelineList();
     });
 
-    // TTS & Large modal
-    btnPlayVoice.addEventListener('click', () => {
-      const card = filteredList[currentIndex];
-      speakVietnamese(card.phrase.native);
+    // Play Voice Button
+    document.getElementById('btnPlayVoice').addEventListener('click', () => {
+      const item = itineraryData[filteredIndices[currentIndex]];
+      speakJapanese(getNativePhrase(item));
     });
 
-    btnShowLargePhrase.addEventListener('click', () => {
-      const card = filteredList[currentIndex];
-      modalLargeNativeText.textContent = card.phrase.native;
-      modalLargeKoSound.textContent = card.phrase.koSound;
-      modalLargeMeaning.textContent = card.phrase.meaning;
-      modalShowPhrase.classList.remove('hidden');
+    // Day Tab Filters
+    const dayTabs = document.querySelectorAll('.day-tab');
+    dayTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        dayTabs.forEach(t => t.classList.remove('segmented-active'));
+        tab.classList.add('segmented-active');
+        const selectedDay = tab.dataset.day;
+        currentFilterDay = selectedDay;
+
+        if (selectedDay === 'ALL') {
+          filteredIndices = itineraryData.map((_, i) => i);
+        } else {
+          const targetDayNum = parseInt(selectedDay, 10);
+          filteredIndices = [];
+          itineraryData.forEach((item, index) => {
+            if (item.day === targetDayNum) filteredIndices.push(index);
+          });
+        }
+
+        currentIndex = 0;
+        renderCard();
+        renderTimelineList();
+      });
     });
 
-    modalLargePlayBtn.addEventListener('click', () => {
-      const card = filteredList[currentIndex];
-      speakVietnamese(card.phrase.native);
-    });
+    // Render Timeline List View
+    const timelineScrollList = document.getElementById('timelineScrollList');
+    function renderTimelineList(filterQuery = '') {
+      timelineScrollList.innerHTML = '';
+      const query = filterQuery.trim().toLowerCase();
 
-    // Mode toggles
-    viewModeCard.addEventListener('click', switchToCardView);
-    viewModeList.addEventListener('click', switchToListView);
+      let visibleIndices = filteredIndices;
+      if (query) {
+        visibleIndices = visibleIndices.filter(idx => {
+          const it = itineraryData[idx];
+          return it.title.toLowerCase().includes(query) ||
+                 it.description.toLowerCase().includes(query) ||
+                 it.phraseKo.toLowerCase().includes(query) ||
+                 getNativePhrase(it).toLowerCase().includes(query) ||
+                 it.time.toLowerCase().includes(query);
+        });
+      }
+
+      if (visibleIndices.length === 0) {
+        timelineScrollList.innerHTML = `
+          <div class="text-center py-12 text-slate-400">
+            <i class="ph-bold ph-magnifying-glass text-3xl mb-1"></i>
+            <p class="text-xs">일치하는 일정이 없습니다.</p>
+          </div>
+        `;
+        return;
+      }
+
+      visibleIndices.forEach((globalIdx) => {
+        const item = itineraryData[globalIdx];
+        const isDone = completedSet.has(item.id);
+
+        const cardItem = document.createElement('div');
+        cardItem.className = `p-3.5 bg-white rounded-2xl border ${isDone ? 'border-emerald-200 bg-emerald-50/20' : 'border-black/[0.04]'} shadow-ios-subtle active:scale-[0.99] transition cursor-pointer`;
+        
+        cardItem.innerHTML = `
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5">
+              <span class="w-6 h-6 rounded-full ${isDone ? 'bg-emerald-500 text-white' : 'bg-blue-600 text-white'} text-[11px] font-extrabold flex items-center justify-center">
+                ${item.id}
+              </span>
+              <span class="text-xs font-bold text-slate-700">DAY ${item.day}</span>
+              <span class="text-xs font-semibold text-blue-600">${item.time}</span>
+            </div>
+            <span class="text-[11px] font-semibold text-slate-500">${item.category}</span>
+          </div>
+          <div class="font-extrabold text-sm text-slate-900 mb-1 leading-snug">${item.title}</div>
+          <div class="text-xs text-slate-600 line-clamp-1">${item.description.replace(/\n/g, ' ')}</div>
+          <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div class="text-blue-700 font-semibold text-[11px] truncate pr-2">
+              🗣️ ${item.phraseKo}
+            </div>
+            <span class="text-slate-400 text-[10px] whitespace-nowrap">탭하여 카드보기 →</span>
+          </div>
+        `;
+
+        cardItem.addEventListener('click', () => {
+          // Find index in filteredIndices
+          const targetCardIdx = filteredIndices.indexOf(globalIdx);
+          if (targetCardIdx !== -1) {
+            currentIndex = targetCardIdx;
+            switchViewMode('card');
+            renderCard();
+          }
+        });
+
+        timelineScrollList.appendChild(cardItem);
+      });
+    }
+
+    // View Switcher (Card vs List)
+    const viewModeCard = document.getElementById('viewModeCard');
+    const viewModeList = document.getElementById('viewModeList');
+    const cardViewContainer = document.getElementById('cardViewContainer');
+    const listViewContainer = document.getElementById('listViewContainer');
+
+    function switchViewMode(mode) {
+      if (mode === 'card') {
+        viewModeCard.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-600 text-white transition";
+        viewModeList.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+        cardViewContainer.classList.remove('hidden');
+        listViewContainer.classList.add('hidden');
+      } else {
+        viewModeList.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-blue-600 text-white transition";
+        viewModeCard.className = "flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+        listViewContainer.classList.remove('hidden');
+        cardViewContainer.classList.add('hidden');
+        renderTimelineList();
+      }
+    }
+
+    viewModeCard.addEventListener('click', () => switchViewMode('card'));
+    viewModeList.addEventListener('click', () => switchViewMode('list'));
+
+    // Search Box Logic
+    const listSearchInput = document.getElementById('listSearchInput');
+    const listSearchClear = document.getElementById('listSearchClear');
 
     listSearchInput.addEventListener('input', (e) => {
       const val = e.target.value;
-      listSearchClear.classList.toggle('hidden', !val);
+      listSearchClear.classList.toggle('hidden', val.length === 0);
       renderTimelineList(val);
     });
 
@@ -1152,44 +1317,74 @@
       renderTimelineList('');
     });
 
-    // Modals
-    document.getElementById('btnOpenBudget').addEventListener('click', () => modalBudget.classList.remove('hidden'));
-    document.getElementById('btnOpenWish').addEventListener('click', () => {
-      renderWishlist();
-      modalWish.classList.remove('hidden');
+
+    // Fullscreen Local Phrase Modal
+    const modalShowJapanese = document.getElementById('modalShowJapanese');
+    const modalLargeJaText = document.getElementById('modalLargeJaText');
+    const modalLargeKoSound = document.getElementById('modalLargeKoSound');
+    const modalLargeMeaning = document.getElementById('modalLargeMeaning');
+    const modalLargePlayBtn = document.getElementById('modalLargePlayBtn');
+
+    document.getElementById('btnShowLargeJapanese').addEventListener('click', () => {
+      const item = itineraryData[filteredIndices[currentIndex]];
+      modalLargeJaText.textContent = getNativePhrase(item);
+      modalLargeKoSound.textContent = item.phraseKo;
+      modalLargeMeaning.textContent = item.phraseMeaning;
+      modalShowJapanese.classList.remove('hidden');
     });
+
+    modalLargePlayBtn.addEventListener('click', () => {
+      const item = itineraryData[filteredIndices[currentIndex]];
+      speakJapanese(getNativePhrase(item));
+    });
+
+    // Modals Wiring (Budget, Shopping, Emergency)
+    const modalBudget = document.getElementById('modalBudget');
+    const modalShopping = document.getElementById('modalShopping');
+    const modalEmergency = document.getElementById('modalEmergency');
+
+    document.getElementById('btnOpenBudget').addEventListener('click', () => modalBudget.classList.remove('hidden'));
+    document.getElementById('btnOpenShopping').addEventListener('click', () => modalShopping.classList.remove('hidden'));
     document.getElementById('btnOpenEmergency').addEventListener('click', () => modalEmergency.classList.remove('hidden'));
 
+    // Universal Modal Closer
     document.querySelectorAll('.modal-close-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         modalBudget.classList.add('hidden');
-        modalWish.classList.add('hidden');
+        modalShopping.classList.add('hidden');
         modalEmergency.classList.add('hidden');
-        modalShowPhrase.classList.add('hidden');
+        modalShowJapanese.classList.add('hidden');
       });
     });
 
-    [modalBudget, modalWish, modalEmergency, modalShowPhrase].forEach(modal => {
+    [modalBudget, modalShopping, modalEmergency, modalShowJapanese].forEach(modal => {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.classList.add('hidden');
       });
     });
 
-    // Copy Hotel Address
-    btnCopyHotelAddr.addEventListener('click', async () => {
-      const text = "36-38 Lâm Hoành, Phước Mỹ, Sơn Trà, Đà Nẵng";
-      try {
-        await navigator.clipboard.writeText(text);
-        const originalText = btnCopyHotelAddr.innerHTML;
-        btnCopyHotelAddr.innerHTML = `<i class="ph-bold ph-check text-emerald-600"></i><span class="text-emerald-700">복사 완료!</span>`;
-        setTimeout(() => { btnCopyHotelAddr.innerHTML = originalText; }, 2000);
-      } catch (err) {
-        alert(text);
-      }
-    });
+    // Helper: Copy Text to Clipboard
+    window.copyToClipboard = function(text) {
+      const tempInput = document.createElement("input");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
 
-    // Init
-    applyDayFilter('ALL');
+      // Temporary visual toast
+      const toast = document.createElement("div");
+      toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white text-xs px-4 py-2 rounded-full shadow-lg backdrop-blur-sm";
+      toast.textContent = "주소가 클립보드에 복사되었습니다!";
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 1800);
+    };
+
+    // Initial Execution
+    window.addEventListener('load', () => {
+      renderCard();
+      renderTimelineList();
+    });
   </script>
 </body>
 </html>

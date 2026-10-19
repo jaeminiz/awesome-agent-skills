@@ -1,5 +1,6 @@
 # 🧭 Global Trip Planner
 
+[![Version](https://img.shields.io/badge/version-v1.4.2-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.4.2)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
@@ -36,10 +37,13 @@ npx skills add https://github.com/jaeminiz/awesome-agent-skills --skill trip-pla
      * **[Method B: KML Import - One-Click]**: [Create a new map] ➔ [Import] ➔ Drag & drop `.kml` ➔ Instant numbered pins and popup descriptions with zero XML parse errors.
      * 💡 **Troubleshooting**: If an import error modal appears due to previous session caching, simply hit **F5 (Refresh)** in your browser and re-import into a new layer.
 6. **Mobile-Optimized Apple iPhone (iOS) Card News Web App (`[City]_trip_cards.html`)**
-   - **Swipeable Card News UI**: White glassmorphic aesthetic, touch swipe gestures, sequence/category badges, and persistent progress checkmarks (`localStorage`).
-   - **Native Pronunciation TTS**: One-tap native voice playback using the device's built-in Web Speech API.
-   - **Driver & Staff Display Modal**: 36px oversized local script display modal for taxi drivers and restaurant staff.
-   - **3 Essential Modals**: Precision expense summary, foodie/shopping wishlist checklist, and quick-call emergency & hotel contacts.
+   - **Strict Layout & Schema Preservation**: Uses [`resources/ios_card_app_template.html`](resources/ios_card_app_template.html) verbatim without altering HTML DOM IDs, CSS styles, modal layouts, or the `const itineraryData = [{ id, day, time, title, category, description, phraseKo, phraseJa, phraseMeaning, cost, mapQuery }]` JS engine.
+   - **Swipeable Card News UI**: White glassmorphic aesthetic, touch swipe gestures, sequence/category badges, and completion checkmarks.
+   - **Native Pronunciation TTS & Staff Fullscreen Modal (`#modalShowJapanese`)**: One-tap native voice playback via Web Speech API and oversized fullscreen local script display for staff/drivers.
+   - **3 Essential Top Modals (Fixed Layout)**:
+     * **`#modalBudget`**: Blue-indigo gradient total highlight box + 3 structured breakdown sections (Food, Transport, Tickets/Tours).
+     * **`#modalShopping`**: Day-badged (`D1`, `D2`, `D3`) wish achievement cards with sequence numbers (`#seq`).
+     * **`#modalEmergency`**: Dark (`bg-slate-900`) Hotel Taxi Card & Airport Taxi Card with one-click `copyToClipboard` buttons + Emergency Contact Numbers box.
 
 ---
 
@@ -75,8 +79,8 @@ A glimpse of the mobile-optimized Apple iPhone (iOS) style card news web app gen
 * 🌐 **Interactive Web App Sample**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  
   *(Open directly in any mobile or desktop browser to experience card swiping, voice TTS, and timeline search completely offline.)*
 * 🗺️ **Google My Maps All-in-One KML**: [`examples/danang_mymaps.kml`](examples/danang_mymaps.kml)  
-  *(Import into Google My Maps to instantly view 1–4 day layer folders, numbered pins, and transit routes.)*
-* 📊 **Google My Maps Standard 6-Column Integrated CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
+  *(Import into Google My Maps to instantly view 1–4 day numbered pins and popup descriptions.)*
+* 📊 **Google My Maps Standard 8-Column Integrated CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
 * 📂 **Google My Maps Day-by-Day CSVs**:
   * [`examples/day1_itinerary.csv`](examples/day1_itinerary.csv) (Day 1)
   * [`examples/day2_itinerary.csv`](examples/day2_itinerary.csv) (Day 2)
@@ -89,14 +93,15 @@ A glimpse of the mobile-optimized Apple iPhone (iOS) style card news web app gen
 
 ```
 trip-planner/
-├── SKILL.md                              # Main agent instruction & strict governance rules
+├── SKILL.md                              # Main agent instruction & strict governance rules (EN)
+├── SKILL.ko.md                           # Main agent instruction & strict governance rules (KO)
 ├── README.md                             # English skill documentation
 ├── README.ko.md                          # Korean skill documentation
 ├── sample_preview.png                    # Mobile card news web app screenshot
 ├── examples/                             # Production-ready sample deliverables (Da Nang 4-Day)
-│   ├── danang_trip_cards.html            # Mobile card news web app
+│   ├── danang_trip_cards.html            # Mobile card news web app (Strict iOS template layout)
 │   ├── danang_mymaps.kml                 # Google My Maps All-in-One KML
-│   ├── danang_itinerary.csv              # Google My Maps 6-column combined CSV
+│   ├── danang_itinerary.csv              # Google My Maps 8-column combined CSV
 │   ├── day1_itinerary.csv                # Day 1 CSV
 │   ├── day2_itinerary.csv                # Day 2 CSV
 │   ├── day3_itinerary.csv                # Day 3 CSV
@@ -106,10 +111,10 @@ trip-planner/
 └── resources/
     ├── master_itinerary_template.md      # Master itinerary Markdown template
     ├── budget_template.md                # Multi-currency budget template
-    ├── itinerary_template.csv            # Google My Maps 6-column CSV template
+    ├── itinerary_template.csv            # Google My Maps 8-column CSV template
     ├── mymaps_template.kml               # Google My Maps All-in-One KML template
     ├── generate_maps_data.py             # Python utility script for CSV & KML builds
-    └── ios_card_app_template.html        # Glassmorphic Phosphor Icons & TTS HTML template
+    └── ios_card_app_template.html        # Strict iOS Card App HTML/JS template (4 Modals + itineraryData)
 ```
 
 ---

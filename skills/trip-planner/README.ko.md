@@ -1,5 +1,9 @@
 # 🧭 Global Trip Planner (글로벌 맞춤형 여행 플래너)
 
+[![Version](https://img.shields.io/badge/version-v1.4.2-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.4.2)
+[![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
+
 **[English](README.md)** | **한국어**
 
 > **Antigravity AI 전문 여행 플래너 및 일정 아키텍트 스킬**  
@@ -25,10 +29,13 @@
      * **[방법 B: KML로 등록 - 원클릭]**: [새 지도 만들기] ➔ [가져오기] ➔ `.kml` 파일 드래그앤드롭 ➔ `&amp;` 엔티티 정제 완료로 파싱 에러 없이 장소와 상세 설명 팝업 즉시 등록.
      * 💡 **가져오기 실패 팝업 발생 시**: 이전 세션 캐시 문제이므로 브라우저를 **F5(새로고침)**한 뒤 새 레이어에 업로드하면 100% 정상 작동합니다.
 6. **모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹앱 (`[도시]_trip_cards.html`)**
-   - **1장씩 넘겨보는 카드뉴스 UI**: 화이트 글래스모피즘, 터치 스와이프 제스처, 순번/카테고리 뱃지, 완료 체크 기능 (`localStorage` 연동).
-   - **현지어 발음듣기 (TTS)**: 기기 내장 Web Speech API로 원어민 발음 음성 즉시 재생.
-   - **기사님/직원 보여주기 모달**: 36px 대형 텍스트 풀스크린 모달.
-   - **3대 필수 모달**: 정밀 경비표, 미식/쇼핑 위시리스트 체크리스트, 호텔 주소 복사 & 긴급 연락망 원클릭 전화 지원.
+   - **⛔ 양식 및 레이아웃 절대 변경 금지**: [`resources/ios_card_app_template.html`](resources/ios_card_app_template.html)을 그대로 복제하여 HTML DOM ID, CSS 클래스, 4대 모달 구조, `const itineraryData = [{ id, day, time, title, category, description, phraseKo, phraseJa, phraseMeaning, cost, mapQuery }]` JS 엔진을 단 1%도 변경하지 않고 생성합니다.
+   - **1장씩 넘겨보는 카드뉴스 UI**: 화이트 글래스모피즘, 터치 스와이프 제스처, 순번/카테고리 뱃지, 완료 체크 기능.
+   - **현지어 발음듣기 (TTS) & 점원 보여주기 모달 (`#modalShowJapanese`)**: 기기 내장 Web Speech API로 원어민 발음 음성 즉시 재생 및 대형 텍스트 풀스크린 모달 지원.
+   - **상단 3대 필수 모달 (고정 레이아웃)**:
+     * **`#modalBudget` (경비)**: 블루-인디고 그라데이션 총경비 하이라이트 박스 + 3개 섹션(식비, 현지 교통비, 관광/투어비).
+     * **`#modalShopping` (위시)**: 일차 뱃지(`D1`, `D2`, `D3`) + 스팟명(`#순번`) + 상세 위치/쇼핑 팁 카드 리스트.
+     * **`#modalEmergency` (비상/호텔)**: 다크 슬레이트(`bg-slate-900`) 숙소 택시 기사님용 주소 카드 & 귀국 공항 택시 기사님용 카드(`copyToClipboard` 원클릭 복사 버튼) + 긴급 비상 연락망 박스.
 
 ---
 
@@ -64,8 +71,8 @@
 * 🌐 **샘플 웹앱 파일**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  
   *(다운로드 후 브라우저로 열면 오프라인에서 직접 카드 스와이프, TTS 발음듣기, 검색 타임라인을 체험할 수 있습니다.)*
 * 🗺️ **구글 내 지도 올인원 KML**: [`examples/danang_mymaps.kml`](examples/danang_mymaps.kml)  
-  *(구글 내 지도에서 [새 지도 만들기] -> [가져오기]에 드래그하면 1~4일차 레이어/번호핀/동선 연결선이 1초 만에 자동 생성됩니다.)*
-* 📊 **구글 내 지도 표준 6컬럼 통합 CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
+  *(구글 내 지도에서 [새 지도 만들기] -> [가져오기]에 드래그하면 1~4일차 번호핀 및 상세 일정 팝업이 1초 만에 자동 생성됩니다.)*
+* 📊 **구글 내 지도 표준 8컬럼 통합 CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
 * 📂 **구글 내 지도 Day별 분리 CSV**:
   * [`examples/day1_itinerary.csv`](examples/day1_itinerary.csv) (1일차)
   * [`examples/day2_itinerary.csv`](examples/day2_itinerary.csv) (2일차)
@@ -78,13 +85,15 @@
 
 ```
 trip-planner/
-├── SKILL.md                              # 스킬 메인 명세 및 6대 절대 원칙 가이드라인
-├── README.md                             # 스킬 소개 및 사용 가이드
+├── SKILL.md                              # 스킬 메인 명세 및 6대 절대 원칙 가이드라인 (영문)
+├── SKILL.ko.md                           # 스킬 메인 명세 및 6대 절대 원칙 가이드라인 (국문)
+├── README.md                             # 영문 스킬 소개 및 사용 가이드
+├── README.ko.md                          # 국문 스킬 소개 및 사용 가이드
 ├── sample_preview.png                    # 모바일 카드뉴스 웹앱 실제 스크린샷
 ├── examples/                             # 🌟 실제 생성 샘플 산출물 (다낭 3박 4일 풀세트)
-│   ├── danang_trip_cards.html            # 모바일 카드뉴스 웹앱 샘플
-│   ├── danang_mymaps.kml                 # 구글 내 지도 올인원 KML (레이어+번호핀+동선)
-│   ├── danang_itinerary.csv              # 구글 내 지도 표준 6컬럼 통합 CSV 샘플
+│   ├── danang_trip_cards.html            # 모바일 카드뉴스 웹앱 샘플 (표준 iOS 템플릿 양식)
+│   ├── danang_mymaps.kml                 # 구글 내 지도 올인원 KML
+│   ├── danang_itinerary.csv              # 구글 내 지도 표준 8컬럼 통합 CSV 샘플
 │   ├── day1_itinerary.csv                # 1일차 구글 내 지도 CSV
 │   ├── day2_itinerary.csv                # 2일차 구글 내 지도 CSV
 │   ├── day3_itinerary.csv                # 3일차 구글 내 지도 CSV
@@ -94,10 +103,10 @@ trip-planner/
 └── resources/
     ├── master_itinerary_template.md      # 마스터 일정표 표준 Markdown 템플릿
     ├── budget_template.md                # 다통화 환율 및 정밀 예산안 템플릿
-    ├── itinerary_template.csv            # 구글 내 지도 표준 6컬럼 CSV 템플릿
-    ├── mymaps_template.kml               # 구글 내 지도 올인원 KML 템플릿 (레이어+번호핀+동선)
+    ├── itinerary_template.csv            # 구글 내 지도 표준 8컬럼 CSV 템플릿
+    ├── mymaps_template.kml               # 구글 내 지도 올인원 KML 템플릿
     ├── generate_maps_data.py             # Day별 CSV 및 올인원 KML 자동 빌드 스크립트
-    └── ios_card_app_template.html        # Phosphor Icons & TTS 탑재 모바일 웹앱 템플릿
+    └── ios_card_app_template.html        # 양식·레이아웃·4대 모달·itineraryData 고정 표준 템플릿
 ```
 
 ---

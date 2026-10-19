@@ -105,11 +105,17 @@ Standard step-by-step instructions for travelers to import deliverables into Goo
 > **If an import error occurs**: Browser caching from a previous corrupted session can cause temporary failures. Simply press **`F5` (Refresh)** in your browser and re-import into a new layer.
 
 ### 3. Apple iPhone (iOS) Style Card News Web App (`[City]_trip_cards.html`)
-* **Glassmorphic UI**: SF Pro typography, Phosphor Icons, and white glassmorphism design.
-* **1-Card-at-a-Time View**: Sequence badge (`#1`), Day badge, time range, transit tips, and local situational phrase box.
-* **Native TTS Voice**: Tap the speaker icon to play native pronunciation using the device's Web Speech API.
-* **Driver Display Modal**: 36px oversized local script display modal for taxi drivers and restaurant staff.
-* **3 Essential Modals**: Precision expense summary, foodie/shopping wishlist checklist, and quick-call emergency & hotel contacts.
+* **⛔ Strict Layout & Schema Preservation (양식 및 레이아웃 절대 변경 금지)**:
+  - When generating `[City]_trip_cards.html`, you **MUST copy [`resources/ios_card_app_template.html`](./resources/ios_card_app_template.html) (or [`examples/danang_trip_cards.html`](./examples/danang_trip_cards.html)) as the exact base** and **NEVER alter** its HTML DOM IDs, CSS styles, 4 Modals structure, or JavaScript rendering engine.
+  - Populate ONLY the header/modal text placeholders and the `const itineraryData = [ ... ];` array using the exact object schema:
+    `{ id, day, time, title, category, description, phraseKo, phraseJa, phraseMeaning, cost, mapQuery }` (`description` uses `\n`-separated `• ` bullet lines).
+* **Glassmorphic UI**: SF Pro typography, Phosphor Icons, and white glassmorphism design (`bg-[#F2F2F7]`, `rounded-[28px]`, `shadow-ios`).
+* **1-Card-at-a-Time View (`#activeCard`)**: Sequence badge (`#1`), Day badge (`DAY 1`), category pill, time range, `cardDescriptionText` bullet box, and local situational phrase box (`cardPhraseContainer`).
+* **Native TTS Voice & Staff Fullscreen Modal (`#modalShowJapanese`)**: Tap the speaker icon (`btnPlayVoice`) to play native pronunciation via Web Speech API, or tap `btnShowLargeJapanese` (`보여주기`) to open the oversized fullscreen script modal for staff and drivers.
+* **3 Essential Top Modals (Fixed Layout)**:
+  1. **`#modalBudget` (`btnOpenBudget`)**: Gradient total highlight box (`from-blue-600 to-indigo-600`) + 3 structured breakdown cards (Food, Local Transport, Tickets/Tours).
+  2. **`#modalShopping` (`btnOpenShopping`)**: Day-badged (`D1`, `D2`, `D3`) wish achievement cards with sequence numbers (`#seq`) and location tips.
+  3. **`#modalEmergency` (`btnOpenEmergency`)**: Dark (`bg-slate-900`) Hotel Taxi Card & Airport Taxi Card with one-click `copyToClipboard(...)` buttons + Emergency Contact Numbers box.
 
 ---
 
@@ -130,7 +136,7 @@ Standard step-by-step instructions for travelers to import deliverables into Goo
 3. **트렌드 미디어 심층 리서치**: 유튜브, 블로그, 인스타를 종합 조사하여 최근 검증된 핫플과 미식 반영.
 4. **동선 최적화 맛집 & 카페 큐레이션**: 권역별 맛집 및 카페 후보군 제시 후 사용자 선택 유도.
 5. **일자별 상세 타임라인 종합 정리표 & 최종 예산표 전체 출력 필수**: 축약 없이 5개 컬럼 테이블 온전히 출력.
-6. **최종 산출물 생성 전 필수 사용자 확인**: 사용자 승인 후 Day별 CSV, 올인원 KML, 모바일 카드뉴스 웹앱 빌드.
+6. **최종 산출물 생성 전 필수 사용자 확인 및 웹앱 템플릿 양식 절대 보존**: 사용자 승인 후 Day별 8컬럼 CSV, 올인원 KML, 모바일 카드뉴스 웹앱을 빌드하며, 웹앱 생성 시 `resources/ios_card_app_template.html`의 양식·레이아웃·4대 모달·`itineraryData` 스키마를 단 1%도 임의 변경하지 않습니다.
 
 #### 📋 6단계 플래닝 프로세스
 1. `Phase 1`: 초기 인터뷰 & 필수 질문 (전 세계 맞춤)
@@ -147,10 +153,10 @@ Standard step-by-step instructions for travelers to import deliverables into Goo
 ## 📂 Templates & Resources
 * [Master Itinerary Template](./resources/master_itinerary_template.md): Global standard Markdown master itinerary structure.
 * [Budget Template](./resources/budget_template.md): Multi-currency budget template with taxes & tips.
-* [Google My Maps CSV Template](./resources/itinerary_template.csv): Standard 6-column CSV header.
+* [Google My Maps CSV Template](./resources/itinerary_template.csv): Standard 8-column CSV header (`Date,Time,Place,Latitude,Longitude,GoogleMaps,Description,Transit_Notes`).
 * [All-in-One KML Template](./resources/mymaps_template.kml): KML schema with layers, pins, and routes.
 * [Maps Data Generator](./resources/generate_maps_data.py): Automated Python script for CSV & KML builds.
-* [iOS Card App Template](./resources/ios_card_app_template.html): Standalone mobile web app template.
+* [iOS Card App Template](./resources/ios_card_app_template.html): Standalone mobile web app template (strictly preserve layout & schema).
 * [Global Planning Playbook](./references/trip_planning_playbook.md): Regional transit and safety guidelines.
 
 ---
