@@ -1,6 +1,6 @@
 # 🧭 Global Trip Planner (글로벌 맞춤형 여행 플래너)
 
-[![Version](https://img.shields.io/badge/version-v1.5.0-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.0)
+[![Version](https://img.shields.io/badge/version-v1.5.1-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.1)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
@@ -65,7 +65,7 @@
 스킬을 통해 자동으로 생성되는 모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션의 실제 캡처 화면 및 샘플 파일입니다.
 
 <p align="center">
-  <img src="sample_preview.png" alt="iOS Card News Web App Preview" width="340" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+  <img src="dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
 * 🌐 **샘플 웹앱 파일**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  

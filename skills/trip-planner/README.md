@@ -1,6 +1,6 @@
 # 🧭 Global Trip Planner
 
-[![Version](https://img.shields.io/badge/version-v1.5.0-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.0)
+[![Version](https://img.shields.io/badge/version-v1.5.1-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.1)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
@@ -73,7 +73,7 @@ npx skills add https://github.com/jaeminiz/awesome-agent-skills --skill trip-pla
 A glimpse of the mobile-optimized Apple iPhone (iOS) style card news web app generated automatically by this skill:
 
 <p align="center">
-  <img src="sample_preview.png" alt="iOS Card News Web App Preview" width="340" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+  <img src="dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
 * 🌐 **Interactive Web App Sample**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  

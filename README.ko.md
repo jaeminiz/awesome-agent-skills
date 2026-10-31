@@ -1,6 +1,6 @@
 # 🌟 Awesome Agent Skills
 
-[![Version](https://img.shields.io/badge/version-v1.5.0-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.0)
+[![Version](https://img.shields.io/badge/version-v1.5.1-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/jaeminiz/awesome-agent-skills/pulls)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
@@ -17,11 +17,11 @@
 
 | 카테고리 | 스킬 이름 | 버전 | 핵심 설명 | 바로가기 |
 | :--- | :--- | :---: | :--- | :---: |
-| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.5.0` | **글로벌 전문가 여행 플래너 & 일정 아키텍트**<br>• 인터랙티브 단계별 문답 & 브라우저 실시간 최저가·환율 탐색<br>• 미디어 트렌드 맛집 & 카페 큐레이션<br>• **일자별 상세 타임라인 종합 정리표(5개 컬럼)** & 정밀 예산표<br>• **구글 내 지도(Google My Maps) 표준 8컬럼 Day별 CSV & 올인원 KML** 자동 생성<br>• **애플 아이폰(iOS) 스타일 카드뉴스 웹앱 (표준 템플릿 레이아웃 100% 고정)** 자동 빌드 | [바로가기](skills/trip-planner) |
+| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.5.1` | **글로벌 전문가 여행 플래너 & 일정 아키텍트**<br>• 인터랙티브 단계별 문답 & 브라우저 실시간 최저가·환율 탐색<br>• 미디어 트렌드 맛집 & 카페 큐레이션<br>• **일자별 상세 타임라인 종합 정리표(5개 컬럼)** & 정밀 예산표<br>• **구글 내 지도(Google My Maps) 표준 8컬럼 Day별 CSV & 올인원 KML** 자동 생성<br>• **애플 아이폰(iOS) 스타일 카드뉴스 웹앱 (표준 템플릿 레이아웃 100% 고정)** 자동 빌드 | [바로가기](skills/trip-planner) |
 
 ---
 
-## 🏆 대표 스킬 소개 (Featured Skills): `trip-planner` (`v1.5.0`)
+## 🏆 대표 스킬 소개 (Featured Skills): `trip-planner` (`v1.5.1`)
 
 ### 🧭 [trip-planner](skills/trip-planner) — 글로벌 전문가 여행 플래너
 
@@ -41,7 +41,7 @@
 * **[방법 B: KML로 등록 - 원클릭]**: **[+ 새 지도 만들기]** ➔ **[가져오기]** ➔ `danang_mymaps.kml` 드래그앤드롭 ➔ 파싱 에러 없이 전 일정 핀과 팝업 즉시 등록. *(팁: 이전 세션 캐시로 인한 오류 팝업 발생 시 브라우저를 **F5 새로고침** 후 재시도)*
 
 <p align="center">
-  <img src="skills/trip-planner/sample_preview.png" alt="iOS Card News Web App Preview" width="320" style="border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.12);" />
+  <img src="skills/trip-planner/dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
 * 🌐 **[실제 다낭 여행 카드뉴스 웹앱 체험](skills/trip-planner/examples/danang_trip_cards.html)**

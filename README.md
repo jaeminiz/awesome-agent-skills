@@ -1,6 +1,6 @@
 # 🌟 Awesome Agent Skills
 
-[![Version](https://img.shields.io/badge/version-v1.5.0-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.0)
+[![Version](https://img.shields.io/badge/version-v1.5.1-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/jaeminiz/awesome-agent-skills/pulls)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
@@ -31,11 +31,11 @@ npx skills add https://github.com/jaeminiz/awesome-agent-skills --list
 
 | Category | Skill Name | Version | Description | Link |
 | :--- | :--- | :---: | :--- | :---: |
-| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.5.0` | **Global Expert Travel Planner & Itinerary Architect**<br>• Interactive step-by-step questionnaire & live pricing/exchange rate lookup<br>• Media-curated gourmet & cafe recommendations (YouTube, Instagram, Blogs)<br>• **Detailed minute-by-minute timeline (5-column table)** & precision budget<br>• **Google My Maps standard 8-column Day-by-Day CSV & All-in-One KML**<br>• **Dual Mobile Web Apps: Style 1 (Default: Pocket Guide with 4 tabs, TTS, live search & rate calculator) / Style 2 (Apple iOS Card News)** | [Explore](skills/trip-planner) |
+| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.5.1` | **Global Expert Travel Planner & Itinerary Architect**<br>• Interactive step-by-step questionnaire & live pricing/exchange rate lookup<br>• Media-curated gourmet & cafe recommendations (YouTube, Instagram, Blogs)<br>• **Detailed minute-by-minute timeline (5-column table)** & precision budget<br>• **Google My Maps standard 8-column Day-by-Day CSV & All-in-One KML**<br>• **Dual Mobile Web Apps: Style 1 (Default: Pocket Guide with 4 tabs, TTS, live search & rate calculator) / Style 2 (Apple iOS Card News)** | [Explore](skills/trip-planner) |
 
 ---
 
-## 🏆 Featured Skill: `trip-planner` (`v1.5.0`)
+## 🏆 Featured Skill: `trip-planner` (`v1.5.1`)
 
 ### 🧭 [trip-planner](skills/trip-planner) — Global Travel Planner & Itinerary Architect
 
@@ -55,7 +55,7 @@ A production-grade AI agent skill designed for both domestic and worldwide inter
 * **[Method B: KML Import - One-Click]**: **[+ Create a new map]** ➔ **[Import]** ➔ Drag & drop `danang_mymaps.kml` ➔ All pins and HTML popups load immediately without XML errors. *(Tip: Press **F5 Refresh** if browser cache from an older session shows an error.)*
 
 <p align="center">
-  <img src="skills/trip-planner/sample_preview.png" alt="iOS Card News Web App Preview" width="340" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+  <img src="skills/trip-planner/dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
 * 🌐 **[Live Demo: Da Nang 4-Day Trip Card Web App](skills/trip-planner/examples/danang_trip_cards.html)**
