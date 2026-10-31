@@ -41,63 +41,10 @@
 * **[방법 B: KML로 등록 - 원클릭]**: **[+ 새 지도 만들기]** ➔ **[가져오기]** ➔ `danang_mymaps.kml` 드래그앤드롭 ➔ 파싱 에러 없이 전 일정 핀과 팝업 즉시 등록. *(팁: 이전 세션 캐시로 인한 오류 팝업 발생 시 브라우저를 **F5 새로고침** 후 재시도)*
 
 <p align="center">
-  <img src="skills/trip-planner/dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
+  <img src="skills/trip-planner/dual_preview.png" alt="2가지 스타일 모바일 웹앱: 포켓 가이드 & iOS 카드뉴스 미리보기" width="760" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
-* 🌐 **[실제 다낭 여행 카드뉴스 웹앱 체험](skills/trip-planner/examples/danang_trip_cards.html)**
-* 🗺️ **[구글 내 지도 올인원 KML 샘플](skills/trip-planner/examples/danang_mymaps.kml)**
-* 📊 **[구글 내 지도 표준 8컬럼 CSV 샘플](skills/trip-planner/examples/danang_itinerary.csv)**
-* 📖 **[trip-planner 스킬 상세 안내 및 활용법](skills/trip-planner/)**
-
----
-
-## 🚀 설치 및 사용 가이드 (Installation)
-
-### 1. 저장소 클론
-```bash
-git clone https://github.com/jaeminiz/awesome-agent-skills.git
-```
-
-### 2. Antigravity 글로벌 스킬로 등록
-원하는 스킬 폴더를 Antigravity 글로벌 스킬 경로로 복사합니다:
-
-```bash
-# Windows (PowerShell)
-Copy-Item -Path "awesome-agent-skills\skills\trip-planner" -Destination "$HOME\.gemini\config\skills\" -Recurse -Force
-
-# macOS / Linux
-cp -r awesome-agent-skills/skills/trip-planner ~/.gemini/config/skills/
-```
-
-### 3. 특정 프로젝트 전용 스킬로 등록
-특정 작업 공간(프로젝트 워크스페이스)에서만 적용하고 싶을 때:
-
-```bash
-# 프로젝트 루트의 .agents/skills/ 경로에 배치
-mkdir -p .agents/skills
-cp -r awesome-agent-skills/skills/trip-planner .agents/skills/
-```
-
----
-
-## 🤝 새로운 스킬 기여 안내 (Contributing)
-
-새로운 고품질 에이전트 스킬 추가 기여를 언제나 환영합니다!
-
-1. 본 저장소를 Fork 합니다.
-2. `skills/<스킬-이름>/` 디렉터리를 생성하고 필수 명세서(`SKILL.md`)를 작성합니다.
-   ```
-   skills/my-awesome-skill/
-   ├── SKILL.md            # YAML frontmatter (name, description) 및 상세 행동 지침
-   ├── README.md           # 스킬 소개 및 사용법 안내
-   ├── references/         # (선택) 상세 참조 가이드 및 플레이북
-   └── resources/          # (선택) 템플릿, 자동화 스크립트, 데이터 에셋
-   ```
-3. 루트 `README.md`의 [스킬 디렉터리](#-스킬-디렉터리-skills-directory) 테이블에 해당 스킬을 등록합니다.
-4. Pull Request(PR)를 제출해 주세요!
-
----
-
-## 📄 라이선스 (License)
-
-본 프로젝트는 [MIT License](LICENSE)에 따라 자유롭게 사용 및 기여하실 수 있습니다.
+### 🌐 실시간 인터랙티브 라이브 데모 (브라우저에서 바로 체험)
+스마트폰 또는 PC 브라우저에서 생성된 실제 웹앱을 클릭하여 직접 테스트해 보세요:
+* 📱 **[스타일 1: 모바일 포켓 가이드 웹앱 바로 열기 (다낭 4일)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_pocket_guide.html)** — *기본 추천 ⭐ (4대 하단 탭, 실시간 검색, 완료 체크박스, Apple/Google 지도 듀얼 연동, 원어민 TTS 음성, 실시간 환율 계산기)*
+* 🗂️ **[스타일 2: 애플 iOS 카드뉴스 웹앱 바로 열기 (다낭 4일)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_trip_cards.html)** — *(터치 스와이프 카드뉴스, 화이트 글래스모피즘, 4대 상단 팝업 모달)*

@@ -65,72 +65,10 @@
 스킬을 통해 자동으로 생성되는 모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션의 실제 캡처 화면 및 샘플 파일입니다.
 
 <p align="center">
-  <img src="dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
+  <img src="dual_preview.png" alt="2가지 스타일 모바일 웹앱: 포켓 가이드 & iOS 카드뉴스 미리보기" width="760" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
-* 🌐 **샘플 웹앱 파일**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  
-  *(다운로드 후 브라우저로 열면 오프라인에서 직접 카드 스와이프, TTS 발음듣기, 검색 타임라인을 체험할 수 있습니다.)*
-* 🗺️ **구글 내 지도 올인원 KML**: [`examples/danang_mymaps.kml`](examples/danang_mymaps.kml)  
-  *(구글 내 지도에서 [새 지도 만들기] -> [가져오기]에 드래그하면 1~4일차 번호핀 및 상세 일정 팝업이 1초 만에 자동 생성됩니다.)*
-* 📊 **구글 내 지도 표준 8컬럼 통합 CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
-* 📂 **구글 내 지도 Day별 분리 CSV**:
-  * [`examples/day1_itinerary.csv`](examples/day1_itinerary.csv) (1일차)
-  * [`examples/day2_itinerary.csv`](examples/day2_itinerary.csv) (2일차)
-  * [`examples/day3_itinerary.csv`](examples/day3_itinerary.csv) (3일차)
-  * [`examples/day4_itinerary.csv`](examples/day4_itinerary.csv) (4일차)
-
----
-
-## 📂 파일 구조 (Structure)
-
-```
-trip-planner/
-├── SKILL.md                              # 스킬 메인 명세 및 6대 절대 원칙 가이드라인 (영문)
-├── SKILL.ko.md                           # 스킬 메인 명세 및 6대 절대 원칙 가이드라인 (국문)
-├── README.md                             # 영문 스킬 소개 및 사용 가이드
-├── README.ko.md                          # 국문 스킬 소개 및 사용 가이드
-├── sample_preview.png                    # 모바일 카드뉴스 웹앱 실제 스크린샷
-├── examples/                             # 🌟 실제 생성 샘플 산출물 (다낭 3박 4일 풀세트)
-│   ├── danang_trip_cards.html            # 모바일 카드뉴스 웹앱 샘플 (표준 iOS 템플릿 양식)
-│   ├── danang_mymaps.kml                 # 구글 내 지도 올인원 KML
-│   ├── danang_itinerary.csv              # 구글 내 지도 표준 8컬럼 통합 CSV 샘플
-│   ├── day1_itinerary.csv                # 1일차 구글 내 지도 CSV
-│   ├── day2_itinerary.csv                # 2일차 구글 내 지도 CSV
-│   ├── day3_itinerary.csv                # 3일차 구글 내 지도 CSV
-│   └── day4_itinerary.csv                # 4일차 구글 내 지도 CSV
-├── references/
-│   └── trip_planning_playbook.md         # 권역별(일본/동남아/유럽/미주) 플래닝 플레이북
-└── resources/
-    ├── master_itinerary_template.md      # 마스터 일정표 표준 Markdown 템플릿
-    ├── budget_template.md                # 다통화 환율 및 정밀 예산안 템플릿
-    ├── itinerary_template.csv            # 구글 내 지도 표준 8컬럼 CSV 템플릿
-    ├── mymaps_template.kml               # 구글 내 지도 올인원 KML 템플릿
-    ├── generate_maps_data.py             # Day별 CSV 및 올인원 KML 자동 빌드 스크립트
-    └── ios_card_app_template.html        # 양식·레이아웃·4대 모달·itineraryData 고정 표준 템플릿
-```
-
----
-
-## 🚀 설치 및 사용법 (Installation)
-
-### 1. Antigravity 글로벌 스킬로 설치
-본 저장소를 클론하여 사용자의 Antigravity 글로벌 스킬 디렉터리에 배치합니다:
-
-```bash
-# Windows (PowerShell)
-git clone https://github.com/jaeminiz/awesome-agent-skills.git
-Copy-Item -Path "awesome-agent-skills\skills\trip-planner" -Destination "$HOME\.gemini\config\skills\" -Recurse -Force
-
-# macOS / Linux
-git clone https://github.com/jaeminiz/awesome-agent-skills.git
-cp -r awesome-agent-skills/skills/trip-planner ~/.gemini/config/skills/
-```
-
-### 2. 프로젝트 전용 스킬로 설치
-특정 워크스페이스에서만 사용할 경우 프로젝트 루트의 `.agents/skills/`에 배치합니다:
-
-```bash
-# 워크스페이스 루트에서 실행
-New-Item -ItemType Directory -Force -Path ".agents\skills"
-Copy-Item -Path "awesome-agent-skills\skills\trip-planner" -Destination ".agents\skills\trip-planner" -Recurse -Force
-```
+### 🌐 실시간 인터랙티브 라이브 데모 (브라우저에서 바로 체험)
+스마트폰 또는 PC 브라우저에서 생성된 실제 웹앱을 클릭하여 직접 테스트해 보세요:
+* 📱 **[스타일 1: 모바일 포켓 가이드 웹앱 바로 열기 (다낭 4일)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_pocket_guide.html)** — *기본 추천 ⭐ (4대 하단 탭, 실시간 검색, 완료 체크박스, Apple/Google 지도 듀얼 연동, 원어민 TTS 음성, 실시간 환율 계산기)*
+* 🗂️ **[스타일 2: 애플 iOS 카드뉴스 웹앱 바로 열기 (다낭 4일)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_trip_cards.html)** — *(터치 스와이프 카드뉴스, 화이트 글래스모피즘, 4대 상단 팝업 모달)*

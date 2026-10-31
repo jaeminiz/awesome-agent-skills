@@ -55,62 +55,10 @@ A production-grade AI agent skill designed for both domestic and worldwide inter
 * **[Method B: KML Import - One-Click]**: **[+ Create a new map]** ➔ **[Import]** ➔ Drag & drop `danang_mymaps.kml` ➔ All pins and HTML popups load immediately without XML errors. *(Tip: Press **F5 Refresh** if browser cache from an older session shows an error.)*
 
 <p align="center">
-  <img src="skills/trip-planner/dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
+  <img src="skills/trip-planner/dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="760" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
-* 🌐 **[Live Demo: Da Nang 4-Day Trip Card Web App](skills/trip-planner/examples/danang_trip_cards.html)**
-* 🗺️ **[Google My Maps All-in-One KML Sample](skills/trip-planner/examples/danang_mymaps.kml)**
-* 📊 **[Google My Maps Standard 8-Column CSV Sample](skills/trip-planner/examples/danang_itinerary.csv)**
-* 📖 **[Read the Full trip-planner Skill Documentation](skills/trip-planner/)**
-
----
-
-## 🚀 Manual Installation & Setup
-
-### 1. Clone Repository
-```bash
-git clone https://github.com/jaeminiz/awesome-agent-skills.git
-```
-
-### 2. Register into Google Antigravity Global Skills
-Copy the target skill directory to your Antigravity global skills folder:
-
-```bash
-# Windows (PowerShell)
-Copy-Item -Path "awesome-agent-skills\skills\trip-planner" -Destination "$HOME\.gemini\config\skills\" -Recurse -Force
-
-# macOS / Linux
-cp -r awesome-agent-skills/skills/trip-planner ~/.gemini/config/skills/
-```
-
-### 3. Register into Project Workspace (Local Agent Scope)
-To activate skills only inside a specific repository or workspace:
-
-```bash
-mkdir -p .agents/skills
-cp -r awesome-agent-skills/skills/trip-planner .agents/skills/
-```
-
----
-
-## 🤝 Contributing
-
-Contributions of new high-quality agent skills are warmly welcome!
-
-1. Fork this repository.
-2. Create your skill directory under `skills/<skill-name>/` with a valid specification (`SKILL.md`):
-   ```
-   skills/my-awesome-skill/
-   ├── SKILL.md            # YAML frontmatter (name, description) and actionable agent instructions
-   ├── README.md           # Introduction, features, and usage guide
-   ├── references/         # (Optional) Detailed domain playbooks
-   └── resources/          # (Optional) Templates, scripts, and asset files
-   ```
-3. Add your skill entry to the [Skills Directory](#-skills-directory) in this `README.md`.
-4. Submit a Pull Request (PR)!
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE) - feel free to use, modify, and distribute for personal and commercial projects.
+### 🌐 Live Interactive Demos (Instant Browser Test)
+Test the generated mobile web applications directly in your smartphone or desktop browser:
+* 📱 **[Style 1: Mobile Pocket Guide Demo (Da Nang 4-Day)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_pocket_guide.html)** — *Recommended ⭐ (4 native bottom tabs, live search, task checkmarks, Apple/Google Maps, TTS voice, dynamic exchange rate calculator)*
+* 🗂️ **[Style 2: Apple iOS Card News Demo (Da Nang 4-Day)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_trip_cards.html)** — *(Swipe gesture card deck, white glassmorphic design, 4 top utility modals)*

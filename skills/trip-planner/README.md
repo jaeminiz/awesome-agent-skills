@@ -73,61 +73,10 @@ npx skills add https://github.com/jaeminiz/awesome-agent-skills --skill trip-pla
 A glimpse of the mobile-optimized Apple iPhone (iOS) style card news web app generated automatically by this skill:
 
 <p align="center">
-  <img src="dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="700" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
+  <img src="dual_preview.png" alt="Dual Mobile Web App Styles: Pocket Guide & iOS Card News Preview" width="760" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.12);" />
 </p>
 
-* 🌐 **Interactive Web App Sample**: [`examples/danang_trip_cards.html`](examples/danang_trip_cards.html)  
-  *(Open directly in any mobile or desktop browser to experience card swiping, voice TTS, and timeline search completely offline.)*
-* 🗺️ **Google My Maps All-in-One KML**: [`examples/danang_mymaps.kml`](examples/danang_mymaps.kml)  
-  *(Import into Google My Maps to instantly view 1–4 day numbered pins and popup descriptions.)*
-* 📊 **Google My Maps Standard 8-Column Integrated CSV**: [`examples/danang_itinerary.csv`](examples/danang_itinerary.csv)
-* 📂 **Google My Maps Day-by-Day CSVs**:
-  * [`examples/day1_itinerary.csv`](examples/day1_itinerary.csv) (Day 1)
-  * [`examples/day2_itinerary.csv`](examples/day2_itinerary.csv) (Day 2)
-  * [`examples/day3_itinerary.csv`](examples/day3_itinerary.csv) (Day 3)
-  * [`examples/day4_itinerary.csv`](examples/day4_itinerary.csv) (Day 4)
-
----
-
-## 📂 File Structure
-
-```
-trip-planner/
-├── SKILL.md                              # Main agent instruction & strict governance rules (EN)
-├── SKILL.ko.md                           # Main agent instruction & strict governance rules (KO)
-├── README.md                             # English skill documentation
-├── README.ko.md                          # Korean skill documentation
-├── sample_preview.png                    # Mobile card news web app screenshot
-├── examples/                             # Production-ready sample deliverables (Da Nang 4-Day)
-│   ├── danang_trip_cards.html            # Mobile card news web app (Strict iOS template layout)
-│   ├── danang_mymaps.kml                 # Google My Maps All-in-One KML
-│   ├── danang_itinerary.csv              # Google My Maps 8-column combined CSV
-│   ├── day1_itinerary.csv                # Day 1 CSV
-│   ├── day2_itinerary.csv                # Day 2 CSV
-│   ├── day3_itinerary.csv                # Day 3 CSV
-│   └── day4_itinerary.csv                # Day 4 CSV
-├── references/
-│   └── trip_planning_playbook.md         # Regional planning guidelines (Asia, Europe, Americas)
-└── resources/
-    ├── master_itinerary_template.md      # Master itinerary Markdown template
-    ├── budget_template.md                # Multi-currency budget template
-    ├── itinerary_template.csv            # Google My Maps 8-column CSV template
-    ├── mymaps_template.kml               # Google My Maps All-in-One KML template
-    ├── generate_maps_data.py             # Python utility script for CSV & KML builds
-    └── ios_card_app_template.html        # Strict iOS Card App HTML/JS template (4 Modals + itineraryData)
-```
-
----
-
-## 🌐 Language Support
-
-The `trip-planner` skill is fully **language-agnostic**:
-* When the user converses in **English**, all questionnaire items, timeline tables, budgets, and generated deliverables are rendered in **English** (with native local phrases for destination countries).
-* When the user converses in **Korean**, it operates seamlessly in **Korean**.
-* Supports any destination worldwide (Japan, Vietnam, France, Italy, USA, Switzerland, Spain, etc.).
-
----
-
-## 📄 License
-
-MIT License. See [LICENSE](../../LICENSE) for details.
+### 🌐 Live Interactive Demos (Instant Browser Test)
+Test the generated mobile web applications directly in your smartphone or desktop browser:
+* 📱 **[Style 1: Mobile Pocket Guide Demo (Da Nang 4-Day)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_pocket_guide.html)** — *Recommended ⭐ (4 native bottom tabs, live search, task checkmarks, Apple/Google Maps, TTS voice, dynamic exchange rate calculator)*
+* 🗂️ **[Style 2: Apple iOS Card News Demo (Da Nang 4-Day)](https://jaeminiz.github.io/awesome-agent-skills/skills/trip-planner/examples/danang_trip_cards.html)** — *(Swipe gesture card deck, white glassmorphic design, 4 top utility modals)*
