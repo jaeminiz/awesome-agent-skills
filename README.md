@@ -1,6 +1,6 @@
 # 🌟 Awesome Agent Skills
 
-[![Version](https://img.shields.io/badge/version-v1.4.2-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.4.2)
+[![Version](https://img.shields.io/badge/version-v1.5.0-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/jaeminiz/awesome-agent-skills/pulls)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
@@ -31,11 +31,11 @@ npx skills add https://github.com/jaeminiz/awesome-agent-skills --list
 
 | Category | Skill Name | Version | Description | Link |
 | :--- | :--- | :---: | :--- | :---: |
-| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.4.2` | **Global Expert Travel Planner & Itinerary Architect**<br>• Interactive step-by-step questionnaire & live pricing/exchange rate lookup<br>• Media-curated gourmet & cafe recommendations (YouTube, Instagram, Blogs)<br>• **Detailed minute-by-minute timeline (5-column table)** & precision budget<br>• **Google My Maps standard 8-column Day-by-Day CSV & All-in-One KML**<br>• **Mobile-optimized Apple iPhone (iOS) style card news web app (Strict template layout)** | [Explore](skills/trip-planner) |
+| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.5.0` | **Global Expert Travel Planner & Itinerary Architect**<br>• Interactive step-by-step questionnaire & live pricing/exchange rate lookup<br>• Media-curated gourmet & cafe recommendations (YouTube, Instagram, Blogs)<br>• **Detailed minute-by-minute timeline (5-column table)** & precision budget<br>• **Google My Maps standard 8-column Day-by-Day CSV & All-in-One KML**<br>• **Dual Mobile Web Apps: Style 1 (Default: Pocket Guide with 4 tabs, TTS, live search & rate calculator) / Style 2 (Apple iOS Card News)** | [Explore](skills/trip-planner) |
 
 ---
 
-## 🏆 Featured Skill: `trip-planner` (`v1.4.2`)
+## 🏆 Featured Skill: `trip-planner` (`v1.5.0`)
 
 ### 🧭 [trip-planner](skills/trip-planner) — Global Travel Planner & Itinerary Architect
 

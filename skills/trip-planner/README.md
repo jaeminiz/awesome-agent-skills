@@ -1,6 +1,6 @@
 # 🧭 Global Trip Planner
 
-[![Version](https://img.shields.io/badge/version-v1.4.2-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.4.2)
+[![Version](https://img.shields.io/badge/version-v1.5.0-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.0)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 

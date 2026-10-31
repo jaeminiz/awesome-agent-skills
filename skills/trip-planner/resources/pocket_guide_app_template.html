@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="{{APP_TITLE}}">
+<meta name="description" content="{{APP_DESCRIPTION}}">
+<title>{{PAGE_TITLE}}</title>
+<style>
+
+:root{color-scheme:light;--ink:#18262b;--muted:#66736f;--green:#075d45;--light:#eaf6ef;--bg:#f6f8f7;--line:#e3eae6;--white:#fff;--radius:22px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-synthesis:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:155px}body{margin:0;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-wrap:anywhere}button,input,a,summary{-webkit-tap-highlight-color:transparent}button,input{font:inherit}button,a,summary{touch-action:manipulation}button,a{color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #4684db;outline-offset:3px}button{border:0}a{text-decoration:none}svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}button:disabled{opacity:.5}button.primary,.primary{background:var(--green);color:white}.wrap{max-width:1020px;margin:auto}.top{padding:calc(22px + env(safe-area-inset-top)) 22px 18px;display:flex;align-items:center;justify-content:space-between;background:white}.brand{font-size:15px;font-weight:750;color:var(--green);display:flex;gap:10px;align-items:center}.top button{background:var(--bg);width:44px;height:44px;border-radius:50%;display:grid;place-items:center}.hero{padding:18px 22px 28px;background:white}.hero h1{font-size:clamp(39px,9.8vw,61px);line-height:1.16;letter-spacing:-2.4px;margin:0 0 18px;font-weight:800}.hero em{font-style:normal;color:var(--green)}.hero p{margin:0;color:var(--muted);font-size:16px;font-variant-numeric:tabular-nums}.hero .meta{font-size:13px;margin-top:8px}.sticky{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:calc(12px + env(safe-area-inset-top)) 22px 12px;border-bottom:1px solid var(--line)}.dates{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dates button{min-height:60px;border-radius:16px;background:#f1f4f2;font-size:18px;font-weight:700;line-height:1.4}.dates button small{display:block;font-size:11px;font-weight:500;opacity:.75}.dates button[aria-selected=true]{background:var(--green);color:white}.content{padding:25px 22px 130px;min-height:55vh}.section-title{font-size:26px;letter-spacing:-1px;line-height:1.3;margin:0 0 6px}.sub{color:var(--muted);font-size:14px;margin:0 0 22px}.day-heading{display:flex;justify-content:space-between;gap:10px;align-items:start}.subtle{font-size:13px;color:var(--green);background:var(--light);padding:7px 12px;border-radius:30px;white-space:nowrap}.route{font-size:12px;color:var(--muted);padding:0 0 20px;line-height:1.8}.tour-card{background:#f0f5ff;border:1px solid #d9e4ff;border-radius:var(--radius);padding:20px;margin:0 0 22px}.tour-card h3{font-size:19px;line-height:1.4;margin:0 0 7px;color:#20365c}.tour-card p{font-size:14px;line-height:1.75;color:#52627b;margin:0 0 10px}.tour-card .en{font-size:13px;color:#66748a}.tour-card .actions{margin-top:14px}.tour-card .action.primary{background:var(--green);color:#fff}.tour-pickup{background:#fff;border:1px solid #dbe4f2;border-radius:14px;padding:13px;margin:12px 0}.tour-pickup h4{font-size:15px;line-height:1.5;margin:0 0 4px;color:#20365c}.tour-pickup p{font-size:13px;margin:0 0 8px}.tour-card .notice-line{padding-top:8px;border-top:1px solid #d9e4ff}.feature{background:var(--light);padding:20px;border-radius:var(--radius);margin-bottom:26px;border:1px solid #d9ece1}.feature .tiny{font-size:12px;color:var(--green);font-weight:700}.feature h3{margin:7px 0;font-size:22px;letter-spacing:-.5px;line-height:1.4}.feature p{margin:0;font-size:14px;color:var(--muted)}.feature button{margin-top:14px;border-radius:12px;min-height:44px;padding:8px 15px;background:white;color:var(--green);font-weight:700;font-size:14px}.progress{height:4px;background:var(--line);border-radius:8px;margin:12px 0 0;overflow:hidden}.progress i{display:block;height:100%;background:var(--green);border-radius:8px}.timeline{margin-left:9px;border-left:1px solid #cbded4}.compare-intro{margin:22px 0 12px;padding:13px 15px;border-radius:14px;background:#eaf6ef;color:#075d45;font-size:14px;font-weight:700}.compare-row{margin:14px 0 18px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:18px}.compare-row>h3{margin:0 0 12px;font-size:16px;color:var(--green)}.compare-pair{display:grid;grid-template-columns:1fr;gap:10px}.compare-option{min-width:0;padding:12px;border-radius:14px;background:#f7f9f8}.plan-label{margin-bottom:8px;font-size:13px;font-weight:800;color:var(--green)}.plan-label.b{color:#3156a3}.plan-event{padding:9px 0;border-top:1px solid var(--line)}.plan-event:first-of-type{border-top:0;padding-top:0}.plan-event.done h4{color:#728179}.plan-event .event-head{gap:7px}.plan-event .time{font-size:12px}.plan-event .check{width:36px;height:36px}.plan-event h4{font-size:15px;line-height:1.4;margin:3px 0 5px}.plan-event p{font-size:12px;line-height:1.65;color:var(--muted);margin:0 0 8px}.plan-event .actions{gap:5px}.plan-event .action{min-height:38px;padding:7px 9px;font-size:11px}.plan-event .disclosure summary{min-height:40px;font-size:12px}.shared-label{margin:18px 0 8px;font-size:13px;color:var(--muted);font-weight:700}.event{position:relative;padding:0 0 27px 24px;scroll-margin-top:110px}.event:before{content:'';position:absolute;left:-6px;top:8px;width:11px;height:11px;background:var(--green);border:2px solid var(--bg);border-radius:50%;box-sizing:content-box}.event.done:before{background:#a8b8af}.event.done h3{color:#718078}.event-head{display:flex;gap:12px;align-items:center;justify-content:space-between}.time{font-size:14px;font-weight:750;font-variant-numeric:tabular-nums}.type{font-size:11px;color:var(--muted);margin-left:8px;font-weight:500}.check{background:white;border:1px solid #cfdbd4;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;color:#8b9c93;flex:none}.check[aria-pressed=true]{background:var(--green);color:white;border-color:var(--green)}.check svg{width:18px;height:18px}.event h3{font-size:21px;line-height:1.4;letter-spacing:-.6px;margin:3px 0 9px}.event p{font-size:14px;color:var(--muted);margin:0 0 12px;line-height:1.8}.actions{display:flex;gap:7px;flex-wrap:wrap}.action{border:1px solid var(--line);background:white;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;border-radius:12px;padding:9px 12px;font-size:13px;font-weight:650}.action svg{width:17px;height:17px}.action.apple{color:var(--green)}.disclosure{margin-top:9px;border-radius:12px;background:#eef2ef}.disclosure summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;min-height:46px;padding:10px 12px;font-size:13px;font-weight:650}.disclosure summary::-webkit-details-marker{display:none}.disclosure summary svg{width:17px;height:17px}.disclosure summary .chevron{margin-left:auto;transition:transform .2s}.disclosure[open] summary .chevron{transform:rotate(180deg)}.phrase-body{padding:8px 14px 16px}.ja{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;font-size:20px;color:var(--ink);line-height:1.7;word-break:normal;margin-bottom:8px}.reading{color:var(--green);font-size:14px}.meaning{font-size:13px;color:var(--muted);margin-top:4px}.phrase-controls{display:flex;gap:8px;margin-top:14px}.phrase-controls button{border-radius:10px;min-height:44px;background:white;border:1px solid var(--line);padding:9px 12px;display:flex;align-items:center;gap:7px;font-size:13px}.phrase-controls svg{width:18px;height:18px}.tabbar{position:fixed;z-index:10;bottom:0;left:0;right:0;background:rgba(255,255,255,.93);border-top:1px solid var(--line);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:9px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:grid;grid-template-columns:repeat(4,1fr)}.tabbar button{background:transparent;min-height:52px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;color:#7a8780;font-size:11px;font-weight:650}.tabbar button[aria-current=page]{color:var(--green)}.tabbar button[aria-current=page]:after{content:'';height:3px;width:20px;border-radius:4px;background:var(--green);position:absolute;bottom:calc(5px + env(safe-area-inset-bottom))}.panel{background:white;border-radius:var(--radius);padding:20px;margin:16px 0;border:1px solid var(--line)}.panel h3{margin:0 0 12px;font-size:18px;letter-spacing:-.5px}.place{border-bottom:1px solid var(--line);padding:18px 0}.place:last-child{border-bottom:0}.place h3{font-size:18px;margin:0 0 7px}.place p{font-size:13px;color:var(--muted);margin:0 0 10px}.search{display:flex;gap:9px;align-items:center;background:white;border:1px solid var(--line);border-radius:14px;padding:0 14px;margin:18px 0}.search input{min-width:0;width:100%;border:0;background:transparent;min-height:50px;outline:none;color:var(--ink);font-size:16px}.chips{display:flex;gap:7px;overflow-x:auto;padding:3px 0 10px;scrollbar-width:none}.chips button{white-space:nowrap;border:1px solid var(--line);background:white;min-height:44px;border-radius:30px;padding:8px 15px;font-size:13px}.chips button.selected{background:var(--green);color:white}.listcheck{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px;cursor:pointer;min-height:50px}.listcheck:last-child{border-bottom:0}.listcheck input{width:22px;height:22px;accent-color:var(--green);flex:none}.listcheck:has(input:checked) span{color:#728179;text-decoration:line-through}.listcheck small{display:block;font-size:12px;color:var(--muted)}.money{font-size:36px;font-weight:800;letter-spacing:-1.5px;color:var(--green);margin:4px 0}.money small{font-size:16px;letter-spacing:0}.budget-row{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid var(--line);padding:12px 0;font-size:14px}.budget-row:last-child{border-bottom:0}.budget-row b{font-variant-numeric:tabular-nums;white-space:nowrap}.rate{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted)}.rate input{width:100px;min-height:44px;padding:8px;border:1px solid var(--line);border-radius:10px;font-size:16px;color:var(--ink);background:white}.note{font-size:13px;color:var(--muted);line-height:1.9;margin:10px 0}.note + .note{padding-top:12px;border-top:1px solid var(--line)}.notice{background:#fff7e5;color:#795e22;border-radius:14px;padding:14px;font-size:13px;margin:15px 0}.empty{padding:30px 5px;color:var(--muted)}.quick-hotel{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--green);font-size:14px}.quick-hotel svg{width:19px;height:19px}.inline-title{margin:25px 0 10px;font-size:19px}.modal{border:0;border-radius:26px;padding:0;max-width:min(520px,calc(100vw - 28px));width:100%;color:var(--ink);box-shadow:0 20px 80px #0002;background:white}.modal::backdrop{background:#10241d70;backdrop-filter:blur(5px)}.modal-inner{padding:24px}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}.modal-head h2{font-size:19px;margin:0}.close{border-radius:50%;background:var(--bg);width:44px;height:44px;display:grid;place-items:center}.display-ja{font-size:30px;line-height:1.8;max-height:50vh;overflow:auto}.toast{position:fixed;bottom:calc(96px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:calc(100vw - 40px);width:max-content;background:#18382d;color:white;z-index:30;padding:12px 18px;border-radius:14px;font-size:14px;box-shadow:0 8px 30px #0002}.hidden,[hidden]{display:none!important}.footer{font-size:11px;color:#7c8982;text-align:center;padding:25px 0 0}body[data-view]:not([data-view=timeline]) .hero{display:none}body[data-view]:not([data-view=timeline]) .top{padding-bottom:12px}.detail-budget summary{font-size:14px;cursor:pointer;padding:13px 0;color:var(--green)}.detail-budget .budget-row{font-size:12px}.next-day{display:flex;align-items:center;justify-content:space-between;gap:15px;background:white;border:1px solid var(--line);border-radius:16px;min-height:58px;padding:15px 18px;width:100%;color:var(--green);font-weight:700}.desktop-note{display:none}
+@media(min-width:760px){.wrap{max-width:820px}.top,.hero,.sticky{padding-left:48px;padding-right:48px}.content{padding:32px 48px 135px}.hero{padding-top:30px;padding-bottom:35px}.hero h1{font-size:64px}.tabbar{left:50%;right:auto;transform:translateX(-50%);max-width:820px;width:100%;border-radius:24px 24px 0 0}.event{padding-left:32px}.event h3{font-size:23px}.event p{font-size:15px}.timeline{margin-left:14px}.desktop-note{display:inline}.places-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 26px}.compare-pair{grid-template-columns:1fr 1fr}.modal-inner{padding:32px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}@media print{.tabbar,.top,.sticky,.search,.chips,.action,.check,.feature button,.phrase-controls,.next-day{display:none}.content{padding:0}.hero{padding:0 0 20px}.event{break-inside:avoid}.event p{color:#333}.wrap{max-width:none}.panel{break-inside:avoid}}
+
+/* Multilingual font support */
+.native-lang, .ja, .vi, .zh, .th {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  font-size: 20px;
+  color: var(--ink);
+  line-height: 1.6;
+  word-break: normal;
+  margin-bottom: 8px;
+}
+.display-native, .display-ja {
+  font-size: clamp(26px, 6vw, 36px);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--green);
+}
+</style>
+</head>
+<body data-view="timeline">
+<svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2m-8 3h2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11a9 9 0 0 1-9 9 10 10 0 0 1-4-1l-5 2 1-5a9 9 0 1 1 17-5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="15" rx="3"/><path d="M9 6V3h6v3M9 10v7m6-7v7"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2Zm6-2v16m6-14v16"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m8 4 8 8-8 8"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20 5c-3-3-6-1-8 1-2-2-5-4-8-1-4 4 0 9 8 15 8-6 12-11 8-15Z"/></symbol>
+</defs></svg>
+<div class="wrap">
+<header class="top"><div class="brand" id="brand-title"><svg aria-hidden="true"><use href="#i-plane"/></svg><span></span></div><button id="info" aria-label="여행 준비 및 확인 메모"><svg aria-hidden="true"><use href="#i-bag"/></svg></button></header>
+<section class="hero" id="hero-section"></section>
+<div class="sticky"><div class="dates" role="tablist" aria-label="여행 날짜" id="dates-bar"></div></div>
+<main class="content" id="main" tabindex="-1"></main>
+</div>
+<nav class="tabbar" aria-label="주 메뉴"><button data-view="timeline" aria-current="page"><svg aria-hidden="true"><use href="#i-calendar"/></svg>일정</button><button data-view="places"><svg aria-hidden="true"><use href="#i-pin"/></svg>장소</button><button data-view="phrases"><svg aria-hidden="true"><use href="#i-chat"/></svg>회화</button><button data-view="ready"><svg aria-hidden="true"><use href="#i-bag"/></svg>준비</button></nav>
+<dialog class="modal" id="phrase-modal"><div class="modal-inner"><div class="modal-head"><h2>이 화면을 보여주세요</h2><button class="close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-x"/></svg></button></div><div id="modal-content"></div></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+window.TRIP = {{TRIP_DATA_JSON}};
+</script>
+<script>
+'use strict';
+const T = window.TRIP;
+const main = document.getElementById('main');
+const icon = (n, c='') => `<svg aria-hidden="true" class="${c}"><use href="#i-${n}"/></svg>`;
+const esc = s => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const flat = T.days.flatMap((d, di) => d.items.map((x, i) => ({ x, di, i, id: `${di}-${i}` })));
+const byId = id => flat.find(e => e.id === id);
+
+const storageKey = T.meta?.storageKey || 'pocket-guide-' + (T.meta?.city || 'trip').toLowerCase();
+let state = { day: 0, view: 'timeline', query: '', filter: '전체' };
+let saved = { done: {}, packing: {}, shopping: {}, rate: T.meta?.defaultRate || 100 };
+
+try {
+  const old = JSON.parse(localStorage.getItem(storageKey));
+  if (old) {
+    for (const k of ['done', 'packing', 'shopping']) if (old[k] && typeof old[k] === 'object') saved[k] = old[k];
+    if (Number.isFinite(old.rate) && old.rate > 0) saved.rate = old.rate;
+  }
+} catch(e) {}
+
+function persist() {
+  try { localStorage.setItem(storageKey, JSON.stringify(saved)); }
+  catch(e) { toast('이 브라우저에서는 체크 상태를 저장할 수 없습니다.'); }
+}
+
+function toast(s) {
+  const el = document.getElementById('toast');
+  el.textContent = s;
+  el.hidden = false;
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => el.hidden = true, 3200);
+}
+
+const curSymbol = T.meta?.currencySymbol || '';
+const curUnit = T.meta?.currencyUnit || 1;
+const curRateLabel = T.meta?.currencyRateLabel || `1${curSymbol} =`;
+const langName = T.meta?.langName || '현지어';
+const langCode = T.meta?.langCode || 'en-US';
+
+const curFmt = n => (curSymbol ? curSymbol + ' ' : '') + Math.round(n).toLocaleString('ko-KR') + (!curSymbol ? (T.meta?.currencyName || '') : '');
+const won = n => Math.round(n).toLocaleString('ko-KR') + '원';
+
+function initHeader() {
+  document.querySelector('#brand-title span').textContent = T.meta?.brand || '여행 포켓 가이드';
+  const hero = document.getElementById('hero-section');
+  hero.innerHTML = `
+    <h1>${T.meta?.heroH1 || '도시에서<br>우리의 <em>일정.</em>'}</h1>
+    <p>${T.meta?.period || ''}</p>
+    <p class="meta">${T.meta?.summary || ''}<span class="desktop-note"> · 주머니 속 여행 가이드</span></p>
+  `;
+  const datesBar = document.getElementById('dates-bar');
+  datesBar.innerHTML = T.days.map((d, i) => `
+    <button role="tab" aria-selected="${i===0}" data-day="${i}">${esc(d.label)}<small>${esc(d.sub || '')}</small></button>
+  `).join('');
+}
+
+function maps(place) {
+  const q = encodeURIComponent(place);
+  return `<div class="actions"><a class="action apple" target="_blank" rel="noopener noreferrer" href="https://maps.apple.com/?q=${q}">${icon('map')}Apple 지도</a><a class="action" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=${q}">Google 지도</a></div>`;
+}
+
+function phrase(e, open=false) {
+  const x = e.x;
+  if (!x[6]) return '';
+  return `<details class="disclosure" ${open?'open':''}><summary>${icon('chat')}${langName} 회화${icon('down','chevron')}</summary><div class="phrase-body"><div class="native-lang">${esc(x[6])}</div><div class="reading">${esc(x[7])}</div><div class="meaning">${esc(x[8])}</div>${phraseControls(e.id)}</div></details>`;
+}
+
+function phraseControls(id) {
+  return `<div class="phrase-controls"><button data-speak="${id}" aria-label="발음 듣기">${icon('sound')}듣기</button><button data-big="${id}">크게 보기</button><button data-copy="${id}" aria-label="복사">${icon('copy')}</button></div>`;
+}
+
+function render() {
+  document.body.dataset.view = state.view;
+  document.querySelectorAll('[data-day]').forEach(b => {
+    const isSel = +b.dataset.day === state.day;
+    b.setAttribute('aria-selected', String(isSel));
+    b.tabIndex = isSel ? 0 : -1;
+  });
+  document.querySelectorAll('.tabbar button').forEach(b => b.setAttribute('aria-current', b.dataset.view === state.view ? 'page' : 'false'));
+  if (state.view === 'timeline') timeline();
+  else if (state.view === 'places') places();
+  else if (state.view === 'phrases') phrases();
+  else if (state.view === 'ready') ready();
+}
+
+function eventTimeline(entries) {
+  return '<div class="timeline">' + entries.map(e => {
+    const x = e.x;
+    return '<article class="event ' + (saved.done[e.id] ? 'done' : '') + '" id="event-' + e.id + '"><div class="event-head"><div class="time">' + esc(x[0]) + (x[1] ? '–' + esc(x[1]) : '') + '<span class="type">' + esc(x[3]) + '</span></div><button class="check" data-done="' + e.id + '" aria-pressed="' + !!saved.done[e.id] + '" aria-label="' + esc(x[2]) + ' 완료 표시">' + icon('check') + '</button></div><h3>' + esc(x[2]) + '</h3><p>' + esc(x[5]) + '</p>' + maps(x[4]) + phrase(e) + '</article>';
+  }).join('') + '</div>';
+}
+
+function timeline() {
+  const d = T.days[state.day];
+  const entries = flat.filter(e => e.di === state.day);
+  const done = entries.filter(e => saved.done[e.id]).length;
+  let next = entries.find(e => !saved.done[e.id]);
+
+  main.innerHTML = `
+    <div class="day-heading"><div><h2 class="section-title">${esc(d.title)}</h2><p class="sub">${esc(d.subtitle || '')}</p></div><span class="subtle">DAY ${state.day+1}</span></div>
+    <div class="route">${esc(d.route || '')}</div>
+    ${d.notice ? `<section class="tour-card"><h3>${esc(d.notice.title)}</h3><p>${d.notice.content}</p></section>` : ''}
+    <div class="feature">
+      <div class="tiny">${done === entries.length ? '오늘의 계획 체크 완료!' : '다음으로 확인할 일정'} · ${done}/${entries.length}</div>
+      <h3>${next ? `${esc(next.x[0])} · ${esc(next.x[2])}` : '오늘의 모든 일정을 완료했습니다!'}</h3>
+      <p>${next ? esc(next.x[4]) : '체크한 일정은 이 기기에 안전하게 저장됩니다.'}</p>
+      <div class="progress" role="progressbar" aria-valuenow="${done}" aria-valuemin="0" aria-valuemax="${entries.length}" aria-label="일정 완료 수"><i style="width:${entries.length ? (done/entries.length*100) : 0}%"></i></div>
+      ${next ? `<button data-jump="${next.id}">해당 일정으로 이동</button>` : ''}
+    </div>
+    ${eventTimeline(entries)}
+    <button class="next-day" data-next="${(state.day + 1) % T.days.length}">${state.day < T.days.length - 1 ? '다음 날 일정 보기' : '1일차로 돌아가기'}${icon('chevron')}</button>
+    ${footer()}
+  `;
+}
+
+function footer() {
+  return `<footer class="footer">${T.meta?.footer || '실시간 최저가·환율·미디어 큐레이션 반영 · 시간 및 요금은 현장 안내를 우선합니다.'}</footer>`;
+}
+
+function places() {
+  const d = T.days[state.day];
+  const categories = T.meta?.placeCategories || ['전체', '식사', '쇼핑', '관광', '투어', '이동'];
+  main.innerHTML = `
+    <h2 class="section-title">길 찾기는 한 번에.</h2>
+    <p class="sub">DAY ${state.day + 1} · ${esc(d.title)}</p>
+    ${T.hotel ? `<div class="panel"><div class="quick-hotel"><b>우리의 베이스캠프</b>${icon('bag')}</div><h3 style="margin-top:12px">${esc(T.hotel.name)}</h3><p class="note">${esc(T.hotel.address || '')}</p>${maps(T.hotel.name)}</div>` : ''}
+    <label class="search">${icon('search')}<input id="query" type="search" placeholder="장소·메뉴 검색" aria-label="장소 검색" value="${esc(state.query)}"></label>
+    <div class="chips" aria-label="장소 종류">${categories.map(v => `<button data-filter="${v}" class="${state.filter===v?'selected':''}" aria-pressed="${state.filter===v}">${v}</button>`).join('')}</div>
+    <div id="places-results" class="places-grid"></div>
+    ${footer()}
+  `;
+  placeResults();
+}
+
+function placeResults() {
+  const q = state.query.toLowerCase();
+  const entries = flat.filter(e => e.di === state.day && (state.filter === '전체' || e.x[3] === state.filter) && (e.x.join(' ').toLowerCase().includes(q)));
+  const seen = new Set();
+  const unique = entries.filter(e => { if (seen.has(e.x[4])) return false; seen.add(e.x[4]); return true; });
+  document.getElementById('places-results').innerHTML = unique.length ? unique.map(e => `
+    <article class="place"><span class="time">${esc(e.x[0])} <span class="type">${esc(e.x[3])}</span></span><h3>${esc(e.x[2])}</h3><p>${esc(e.x[4])}</p>${maps(e.x[4])}</article>
+  `).join('') : '<p class="empty">검색 결과가 없습니다. 다른 단어로 검색해 보세요.</p>';
+}
+
+function phrases() {
+  main.innerHTML = `
+    <h2 class="section-title">필요한 순간, ${langName}.</h2>
+    <p class="sub">읽거나, 크게 보여주거나, 원어민 발음으로 들어보세요.</p>
+    <label class="search">${icon('search')}<input id="phrase-query" type="search" placeholder="택시·면세·주문·호텔 등 검색" aria-label="회화 검색" value="${esc(state.query)}"></label>
+    <div id="phrases-results"></div>
+    ${footer()}
+  `;
+  phraseResults();
+}
+
+function phraseResults() {
+  const q = state.query.toLowerCase();
+  const entries = flat.filter(e => e.di === state.day && e.x[6] && [e.x[2], e.x[6], e.x[7], e.x[8]].join(' ').toLowerCase().includes(q));
+  document.getElementById('phrases-results').innerHTML = entries.length ? entries.map(e => `
+    <article class="panel"><div class="time" style="color:var(--green);margin-bottom:12px">${esc(e.x[0])} · ${esc(e.x[2])}</div><div class="native-lang">${esc(e.x[6])}</div><div class="reading">${esc(e.x[7])}</div><div class="meaning">${esc(e.x[8])}</div>${phraseControls(e.id)}</article>
+  `).join('') : '<p class="empty">검색 결과가 없습니다.</p>';
+}
+
+function checklist(items, key) {
+  if (!items || !items.length) return '<p class="note">항목이 없습니다.</p>';
+  return items.map((v, i) => {
+    const text = Array.isArray(v) ? v[0] : v;
+    const sub = Array.isArray(v) ? `${v[2] || ''} · ${v[1] || ''}` : '';
+    return `<label class="listcheck"><input type="checkbox" data-list="${key}" data-index="${i}" ${saved[key][i] ? 'checked' : ''}><span>${esc(text)}${sub ? `<small>${esc(sub)}</small>` : ''}</span></label>`;
+  }).join('');
+}
+
+function ready() {
+  main.innerHTML = `
+    <h2 class="section-title">가볍게 떠날 준비.</h2>
+    <p class="sub">체크 상태와 환율은 현재 기기에 안전하게 보관됩니다.</p>
+    <div class="panel"><h3>챙길 것 <span id="packing-count" class="type"></span></h3>${checklist(T.packing, 'packing')}</div>
+    <div class="panel"><h3>쇼핑 위시리스트</h3>${checklist(T.shopping, 'shopping')}</div>
+    <section class="panel">
+      <h3>예상 총경비 & 환율 계산</h3>
+      <p class="note">항공·숙박 제외 현지 경비 · 실시간 원화 자동 환산</p>
+      <div id="budget-total" class="money"></div>
+      <div class="rate"><label for="rate">${curRateLabel}</label><input id="rate" type="number" min="0.01" max="1000000" step="any" inputmode="decimal" value="${saved.rate}"><span>원</span></div>
+      <div id="budget-rows" class="budget-grid"></div>
+    </section>
+    ${T.food && T.food.length ? `<div class="panel"><h3>일자별 식비 & 카페 예산</h3><div class="budget-grid">${T.food.map(([day, item, cost]) => `<div class="budget-row"><span>${esc(day)} · ${esc(item)}</span><b>${curFmt(cost)}</b></div>`).join('')}</div></div>` : ''}
+    ${T.notes && T.notes.length ? `<section class="panel" id="notes"><h3>여행 주의사항 & 실전 팁</h3><div class="note-list">${T.notes.map(n => `<p>• ${esc(n)}</p>`).join('')}</div></section>` : ''}
+    ${footer()}
+  `;
+  budget();
+  counts();
+}
+
+function budget() {
+  const r = saved.rate / curUnit;
+  let totalLocal = 0;
+  if (T.budget) {
+    totalLocal = T.budget.reduce((acc, cur) => acc + cur[1], 0);
+  }
+  const totalWon = totalLocal * r;
+  const totEl = document.getElementById('budget-total');
+  if (totEl) totEl.innerHTML = won(totalWon);
+
+  const rowsEl = document.getElementById('budget-rows');
+  if (rowsEl && T.budget) {
+    const travelers = T.meta?.travelerCount || 1;
+    rowsEl.innerHTML = T.budget.map(([label, n]) => `
+      <div class="budget-row"><span>${esc(label)}<small style="display:block;color:var(--muted)">${curFmt(n)}</small></span><b>${won(n * r)}</b></div>
+    `).join('') + `
+      <div class="budget-row" style="border-top:1px solid var(--line);padding-top:10px;font-weight:700"><span>1인당 예상 경비</span><b>${won(totalWon / travelers)}</b></div>
+    `;
+  }
+}
+
+function counts() {
+  const el = document.getElementById('packing-count');
+  if (el && T.packing) {
+    const doneCount = T.packing.filter((_, i) => saved.packing[i]).length;
+    el.textContent = `${doneCount}/${T.packing.length}`;
+  }
+}
+
+function navigate(view) {
+  state.view = view;
+  state.query = '';
+  state.filter = '전체';
+  render();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+document.querySelector('.tabbar').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (b && b.dataset.view) navigate(b.dataset.view);
+});
+
+document.querySelector('.dates').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b || b.dataset.day === undefined) return;
+  state.day = +b.dataset.day;
+  state.query = '';
+  render();
+});
+
+document.querySelector('.dates').addEventListener('keydown', e => {
+  if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+  e.preventDefault();
+  const max = T.days.length - 1;
+  state.day = e.key === 'Home' ? 0 : e.key === 'End' ? max : (state.day + (e.key === 'ArrowRight' ? 1 : max)) % T.days.length;
+  render();
+  document.querySelector(`[data-day="${state.day}"]`)?.focus();
+});
+
+document.getElementById('info').addEventListener('click', () => {
+  navigate('ready');
+  document.getElementById('notes')?.scrollIntoView({ behavior: 'smooth' });
+});
+
+main.addEventListener('input', e => {
+  if (e.target.id === 'query') { state.query = e.target.value; placeResults(); }
+  if (e.target.id === 'phrase-query') { state.query = e.target.value; phraseResults(); }
+  if (e.target.id === 'rate') {
+    const v = Number(e.target.value);
+    if (Number.isFinite(v) && v > 0 && v <= 10000000) {
+      saved.rate = v;
+      persist();
+      budget();
+    }
+  }
+});
+
+main.addEventListener('change', e => {
+  const el = e.target;
+  if (el.dataset.list) {
+    saved[el.dataset.list][el.dataset.index] = el.checked;
+    persist();
+    counts();
+  }
+});
+
+main.addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  if (b.dataset.done) {
+    saved.done[b.dataset.done] = !saved.done[b.dataset.done];
+    persist();
+    const opened = [...main.querySelectorAll('details[open]')].map(d => d.closest('article')?.id);
+    const y = window.scrollY;
+    render();
+    opened.forEach(id => {
+      const d = document.querySelector(`#${id} details`);
+      if (d) d.open = true;
+    });
+    window.scrollTo({ top: y, behavior: 'instant' });
+  }
+  if (b.dataset.jump) {
+    document.getElementById('event-' + b.dataset.jump)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (b.dataset.next !== undefined) {
+    state.day = +b.dataset.next;
+    render();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  if (b.dataset.filter) {
+    state.filter = b.dataset.filter;
+    document.querySelectorAll('[data-filter]').forEach(v => {
+      v.classList.toggle('selected', v === b);
+      v.setAttribute('aria-pressed', String(v === b));
+    });
+    placeResults();
+  }
+});
+
+document.addEventListener('click', async e => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  if (b.dataset.speak) {
+    const item = byId(b.dataset.speak);
+    const text = item?.x[6];
+    if (!('speechSynthesis' in window) || !text) {
+      toast('이 브라우저는 음성 듣기를 지원하지 않습니다.');
+      return;
+    }
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = langCode;
+    u.rate = 0.85;
+    const voices = speechSynthesis.getVoices();
+    const voice = voices.find(v => v.lang.startsWith(T.meta?.langPrefix || langCode.slice(0, 2)));
+    if (voice) u.voice = voice;
+    u.onerror = () => toast('음성 재생에 실패했습니다.');
+    speechSynthesis.speak(u);
+    toast(`${langName} 발음 재생 중`);
+  }
+  if (b.dataset.big) {
+    const item = byId(b.dataset.big);
+    if (!item) return;
+    document.getElementById('modal-content').innerHTML = `
+      <div class="display-native">${esc(item.x[6])}</div>
+      <p class="reading">${esc(item.x[7])}</p>
+      <p class="meaning">${esc(item.x[8])}</p>
+      ${phraseControls(item.id).replace(/<button data-big=.*?<\/button>/, '')}
+    `;
+    document.getElementById('phrase-modal').showModal();
+  }
+  if (b.dataset.copy) {
+    const item = byId(b.dataset.copy);
+    if (!item) return;
+    try {
+      await navigator.clipboard.writeText(item.x[6]);
+      toast(`${langName} 문장을 복사했습니다.`);
+    } catch(err) {
+      toast('클립보드 복사에 실패했습니다.');
+    }
+  }
+});
+
+const dialog = document.getElementById('phrase-modal');
+dialog.querySelector('.close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', e => {
+  if (e.target === dialog) {
+    const r = dialog.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close();
+  }
+});
+dialog.addEventListener('close', () => {
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+});
+
+initHeader();
+render();
+</script>
+</body>
+</html>

@@ -9,14 +9,16 @@ description: >-
   food/café options from travel YouTubers, bloggers, and Instagram, adapts local transport
   (Uber/Grab/Trains/Rentals), provides native situational phrases, and strictly confirms with
   the user before generating final Day-by-Day CSVs, all-in-one Google My Maps KML files, and
-  mobile-optimized Apple iPhone (iOS) style card news web applications.
+  choice of 2 mobile web apps: Style 1 (Default: Feature-rich Mobile Pocket Guide with 4 tabs,
+  live search, checkmarks, Apple/Google Maps, TTS voice, and exchange calculator) or Style 2
+  (Apple iOS Card News App with swipe gestures and 4 utility modals).
 ---
 
 # 🧭 Global Trip Planner Skill (글로벌 전문가 여행 플래너)
 
 > **Universal AI Travel Planner & Itinerary Architect**  
 > Covers domestic and worldwide international destinations (Asia, Europe, Americas, Oceania, etc.).  
-> **Strictly interactive**: Conducts structured questionnaires first, retrieves real-time live flight/hotel pricing and daily foreign exchange rates, curates social media-trending gourmet spots and cafes, and generates **Google My Maps Day-by-Day CSVs, All-in-One KMLs, and mobile-optimized Apple iPhone (iOS) style card news web applications (`[city]_trip_cards.html`)**.
+> **Strictly interactive**: Conducts structured questionnaires first, retrieves real-time live flight/hotel pricing and daily foreign exchange rates, curates social media-trending gourmet spots and cafes, and generates **Google My Maps Day-by-Day CSVs, All-in-One KMLs, and choice of 2 Mobile Web Applications (`[city]_pocket_guide.html` or `[city]_trip_cards.html`)**.
 
 ---
 
@@ -42,8 +44,11 @@ description: >-
 5. **일자별 상세 타임라인 종합 정리표 & 최종 예산표 전체 출력 필수 (No Skipping Timeline Tables)**:
    - Phase 4 마스터 일정 보고 시, **절대 축약된 몇 줄의 요약문으로 대체하는 것을 금지**합니다.
    - 반드시 `resources/master_itinerary_template.md`의 양식대로 **일자별(DAY 1, DAY 2, ...) 상세 타임라인 종합 정리표(순번/시간/일정내용/방문스팟&이동팁/현지실전회화 5개 컬럼 테이블)** 전체와 **구글맵 다중 경유지 동선 링크**, 그리고 **당일 환율 적용 최종 정밀 예산표**를 채팅 본문에 완벽하게 모두 출력하여 사용자에게 검토받아야 합니다.
-6. **최종 산출물(Day별 CSV & 올인원 KML & 모바일 카드뉴스) 생성 전 필수 사용자 확인 (Confirmation Before Final Deliverables)**:
-   - 모든 일정과 계획이 완성된 후, **"위의 모든 일정이 확정되었는데, 구글 내 지도용 일자별 CSV 파일들(day1_itinerary.csv...)과 원클릭 올인원 KML 파일([도시]_mymaps.kml), 그리고 휴대폰에서 1장씩 볼 수 있는 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션([도시]_trip_cards.html) 생성을 해드릴까요?"**라고 사용자에게 명시적으로 질문하고, 사용자의 승인을 확인한 후에만 파일들을 작성합니다.
+6. **최종 산출물 승인 및 2가지 웹앱 스타일 선택 확인 (Confirmation & Style Selection)**:
+   - 모든 일정과 계획이 완성된 후, 사용자에게 최종 파일 생성 동의를 구하며 **선호하는 모바일 웹앱 스타일을 질문**합니다:
+     - **스타일 1: 모바일 포켓 가이드 웹앱 (기본 추천 ⭐)**: 4개 탭(일정/장소/회화/준비), 실시간 검색, 완료 체크박스(localStorage 보존), Apple/Google 지도 듀얼 연동, 대형 텍스트 모달 & Web Speech API 원어민 TTS, 실시간 환율 연동 예산 계산기 (`resources/pocket_guide_app_template.html`).
+     - **스타일 2: 애플 아이폰(iOS) 카드뉴스 웹앱 (선택)**: 스와이프 제스처 카드뉴스, 글래스모피즘 디자인, 4대 유틸리티 모달 (`resources/ios_card_app_template.html`).
+   - 사용자가 별도로 지정하지 않으면 **스타일 1(포켓 가이드)**을 기본 적용합니다.
 
 ---
 
@@ -56,171 +61,53 @@ description: >-
        ↓ (선택된 항공/숙소 확정)
 [Phase 3. 동선 최적화 맛집 & 카페 글로벌 큐레이션 리스트 보고] ➔ [사용자 선택]
        ↓ (선택된 미식/카페 반영)
-[Phase 4. 마스터 일정표 & 정밀 예산안 작성 및 최종 보고]
+[Phase 4. ⭐ 마스터 일정표 & 정밀 예산안 작성 및 최종 보고 (축약 절대 금지)]
        ↓ (전체 일정 및 동선 검토 완료)
-[Phase 5. 최종 산출물 생성 여부 확인 질문 (Day별 CSV, KML, iOS 카드뉴스)] ➔ [사용자 승인]
-       ↓
-[Phase 6. 구글 내 지도 Day별 CSV + 올인원 KML + 애플 아이폰(iOS) 카드뉴스 웹앱 생성]
+[Phase 5. 최종 산출물 생성 확인 및 웹앱 스타일 선택 질문]
+       "모든 일정이 확정되었습니다! 최종 산출물을 생성하기 전 선호하시는 모바일 웹앱 스타일을 선택해 주세요:
+        1) 포켓 가이드 스타일 (기본 추천 ⭐): 4개 탭, 실시간 검색, 완료 체크박스, 애플/구글 지도, 원어민 TTS, 실시간 환율 계산기
+        2) 애플 아이폰 카드뉴스 스타일: 스와이프 카드뉴스, 글래스모피즘, 4대 모달" ➔ [사용자 승인]
+       ↓ (사용자 승인 및 스타일 확정)
+[Phase 6. 최종 파일 일괄 빌드 및 제공]
+       - Google My Maps 일자별 CSV 파일들 (day1_itinerary.csv...)
+       - 원클릭 올인원 구글 내 지도 KML 파일 ([도시]_mymaps.kml)
+       - 선택된 스타일의 모바일 웹 애플리케이션 ([도시]_pocket_guide.html 또는 [도시]_trip_cards.html)
 ```
 
 ---
 
-### Phase 1: 초기 인터뷰 및 필수 질문 (Global Questionnaire)
+## 📦 최종 산출물 상세 규격
 
-사용자가 여행 계획을 요청하면, **절대 임의로 일정을 먼저 완성하지 말고** 아래 핵심 7대 항목을 먼저 친절하게 질문합니다:
-1. **여행지 및 일정**: 출발지, 목적지(국가/도시), 여행 시작일 및 종료일(또는 박/일 기간).
-2. **여행 인원 및 구성**: 총 인원수, 관계(혼자, 연인/친구, 아이 동반 가족, 부모님 동반 효도여행 등).
-3. **항공권 예매 여부**: 이미 발권했는지(출도착 시간대 공유), 아니면 실시간 최저가 탐색 추천이 필요한지.
-4. **숙소 선호도**: 선호 숙박 형태(5성급 럭셔리 호텔, 감성 부티크/에어비앤비, 가성비 비즈니스 호텔, 호스텔 등), 1박당 예산 범위.
-5. **교통 수단 방식**: 우버/그랩/볼트, 대중교통(지하철/기차/버스), 렌터카, 패키지/일일투어 버스 등.
-6. **여행 테마 및 스타일**: 관광지 정복형 vs 여유로운 힐링형 / 미식 및 카페 탐방 / 쇼핑 / 역사·문화 유적 / 자연 액티비티.
-7. **기타 필수 체크**: 여행 전체 총 예산 한도, 희망 위시리스트(꼭 가고 싶은 스팟이나 음식).
+### 1. 구글 내 지도(Google My Maps) 일자별 CSV (`day1_itinerary.csv`, `day2_itinerary.csv`...)
+- 표준 8개 컬럼: `날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모`
+- 위도·경도 컬럼 탑재로 구글 내 지도 가져오기 시 1초 만에 오차 없이 정확한 위치에 핀이 생성됩니다.
+- 구글 내 지도 스타일을 [숫자 순서]로 지정하면 일자별 1, 2, 3, 4... 순번 배지가 자동 부여됩니다.
 
----
-
-### Phase 2: 브라우저 실시간 항공·숙소 최저가 & 당일 환율 리서치 보고
-
-사용자의 1단계 응답을 받으면, 브라우저/웹 검색 도구를 즉시 기동하여 실시간 현장 데이터를 수집합니다:
-1. **실시간 최저가 항공편 조사**: 네이버 여행 항공, 구글 항공편(Google Flights), 스카이스캐너 등에서 직항/경유 최저가 옵션 2~3개 제시 (항공사, 출도착 시간, 위탁수하물 포함 여부, 실시간 가격).
-2. **실시간 최저가 숙소 조사**: 아고다, 부킹닷컴, 구글 호텔, 트립닷컴 등에서 평점 8.5 이상 검증된 숙소 2~3곳 추천 (위치 이점, 1박당 세금 포함 실시간 최저가, 취소 규정, 조식 여부).
-3. **당일 실시간 환율 계산**: 작성 당일 기준 현지 통화 매매기준율과 현금 환전/트래블카드 적용 스프레드를 명시하고 기준 환율 고정.
+### 2. 구글 내 지도 원클릭 올인원 KML (`[도시]_mymaps.kml`)
+- 구글 내 지도 XML 파서 규격을 100% 만족하는 표준 KML 파일.
+- `&` 특수기호는 엄격히 `&amp;`로 엔티티 인코딩하여 구글 내 지도 파싱 에러를 원천 방지합니다.
 
 ---
 
-### Phase 3: 동선 최적화 맛집 & 카페 글로벌 큐레이션 리스트 보고
+### 3. 2가지 스타일 모바일 웹 애플리케이션
 
-일정의 주요 거점과 동선을 따라 최근 1년 이내 여행 유튜버, 블로그, 인스타그램, 구글맵 최신 평점(4.0 이상)을 기반으로 추천 리스트를 제공합니다:
-* **맛집 카테고리별 후보군**:
-  1. **현지인 로컬 맛집 / 비스트로 / 미슐랭**: 현지 분위기 물씬 풍기는 전통 음식점.
-  2. **한국인 선호 검증 맛집**: 위생과 맛이 검증된 인기 스팟.
-  3. **가성비/길거리 미식**: 부담 없이 즐기는 로컬 스낵/야시장.
-* **카페 카테고리별 후보군**:
-  1. **동선 힐링 카페**: 관광 중 다리를 쉬어가기 좋은 아늑한 공간.
-  2. **트렌디 인스타 핫플 / 디저트 카페**: 비주얼과 분위기가 뛰어난 곳.
-* 각 식당/카페마다 **대표 메뉴, 1인당 예상 가격대, 웨이팅 팁/예약 필요 여부**를 명시하고 사용자의 선택을 받습니다.
+#### 📱 스타일 1: 모바일 포켓 가이드 웹앱 (기본 추천 ⭐)
+* **산출물 파일**: `[도시]_pocket_guide.html` (또는 `[도시]_trip_cards.html`)
+* **베이스 템플릿**: [`resources/pocket_guide_app_template.html`](./resources/pocket_guide_app_template.html) (예시: [`examples/danang_pocket_guide.html`](./examples/danang_pocket_guide.html))
+* **핵심 기능**:
+  1. **상단 스티키 날짜 탭 바**: 일자별 즉시 전환 및 키보드 좌우 방향키 네비게이션.
+  2. **하단 4대 네이티브 탭 바**:
+     - **일정 (`timeline`)**: 타임라인 리스트, 진행률 프로그레스 바 & 다음 일정 이동 점프, 완료 체크박스(`localStorage` 저장), **Apple 지도** & **Google 지도** 듀얼 원클릭 길찾기, 현지어 회화 아코디언 (**Web Speech API 원어민 TTS 발음 듣기**, **기사님/점원 보여주기용 대형 텍스트 모달**, **원클릭 복사**).
+     - **장소 (`places`)**: 베이스캠프(호텔) 퀵 패널, 실시간 통합 검색창, 카테고리 필터 칩(식사, 쇼핑, 관광, 투어, 이동, 카페, 스파 등).
+     - **회화 (`phrases`)**: 상황별 실전 회화 핸드북, 키워드 검색, 음성 발음 재생, 대형 모달, 복사 버튼.
+     - **준비 (`ready`)**: 준비물 체크리스트(완료 카운터 연동), 쇼핑 위시리스트 체크리스트, **실시간 환율 계산기**(입력 시 원화 즉시 자동 재계산), 일자별 식비/카페 예산 목록, 여행 주의사항 팁.
+* **데이터 주입**: `window.TRIP = { meta: {...}, hotel: {...}, days: [...], shopping: [...], packing: [...], budget: [...], food: [...], notes: [...] };`
 
----
-
-### Phase 4: 마스터 일정표 & 정밀 예산안 작성 및 최종 보고
-
-확정된 항공, 숙소, 식당, 카페를 바탕으로 마스터 일정표를 작성합니다.
-**⚠️ 주의: 절대로 축약된 몇 줄의 요약문으로 대체하지 말고, 아래 두 가지를 채팅창에 전체 출력해야 합니다.**
-
-1. **일자별 상세 타임라인 종합 정리표 (DAY 1, DAY 2, DAY 3...)**:
-   - `resources/master_itinerary_template.md`의 5개 컬럼 표:
-     `순번 | 시간 | 일정 내용 | 방문 스팟 & 이동 상세 꿀팁 | 현장 즉석 현지어 실전 회화`
-   - 각 일차 하단에 **구글맵 다중 경유지 경로 링크 (`https://www.google.com/maps/dir/...`)** 필수 첨부.
-2. **실시간 환율 적용 최종 정밀 예산표**:
-   - `resources/budget_template.md`의 구조대로 1인당 및 총원 기준 고정비(항공/숙소/투어), 식비, 교통비, 입장료, 예비비를 현지 통화 및 원화(KRW)로 정밀 집계.
-
----
-
-### Phase 5: 최종 산출물 생성 확인 (Confirmation Prompt)
-
-마스터 일정이 완성되어 사용자에게 보고된 후, **반드시 아래와 같이 질문하여 사용자의 명시적 동의를 받습니다.**
-
-> **"위의 모든 일정이 확정되었는데, 구글 내 지도용 일자별 CSV 파일들(`day1_itinerary.csv`...)과 원클릭 올인원 KML 파일(`[도시]_mymaps.kml`), 그리고 휴대폰에서 1장씩 볼 수 있는 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션(`[도시]_trip_cards.html`) 생성을 해드릴까요?"**
-
-* 사용자가 "응", "생성해줘", "좋아", "승인" 등으로 **동의한 경우에만** Phase 6으로 이동하여 최종 파일들을 작성합니다.
-* 추가 수정이나 일정 조정을 원할 경우 해당 내용을 반영한 후 다시 확인합니다.
-
----
-
-### Phase 6: 최종 산출물 생성 (CSV, KML & 애플 아이폰 카드뉴스 웹앱)
-
-사용자의 확인을 거친 후 다음 세 가지 핵심 산출물을 작업 디렉토리에 생성합니다:
-
-#### 1. 구글 내 지도 호환 Day별 분리 CSV (`day1_itinerary.csv`, `day2_itinerary.csv`...)
-구글 내 지도(My Maps)는 레이어별로 CSV를 임포트하므로, 일차별로 각각 1개씩 파일을 생성합니다.
-* **표준 8개 컬럼 헤더**:
-  ```csv
-  날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모
-  ```
-  *(⚠️ **위도(lat) / 경도(lng) 필수 포함**: 구글 내 지도가 위치 열을 1초 만에 자동 감지하여 오류 없이 핀을 꽂도록 정밀 좌표를 반드시 포함합니다.)*
-* **구글지도 열 작성 요령**:
-  - `https://www.google.com/maps/search/?api=1&query=인코딩된+영문/현지어+장소명` 형식으로 작성합니다.
-* **구글 내 지도 렌더링 팁**:
-  - 구글 내 지도에서 새 레이어를 추가하고 각 Day CSV를 가져온 뒤, **[스타일 지정] -> [숫자의 순서]**를 선택하고 라벨을 **[여행지]**로 지정하면 행 순서대로 `1, 2, 3, 4...` 번호 뱃지 마커가 자동 생성됩니다.
-
-#### 2. 원클릭 올인원 구글 내 지도 KML 파일 (`[도시]_mymaps.kml`) 및 Day별 KML
-구글 내 지도(My Maps) 웹 파서와 100% 호환되는 정밀 KML 파일 세트를 생성합니다.
-* **XML 문법 및 특수문자 이스케이프 필수 규칙**:
-  1. **XML 엔티티 이스케이프**: `<name>` 및 텍스트 내 `&` 기호는 반드시 **`&amp;`**로 이스케이프해야 합니다. (미처리 시 XML 파싱 에러로 구글 내 지도 가져오기 즉시 실패)
-  2. **특수 문자 정제**: 특수 유니코드 화살표(`➔`) 등은 안전한 표준 기호(`->`)로 치환합니다.
-* **구글 내 지도 파서 최적화**:
-  - 레이어 가져오기 시 충돌을 방지하기 위해 올인원 KML은 플랫(Flat)한 `<Placemark>` 구조로 작성하고, 레이어별 분리 추가를 위해 `[도시]_Day1.kml`, `[도시]_Day2.kml` 등 일자별 KML도 함께 제공합니다.
-* **생성 방법**: `resources/generate_maps_data.py` 유틸리티 스크립트를 활용하거나 `xml.etree.ElementTree` 검증을 통과하도록 작성합니다.
-* **사용자 안내**: 구글 내 지도(My Maps) 웹사이트에서 **[가져오기]에 생성된 `.csv` 또는 `.kml` 파일을 드래그앤드롭**합니다. 만약 파싱 에러 팝업 발생 시 브라우저를 **F5 새로고침**한 뒤 재시도하도록 안내합니다.
-
-#### 💡 사용자를 위한 구글 내 지도(Google My Maps) 등록 가이드
-여행자가 산출물을 받아 구글 지도에 등록할 때의 표준 매뉴얼입니다:
-
-##### [방법 A] CSV 파일로 등록하기 (가장 안정적 & 권장)
-1. **[구글 내 지도(My Maps)](https://www.google.com/maps/d/)** 접속 ➔ **[+ 새 지도 만들기]** 클릭
-2. 레이어의 파란색 **[가져오기]** 버튼 클릭 ➔ `day1_itinerary.csv` (또는 통합 `danang_itinerary.csv`) 업로드
-3. **위치 열 선택**: 구글 지도가 `위도`와 `경도` 컬럼을 1초 만에 자동 감지하므로 그대로 **[계속]** 클릭
-4. **마커 제목 열 선택**: **`여행지`**를 선택하고 **[완료]** 클릭
-5. 💡 **순번 번호 뱃지 팁**: 레이어 제목 아래 **[기본 스타일]** 클릭 ➔ **[스타일 지정: 숫자의 순서]** ➔ **[라벨: 여행지]**를 선택하면 지도 위에 `1, 2, 3, 4...` 일정 순서대로 번호 마커가 자동 생성됩니다.
-
-##### [방법 B] KML 파일로 등록하기 (원클릭 등록)
-1. 구글 내 지도에서 **[+ 새 지도 만들기]** 클릭
-2. 첫 번째 레이어의 **[가져오기]** 클릭 ➔ `danang_mymaps.kml` 드래그앤드롭
-3. `&` 엔티티(`&amp;`) 및 문법 검증이 완료되어 파싱 에러 없이 전 일정 장소와 팝업 설명이 즉시 등록됩니다.
-
-> [!TIP]
-> **가져오기 실패 팝업이 발생할 때**: 이전 세션의 브라우저 캐시 문제일 수 있으므로 **`F5`(새로고침)**를 누른 후 새 레이어에 업로드하면 정상 작동합니다.
-
-#### 3. 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션 (`[도시]_trip_cards.html`)
-스마트폰 브라우저(Safari, Chrome)에서 오프라인으로 완벽 동작하는 단일 파일 인터랙티브 웹앱을 생성합니다.
-
-* **⛔ 양식 및 레이아웃 절대 변경 금지 (Strict Layout & Schema Preservation)**:
-  * `[도시]_trip_cards.html` 생성 시 반드시 **[`resources/ios_card_app_template.html`](./resources/ios_card_app_template.html) (또는 [`examples/danang_trip_cards.html`](./examples/danang_trip_cards.html))을 그대로 베이스로 복제**해야 하며, HTML DOM ID, CSS 클래스, 상단 3대 모달 + 점원 보여주기 모달 구조, JavaScript 렌더링 엔진을 **단 1%도 임의 변경하거나 변형해서는 안 됩니다.**
-  * 오직 상단 타이틀/모달 내 텍스트와 `const itineraryData = [ ... ];` 배열의 데이터만 아래 고정 스키마로 교체합니다:
-    `{ id, day, time, title, category, description, phraseKo, phraseJa, phraseMeaning, cost, mapQuery }` (`description`은 `\n`으로 구분된 `• ` 글머리 기호 문자열).
-* **UI/UX 디자인 시스템**:
-  * Apple iOS 화이트 글래스모피즘 (`bg-[#F2F2F7]`, `rounded-[28px]`, `shadow-ios`, `glass-nav`).
-  * Phosphor Icons (`https://unpkg.com/@phosphor-icons/web`) 및 Tailwind CSS 활용.
-  * SF Pro 시스템 폰트 감성의 볼드하고 정갈한 타이포그래피.
-* **1장씩 한 화면에 보는 카드뉴스 뷰 (`#activeCard`)**:
-  * **상단 뱃지**: 순번 뱃지(`#1`), Day 뱃지(`DAY 1`), 카테고리 태그(`✈️ 출국/입국`), 완료 체크 버튼(`btnToggleDone`).
-  * **시간 & 타이틀**: 시계 아이콘 + 시간 범위, 볼드 제목.
-  * **방문 스팟 & 이동 상세 꿀팁 상자 (`#cardDescriptionText`)**: 내비게이션 화살표 아이콘 및 글머리 기호 팁.
-  * **현장 즉석 현지어 회화 상자 (`#cardPhraseContainer`)**:
-    * 한글 발음(`#cardPhraseKoSound`), 현지어 원문(`#cardPhraseJa`), 한국어 뜻(`#cardPhraseMeaning`) 표시.
-    * 🔊 **발음듣기 버튼 (`#btnPlayVoice`)**: Web Speech API (`speechSynthesis`) 기반 현지어 원어민 TTS 음성 재생.
-    * ⛶ **보여주기 버튼 (`#btnShowLargeJapanese`)**: 시끄러운 식당/택시 안에서 직원/기사님께 보여줄 수 있는 대형 텍스트 풀스크린 모달(`#modalShowJapanese`).
-  * **하단 정보 & 지도 연동**: 비용/노트 태그(`#cardCostText`) 및 📍 **구글지도 위치 원클릭 링크 버튼 (`#btnCardMapLink`)**.
-* **모바일 최적화 내비게이션 조작**:
-  * 터치 좌/우 스와이프 제스처 지원 (`touchstart`, `touchend`).
-  * 카드 하단 `[ < 이전 일정 ]` + 컨텍스트 프로그레스 도트(최대 7개) + `[ 다음 일정 > ]` 버튼.
-* **상단 iOS 세그먼트 Day 탭 (`.day-tab`)**: `전체` | `DAY 1` | `DAY 2` | `DAY 3` 등 원클릭 즉시 필터링.
-* **카드형 ↔ 타임라인 목록 뷰 전환 (`#viewModeCard` / `#viewModeList`)**:
-  * 상단 토글로 전환 가능하며, 타임라인 목록에는 **실시간 검색창 (`#listSearchInput`)**을 제공하여 장소/시간/음식/현지어 즉시 검색 지원.
-* **상단 3대 필수 유틸리티 모달 (고정 레이아웃)**:
-  * 🪙 **경비 모달 (`#modalBudget`, `#btnOpenBudget`)**: 블루-인디고 그라데이션 총경비 하이라이트 박스 + 3개 섹션 카드(총 예상 식비, 현지 교통비, 관광/온천/투어비).
-  * 🛍️ **위시 모달 (`#modalShopping`, `#btnOpenShopping`)**: 일차 뱃지(`D1`, `D2`, `D3`) + 스팟명(`#순번`) + 상세 위치/쇼핑 팁 카드 리스트.
-  * ℹ️ **비상/호텔 모달 (`#modalEmergency`, `#btnOpenEmergency`)**: 다크 슬레이트(`bg-slate-900`) 숙소 택시 기사님용 주소 카드 & 귀국 공항 택시 기사님용 카드(`copyToClipboard` 원클릭 복사 버튼 포함) + 긴급 비상 연락망 박스(총영사관, 영사콜센터, 경찰/구급).
-
----
-
-## 📂 템플릿 및 리소스 링크
-* [마스터 일정표 템플릿](./resources/master_itinerary_template.md): 글로벌 표준 Markdown 마스터 일정표 구조
-* [실전 예산표 템플릿](./resources/budget_template.md): 다통화 환율 및 팁/세금 포함 글로벌 예산 템플릿
-* [구글 내 지도 CSV 템플릿](./resources/itinerary_template.csv): 표준 8개 컬럼 구글 내 지도 호환 CSV 헤더 (`날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모`)
-* [올인원 KML 템플릿](./resources/mymaps_template.kml): 레이어 폴더, 번호 마커, 동선 연결선 포함 KML 규격
-* [지도 데이터 자동 생성기](./resources/generate_maps_data.py): Day별 CSV 및 올인원 KML 자동 빌드 스크립트
-* [애플 iOS 카드뉴스 웹앱 템플릿](./resources/ios_card_app_template.html): 양식·레이아웃·4대 모달·`itineraryData` 스키마 고정 표준 템플릿
-* [전문가 글로벌 플래닝 플레이북](./references/trip_planning_playbook.md): 전 세계 권역별 동선/교통/안전 가이드라인
-
----
-
-## ✅ 스킬 실행 체크리스트
-- [ ] 시작 시 여행 기본 조건(목적지, 일정, 항공, 숙박, 교통방식, 통신, 위시리스트)을 먼저 질문했는가?
-- [ ] 브라우저/웹 검색을 통해 네이버 여행, 구글 여행 등에서 실시간 최저가를 직접 확인했는가?
-- [ ] 목적지 국가 통화의 당일 실시간 환율을 검색하여 예산표에 정밀 반영했는가?
-- [ ] 유튜브/블로그/인스타를 리서치하여 현지인/한국인/가성비 맛집과 힐링/핫플 카페 리스트를 제시하고 선택받았는가?
-- [ ] 국가별 교통(우버/그랩/기차/렌터카), 짐 핸들링, 치안 및 팁 문화가 일정에 반영되었는가?
-- [ ] 방문국 언어에 맞춘 실전 회화(한글 발음, 원문, 뜻)가 포함되었는가?
-- [ ] Phase 4에서 축약/생략 없이 `master_itinerary_template.md`의 **일자별 상세 타임라인 종합 정리표(테이블)** 전체와 **최종 정밀 예산표**를 채팅 본문에 온전히 출력했는가?
-- [ ] 최종 산출물 생성 전 **"구글 내 지도용 일자별 CSV 파일들(day1_itinerary.csv...)과 원클릭 올인원 KML 파일([도시]_mymaps.kml), 그리고 휴대폰에서 1장씩 볼 수 있는 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션([도시]_trip_cards.html) 생성을 해드릴까요?"**라고 사용자에게 승인을 구했는가?
-- [ ] 승인 후 `day1_itinerary.csv` 등 일자별 8컬럼 CSV 파일들과 `[도시]_mymaps.kml`, 그리고 `resources/ios_card_app_template.html`의 양식·레이아웃·4대 모달·`itineraryData` 스키마를 100% 그대로 보존한 `[도시]_trip_cards.html`을 생성했는가?
+#### 🗂️ 스타일 2: 애플 아이폰(iOS) 스타일 카드뉴스 웹앱 (선택)
+* **산출물 파일**: `[도시]_trip_cards.html`
+* **베이스 템플릿**: [`resources/ios_card_app_template.html`](./resources/ios_card_app_template.html) (예시: [`examples/danang_trip_cards.html`](./examples/danang_trip_cards.html))
+* **핵심 기능**:
+  - 화이트 글래스모피즘 (`bg-[#F2F2F7]`, `rounded-[28px]`, `shadow-ios`) 디자인.
+  - 1장씩 넘겨보는 슬라이드 뷰 (`#activeCard`) 및 터치 스와이프 제스처.
+  - 4대 상단 유틸리티 모달: 예산 모달 (`#modalBudget`), 쇼핑 위시 모달 (`#modalShopping`), 비상연락처/호텔 택시 카드 모달 (`#modalEmergency`), 전체 일정표 모달.
+* **데이터 주입**: `const itineraryData = [ ... ];` 객체 배열.

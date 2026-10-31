@@ -9,7 +9,9 @@ description: >-
   food/café options from travel YouTubers, bloggers, and Instagram, adapts local transport
   (Uber/Grab/Trains/Rentals), provides native situational phrases, and strictly confirms with
   the user before generating final Day-by-Day CSVs, all-in-one Google My Maps KML files, and
-  mobile-optimized Apple iPhone (iOS) style card news web applications.
+  choice of 2 mobile web apps: Style 1 (Default: Feature-rich Mobile Pocket Guide with 4 tabs,
+  live search, checkmarks, Apple/Google Maps, TTS voice, and exchange calculator) or Style 2
+  (Apple iOS Card News App with swipe gestures and 4 utility modals).
 ---
 
 # 🧭 Global Trip Planner
@@ -18,7 +20,7 @@ description: >-
 
 > **Universal AI Travel Planner & Itinerary Architect for Agentic Frameworks.**  
 > Covers domestic and worldwide international destinations (Asia, Europe, Americas, Oceania, etc.).  
-> **Strictly interactive**: Conducts structured questionnaires first, retrieves real-time live flight/hotel pricing and daily foreign exchange rates, curates social media-trending gourmet spots and cafes, and generates **Google My Maps Day-by-Day CSVs, All-in-One KMLs, and mobile-optimized Apple iPhone (iOS) style card news web applications (`[city]_trip_cards.html`)**.
+> **Strictly interactive**: Conducts structured questionnaires first, retrieves real-time live flight/hotel pricing and daily foreign exchange rates, curates social media-trending gourmet spots and cafes, and generates **Google My Maps Day-by-Day CSVs, All-in-One KMLs, and 2 Styles of Mobile Web Applications (`[city]_pocket_guide.html` or `[city]_trip_cards.html`)**.
 
 ---
 
@@ -45,10 +47,11 @@ This skill automatically detects and adapts to the user's preferred language:
 5. **Mandatory 5-Column Detailed Timeline Table & Precision Budget (No Abbreviations)**:
    - When presenting the Master Itinerary (Phase 4), **never provide a summarized or shortened overview**.
    - Output full minute-by-minute timeline tables (`No. | Time | Activity Details | Spots & Transit Tips | Situational Local Phrases`) along with multi-stop Google Maps route links and complete budget breakdowns.
-6. **Explicit User Confirmation Before File Generation**:
-   - Before writing any final files, explicitly ask:  
-     `"All itinerary details are confirmed. Would you like me to generate the Google My Maps Day-by-Day CSV files, the One-Click All-in-One KML file, and the mobile Apple iPhone (iOS) style card news web app?"`  
-   - Only generate the files after the user gives explicit approval.
+6. **Explicit User Confirmation & 2 Web App Style Options**:
+   - Before writing any final files, ask the user to confirm the itinerary and **select their preferred Web App Style**:
+     - **Style 1: Mobile Pocket Guide Web App (Default & Recommended ⭐)**: 4 native bottom tabs (Timeline, Places, Phrases, Ready), sticky date switcher, real-time search & filters, interactive checkmarks (saved in localStorage), dual Apple/Google Maps links, oversized dialog for drivers/staff & native Web Speech TTS, dynamic exchange rate calculator. (Template: `resources/pocket_guide_app_template.html`).
+     - **Style 2: Apple iOS Card News Web App (Option)**: Minimal white glassmorphism card news slide deck with swipe gestures and 4 top utility modals (Budget, Shopping, Emergency, Schedule). (Template: `resources/ios_card_app_template.html`).
+   - Only generate the files after the user gives explicit approval. If the user does not specify, default to **Style 1**.
 
 ---
 
@@ -66,9 +69,12 @@ This skill automatically detects and adapts to the user's preferred language:
           2. Multi-stop Google Maps transit route links
           3. Daily exchange rate applied precision budget breakdown
        ↓
-[Phase 5] Explicit User Confirmation ("Would you like me to generate CSVs, KML, and iOS Card Web App?") ➔ [User Approval]
+[Phase 5] Explicit User Confirmation & Style Choice:
+          "All itinerary details are confirmed. Which web app style would you prefer?
+           1) Pocket Guide Web App (Default: 4 tabs, search, checkmarks, Apple/Google Maps, TTS, live rate calculator)
+           2) Apple iOS Card News App (Swipe cards, glassmorphism, 4 modals)" ➔ [User Approval]
        ↓
-[Phase 6] Final File Generation: Day-by-Day CSVs, [City]_mymaps.kml, and [City]_trip_cards.html
+[Phase 6] Final File Generation: Day-by-Day CSVs, [City]_mymaps.kml, and selected Web App ([City]_pocket_guide.html or [City]_trip_cards.html)
 ```
 
 ---
@@ -87,35 +93,34 @@ This skill automatically detects and adapts to the user's preferred language:
   - Chronological numbered pins (`#1`, `#2`...) with clean HTML balloon popups.
 
 #### 💡 User Guide: How to Import into Google My Maps
-Standard step-by-step instructions for travelers to import deliverables into Google My Maps:
+1. Open **[Google My Maps](https://www.google.com/maps/d/)** ➔ Click **[+ Create a new map]**.
+2. Click **[Import]** on the layer ➔ Upload `day1_itinerary.csv` (or full `danang_itinerary.csv`) or drag and drop `[City]_mymaps.kml`.
+3. For CSV: Choose `Latitude` and `Longitude` for placemark positions, select `Place` for marker titles. Click **[Uniform style]** ➔ Change to **[Sequence of numbers]** for auto number badges `1, 2, 3...`.
 
-##### [Method A] Import via CSV (Most Reliable & Recommended)
-1. Navigate to **[Google My Maps](https://www.google.com/maps/d/)** ➔ Click **[+ Create a new map]**.
-2. Click the blue **[Import]** button under the untitled layer ➔ Upload `day1_itinerary.csv` (or full `danang_itinerary.csv`).
-3. **Choose columns to position placemarks**: Google Maps auto-detects `Latitude` and `Longitude`. Click **[Continue]**.
-4. **Choose a column to title markers**: Select **`Place` (or `여행지`)** and click **[Finish]**.
-5. 💡 **Numbered Sequence Badges Tip**: Click **[Uniform style]** under the layer title ➔ Change to **[Sequence of numbers]** ➔ Set **[Set labels: Place]**. Number badges `1, 2, 3, 4...` are automatically mapped in chronological order.
+---
 
-##### [Method B] Import via KML (One-Click Instant)
-1. Open Google My Maps ➔ Click **[+ Create a new map]**.
-2. Click **[Import]** on the layer ➔ Drag and drop `danang_mymaps.kml`.
-3. All spots, numbered placemarks, and detailed HTML popups are populated instantly without parse errors.
+### 3. Dual-Style Mobile Web Applications
 
-> [!TIP]
-> **If an import error occurs**: Browser caching from a previous corrupted session can cause temporary failures. Simply press **`F5` (Refresh)** in your browser and re-import into a new layer.
+#### 📱 Style 1: Mobile Pocket Guide Web App (Default & Recommended ⭐)
+* **File Target**: `[City]_pocket_guide.html` (or `[City]_trip_cards.html`)
+* **Base Template**: [`resources/pocket_guide_app_template.html`](./resources/pocket_guide_app_template.html) (Example: [`examples/danang_pocket_guide.html`](./examples/danang_pocket_guide.html))
+* **Key Features**:
+  1. **Sticky Date Bar**: Instant switching between days with keyboard arrow key support.
+  2. **4 Native Bottom Tabs**:
+     - **Timeline (`timeline`)**: Full minute-by-minute schedule, completion progress bar with "Jump to Next Event" anchor, interactive checkmarks (`data-done`) preserved in `localStorage`, dual **Apple Maps** & **Google Maps** one-click links, and collapsible native phrase accordion with **Web Speech API TTS Pronunciation**, **Oversized Fullscreen Dialog (`#phrase-modal`) for drivers and staff**, and **1-click Clipboard Copy**.
+     - **Places (`places`)**: Basecamp hotel card, live instant search box, category filter chips (`All`, `Food`, `Shopping`, `Sights`, `Tours`, `Transit`, `Cafe`, `Spa`).
+     - **Phrases (`phrases`)**: Complete situational phrase handbook with instant search, audio playback, fullscreen card, and copy buttons.
+     - **Ready (`ready`)**: Interactive packing checklist with live count (`X/Total`), shopping wishlist checkmarks, total budget breakdown with **dynamic exchange rate calculator** (auto-converts local currency into KRW/home currency in real-time), food budget list, and critical travel tips.
+* **Schema**: Populate `window.TRIP = { meta: {...}, hotel: {...}, days: [...], shopping: [...], packing: [...], budget: [...], food: [...], notes: [...] };`.
 
-### 3. Apple iPhone (iOS) Style Card News Web App (`[City]_trip_cards.html`)
-* **⛔ Strict Layout & Schema Preservation (양식 및 레이아웃 절대 변경 금지)**:
-  - When generating `[City]_trip_cards.html`, you **MUST copy [`resources/ios_card_app_template.html`](./resources/ios_card_app_template.html) (or [`examples/danang_trip_cards.html`](./examples/danang_trip_cards.html)) as the exact base** and **NEVER alter** its HTML DOM IDs, CSS styles, 4 Modals structure, or JavaScript rendering engine.
-  - Populate ONLY the header/modal text placeholders and the `const itineraryData = [ ... ];` array using the exact object schema:
-    `{ id, day, time, title, category, description, phraseKo, phraseJa, phraseMeaning, cost, mapQuery }` (`description` uses `\n`-separated `• ` bullet lines).
-* **Glassmorphic UI**: SF Pro typography, Phosphor Icons, and white glassmorphism design (`bg-[#F2F2F7]`, `rounded-[28px]`, `shadow-ios`).
-* **1-Card-at-a-Time View (`#activeCard`)**: Sequence badge (`#1`), Day badge (`DAY 1`), category pill, time range, `cardDescriptionText` bullet box, and local situational phrase box (`cardPhraseContainer`).
-* **Native TTS Voice & Staff Fullscreen Modal (`#modalShowJapanese`)**: Tap the speaker icon (`btnPlayVoice`) to play native pronunciation via Web Speech API, or tap `btnShowLargeJapanese` (`보여주기`) to open the oversized fullscreen script modal for staff and drivers.
-* **3 Essential Top Modals (Fixed Layout)**:
-  1. **`#modalBudget` (`btnOpenBudget`)**: Gradient total highlight box (`from-blue-600 to-indigo-600`) + 3 structured breakdown cards (Food, Local Transport, Tickets/Tours).
-  2. **`#modalShopping` (`btnOpenShopping`)**: Day-badged (`D1`, `D2`, `D3`) wish achievement cards with sequence numbers (`#seq`) and location tips.
-  3. **`#modalEmergency` (`btnOpenEmergency`)**: Dark (`bg-slate-900`) Hotel Taxi Card & Airport Taxi Card with one-click `copyToClipboard(...)` buttons + Emergency Contact Numbers box.
+#### 🗂️ Style 2: Apple iOS Card News Web App (Option)
+* **File Target**: `[City]_trip_cards.html`
+* **Base Template**: [`resources/ios_card_app_template.html`](./resources/ios_card_app_template.html) (Example: [`examples/danang_trip_cards.html`](./examples/danang_trip_cards.html))
+* **Key Features**:
+  - Clean white glassmorphic card deck (`bg-[#F2F2F7]`, `rounded-[28px]`, `shadow-ios`).
+  - 1-Card-at-a-time view with swipe gestures and sequence badges.
+  - 4 Top Utility Modals: Budget highlight (`#modalBudget`), Shopping wishlist (`#modalShopping`), Emergency taxi cards & contacts (`#modalEmergency`), and Full schedule modal.
+* **Schema**: Populate `const itineraryData = [ ... ];` array using exact object structure.
 
 ---
 
@@ -128,7 +133,7 @@ Standard step-by-step instructions for travelers to import deliverables into Goo
 
 전 세계 모든 국내외 여행지(아시아, 유럽, 미주, 대양주 등)를 아우르는 전문 여행 플래너이자 일정 아키텍트입니다.  
 **일방적으로 일정을 임의 작성하지 않고** 사용자와 단계별 인터랙티브 문답을 통해 여행 취향을 파악합니다.  
-"브라우저" 기반 실시간 최저가(항공·숙소)와 목적지 국가의 당일 실시간 환율을 검색·반영하고, 여행 유튜버·블로거·인스타그램 트렌드를 심층 조사하여 최적의 동선, 맛집, 카페, 교통(우버/그랩/기차 등)을 큐레이션하며, **최종 구글 내 지도 산출물(Day별 CSV & 올인원 KML) 및 모바일 최적화 애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션(`[도시]_trip_cards.html`) 생성 전 반드시 사용자의 확인을 거칩니다.**
+"브라우저" 기반 실시간 최저가(항공·숙소)와 목적지 국가의 당일 실시간 환율을 검색·반영하고, 여행 유튜버·블로거·인스타그램 트렌드를 심층 조사하여 최적의 동선, 맛집, 카페, 교통(우버/그랩/기차 등)을 큐레이션하며, **최종 구글 내 지도 산출물(Day별 CSV & 올인원 KML) 및 2가지 스타일의 모바일 최적화 웹앱(`[도시]_pocket_guide.html` 또는 `[도시]_trip_cards.html`) 생성 전 반드시 사용자의 확인과 스타일 선택을 거칩니다.**
 
 #### ⛔ 플래너 6대 절대 원칙
 1. **사전 확인 없는 임의 작성 금지**: 시작 시 목적지, 일정, 인원, 여행 스타일, 예산을 먼저 질문하고 사용자의 선택을 받습니다.
@@ -136,30 +141,18 @@ Standard step-by-step instructions for travelers to import deliverables into Goo
 3. **트렌드 미디어 심층 리서치**: 유튜브, 블로그, 인스타를 종합 조사하여 최근 검증된 핫플과 미식 반영.
 4. **동선 최적화 맛집 & 카페 큐레이션**: 권역별 맛집 및 카페 후보군 제시 후 사용자 선택 유도.
 5. **일자별 상세 타임라인 종합 정리표 & 최종 예산표 전체 출력 필수**: 축약 없이 5개 컬럼 테이블 온전히 출력.
-6. **최종 산출물 생성 전 필수 사용자 확인 및 웹앱 템플릿 양식 절대 보존**: 사용자 승인 후 Day별 8컬럼 CSV, 올인원 KML, 모바일 카드뉴스 웹앱을 빌드하며, 웹앱 생성 시 `resources/ios_card_app_template.html`의 양식·레이아웃·4대 모달·`itineraryData` 스키마를 단 1%도 임의 변경하지 않습니다.
+6. **최종 산출물 승인 및 2가지 웹앱 스타일 선택 확인**:
+   - 파일 생성 전 사용자에게 일정 승인을 구하고 **웹앱 스타일 2가지 중 원하는 레이아웃을 질문**합니다:
+     - **스타일 1: 모바일 포켓 가이드 웹앱 (기본 추천 ⭐)**: 4개 탭(일정/장소/회화/준비), 실시간 검색, 완료 체크박스(localStorage), Apple/Google 지도 듀얼 연동, 대형 텍스트 모달 & 원어민 TTS, 실시간 환율 연동 예산 계산기 (`resources/pocket_guide_app_template.html`).
+     - **스타일 2: 애플 아이폰 카드뉴스 웹앱 (선택)**: 스와이프 제스처 카드뉴스, 글래스모피즘 디자인, 4대 유틸리티 모달 (`resources/ios_card_app_template.html`).
+   - 사용자가 별도 지정하지 않으면 **스타일 1**을 기본 적용합니다.
 
-#### 📋 6단계 플래닝 프로세스
-1. `Phase 1`: 초기 인터뷰 & 필수 질문 (전 세계 맞춤)
-2. `Phase 2`: 실시간 항공·숙소 최저가 & 현지 당일 환율 리서치 보고 ➔ 사용자 선택
-3. `Phase 3`: 동선 최적화 맛집 & 카페 글로벌 큐레이션 리스트 보고 ➔ 사용자 선택
-4. `Phase 4`: 마스터 일정표(5컬럼 타임라인) & 정밀 예산안 작성 및 보고
-5. `Phase 5`: 최종 산출물 생성 여부 확인 질문 (사용자 승인)
-6. `Phase 6`: 구글 내 지도 Day별 CSV + 올인원 KML + iOS 카드뉴스 웹앱 생성
+#### 📋 6단계 워크플로우
+1. **[1단계] 사전 인터뷰 및 필수 문답**: 여행지, 일정, 동행자, 선호 스타일, 예산 파악.
+2. **[2단계] 실시간 항공·숙소 최저가 & 당일 환율 보고 ➔ [사용자 선택]**
+3. **[3단계] 동선 맞춤형 맛집·카페 큐레이션 리스트 ➔ [사용자 선택]**
+4. **[4단계] ⭐ 마스터 일정표 & 정밀 예산안 전체 출력 (축약 금지)**
+5. **[5단계] 최종 확인 및 웹앱 스타일 선택 질문 ➔ [사용자 승인]**
+6. **[6단계] 최종 파일 일괄 빌드**: Day별 CSV, [도시]_mymaps.kml, 선택된 스타일 웹앱
 
 </details>
-
----
-
-## 📂 Templates & Resources
-* [Master Itinerary Template](./resources/master_itinerary_template.md): Global standard Markdown master itinerary structure.
-* [Budget Template](./resources/budget_template.md): Multi-currency budget template with taxes & tips.
-* [Google My Maps CSV Template](./resources/itinerary_template.csv): Standard 8-column CSV header (`Date,Time,Place,Latitude,Longitude,GoogleMaps,Description,Transit_Notes`).
-* [All-in-One KML Template](./resources/mymaps_template.kml): KML schema with layers, pins, and routes.
-* [Maps Data Generator](./resources/generate_maps_data.py): Automated Python script for CSV & KML builds.
-* [iOS Card App Template](./resources/ios_card_app_template.html): Standalone mobile web app template (strictly preserve layout & schema).
-* [Global Planning Playbook](./references/trip_planning_playbook.md): Regional transit and safety guidelines.
-
----
-
-## 📄 License
-MIT License. See [LICENSE](../../LICENSE) for details.

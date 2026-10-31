@@ -1,6 +1,6 @@
 # 🌟 Awesome Agent Skills
 
-[![Version](https://img.shields.io/badge/version-v1.4.2-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.4.2)
+[![Version](https://img.shields.io/badge/version-v1.5.0-emerald)](https://github.com/jaeminiz/awesome-agent-skills/releases/tag/v1.5.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/jaeminiz/awesome-agent-skills/pulls)
 [![skills.sh](https://img.shields.io/badge/skills.sh-trip--planner-black)](https://www.skills.sh/jaeminiz/awesome-agent-skills/trip-planner)
@@ -17,11 +17,11 @@
 
 | 카테고리 | 스킬 이름 | 버전 | 핵심 설명 | 바로가기 |
 | :--- | :--- | :---: | :--- | :---: |
-| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.4.2` | **글로벌 전문가 여행 플래너 & 일정 아키텍트**<br>• 인터랙티브 단계별 문답 & 브라우저 실시간 최저가·환율 탐색<br>• 미디어 트렌드 맛집 & 카페 큐레이션<br>• **일자별 상세 타임라인 종합 정리표(5개 컬럼)** & 정밀 예산표<br>• **구글 내 지도(Google My Maps) 표준 8컬럼 Day별 CSV & 올인원 KML** 자동 생성<br>• **애플 아이폰(iOS) 스타일 카드뉴스 웹앱 (표준 템플릿 레이아웃 100% 고정)** 자동 빌드 | [바로가기](skills/trip-planner) |
+| ✈️ **Travel & Lifestyle** | [`trip-planner`](skills/trip-planner) | `v1.5.0` | **글로벌 전문가 여행 플래너 & 일정 아키텍트**<br>• 인터랙티브 단계별 문답 & 브라우저 실시간 최저가·환율 탐색<br>• 미디어 트렌드 맛집 & 카페 큐레이션<br>• **일자별 상세 타임라인 종합 정리표(5개 컬럼)** & 정밀 예산표<br>• **구글 내 지도(Google My Maps) 표준 8컬럼 Day별 CSV & 올인원 KML** 자동 생성<br>• **애플 아이폰(iOS) 스타일 카드뉴스 웹앱 (표준 템플릿 레이아웃 100% 고정)** 자동 빌드 | [바로가기](skills/trip-planner) |
 
 ---
 
-## 🏆 대표 스킬 소개 (Featured Skills): `trip-planner` (`v1.4.2`)
+## 🏆 대표 스킬 소개 (Featured Skills): `trip-planner` (`v1.5.0`)
 
 ### 🧭 [trip-planner](skills/trip-planner) — 글로벌 전문가 여행 플래너
 
@@ -33,7 +33,7 @@
      표준 8컬럼(`날짜,시간,여행지,위도,경도,구글지도,설명,이동/메모`) 호환. 정밀 위도/경도 좌표를 포함해 구글 내 지도가 1초 만에 위치를 자동 감지하며, [숫자의 순서] 스타일 선택 시 행 순서대로 `1, 2, 3...` 번호 뱃지 마커가 자동 부여됩니다.
   2. **원클릭 올인원 KML 파일 (`[도시]_mymaps.kml`)**:  
      구글 내 지도(My Maps) 웹 파서에 100% 호환되도록 XML 엔티티(`&amp;`) 정제 및 문법 검증을 마친 KML로 파싱 에러 없이 번호 마커와 상세 팝업이 즉시 등록됩니다.
-  3. **애플 아이폰(iOS) 스타일 카드뉴스 웹 애플리케이션 (`[도시]_trip_cards.html`)**:  
+  3. **2가지 스타일 모바일 웹 애플리케이션 (스타일 1: 모바일 포켓 가이드 - 기본 추천 / 스타일 2: 애플 iOS 카드뉴스) (`[도시]_trip_cards.html`)**:  
      [`resources/ios_card_app_template.html`](skills/trip-planner/resources/ios_card_app_template.html)의 HTML/CSS/4대 모달/JS 엔진(`const itineraryData = [{ id, day, time, title, category, description, phraseKo, phraseJa, phraseMeaning, cost, mapQuery }]`)을 단 1%도 변경하지 않고 그대로 복제하여 생성하는 오프라인 모바일 웹앱 (Web Speech TTS 원어민 발음듣기, 점원 보여주기 대형 모달 `#modalShowJapanese`, 경비 그라데이션 박스+3섹션 `#modalBudget`, 일차 뱃지 위시 카드 `#modalShopping`, 다크 슬레이트 숙소/공항 택시 주소 원클릭 복사 `#modalEmergency` 탑재).
 
 #### 🗺️ 구글 내 지도(Google My Maps) 등록 표준 매뉴얼
